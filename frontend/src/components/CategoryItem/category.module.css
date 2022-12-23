@@ -1,0 +1,62 @@
+.categoryText {
+  position: relative;
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 30px;
+  line-height: 45px;
+  /* identical to box height */
+
+  background: linear-gradient(
+    90.59deg,
+    #37e710 0.52%,
+    rgba(55, 231, 16, 0) 113.27%
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-fill-color: transparent;
+}
+.categoryItem {
+  cursor: pointer;
+  opacity: 0.4;
+  pointer-events: none;
+  box-sizing: border-box;
+  width: 199px;
+  height: 194px;
+  filter: drop-shadow(-5px -6px 21px rgba(55, 231, 16, 0.15))
+    drop-shadow(5px 6px 21px rgba(55, 231, 16, 0.15));
+  border-radius: 15px;
+  border-radius: 15px;
+  position: relative;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  display: flex;
+  transition: 0.5s;
+  scale: 0.7;
+  filter: blur(1px);
+}
+.activeItem {
+  pointer-events: none;
+  opacity: 1;
+  filter: blur(0);
+  scale: 1.5;
+}
+.categoryItem img {
+  width: 100px;
+  margin-bottom: 0.61rem;
+  pointer-events: none;
+}
+
+.activeItem img {
+}
+.categoryItem p {
+  font-size: 16px;
+}
+.catItemLink {
+  pointer-events: none;
+}
+.currentLink {
+  pointer-events: initial;
+}

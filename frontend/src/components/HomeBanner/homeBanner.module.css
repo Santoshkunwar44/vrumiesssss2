@@ -1,0 +1,139 @@
+.bannerContainer {
+  width: 100%;
+  display: flex;
+}
+
+.homeBanner {
+  width: 100%;
+}
+
+.homeWrapperContent {
+  width: 80%;
+  margin: auto;
+  position: relative;
+  top: -1.5rem;
+}
+.homeBannerWrapper {
+  width: 100%;
+}
+
+.bannerRoundBox {
+  width: 106px;
+  height: 106px;
+  border-radius: 50%;
+  background: #37e710;
+}
+.bannerRoundEclipseBig {
+  width: 255px;
+  height: 255px;
+  margin-left: auto;
+  border-radius: 50%;
+  border: 30px solid #37e710;
+}
+.blurContentBox {
+  position: absolute;
+  top: 40px;
+  left: 45px;
+  height: 220px;
+  width: 98%;
+
+  background: linear-gradient(
+    94.22deg,
+    rgba(255, 255, 255, 0.03) 1.1%,
+    rgba(255, 255, 255, 0) 119.83%
+  );
+  backdrop-filter: blur(67px);
+  /* Note: backdrop-filter has minimal browser support */
+  border-radius: 10px;
+  display: flex;
+  justify-content: start;
+  padding: 2rem;
+  padding-right: 0;
+}
+.welcomeText {
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 42px;
+  line-height: 77px;
+  /* identical to box height */
+
+  color: #ffffff;
+}
+.welcomeProfileName {
+  color: #37e710;
+  font-weight: bold;
+}
+.blurContentProfileDetails {
+  padding-top: 1rem;
+  display: flex;
+  flex: 8;
+  justify-content: start;
+  flex-direction: column;
+  align-items: flex-start;
+}
+.welcomeSecondaryText {
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 32px;
+  letter-spacing: 1.1;
+  /* identical to box height */
+
+  color: #ffffff;
+}
+.tiltedLines {
+  display: flex;
+  justify-content: center;
+  gap: 2.33rem;
+  flex: 4;
+}
+.tiltedLine {
+  height: 155px;
+  width: 0.31px;
+  background-color: #bebcbc;
+  transform: rotate(216deg);
+}
+.tiltedLines div:nth-of-type(2) {
+  rotate: 216deg;
+  transform: translateY(16px);
+}
+.tiltedLines div:nth-of-type(3) {
+  rotate: 216deg;
+  transform: translateY(-20px);
+  height: 145px;
+}
+.tiltedLines div:nth-of-type(4) {
+  transform: translateY(-25px);
+  rotate: 216deg;
+  height: 120px;
+}
+@media screen and (min-width: 768px) and (max-width: 1024px) {
+  .bannerRoundEclipseBig {
+    width: 185px;
+    height: 185px;
+  }
+  .blurContentBox {
+    padding: 1rem;
+    height: 180px;
+  }
+  .welcomeText {
+    font-size: 23px;
+    line-height: 45px;
+  }
+  .welcomeSecondaryText {
+    font-size: 13px;
+    letter-spacing: 1.4px;
+  }
+}
+@media screen and (min-width: 1024px) {
+  .welcomeText {
+    font-size: 27px;
+    line-height: 35 px;
+  }
+  .welcomeSecondaryText {
+    letter-spacing: 1.4px;
+    font-size: 15px;
+  }
+}

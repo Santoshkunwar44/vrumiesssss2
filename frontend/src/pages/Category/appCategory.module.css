@@ -1,0 +1,147 @@
+.appCategorybanner {
+  background-image: url("../../../public/images/categoryBg.png");
+  height: 486px;
+  width: 100%;
+  position: relative;
+}
+.categoryBannerBgBlur {
+  background: linear-gradient(180deg, #000000 0%, rgba(0, 0, 0, 0) 100%);
+  backdrop-filter: blur(4px);
+  /* Note: backdrop-filter has minimal browser support */
+
+  transform: rotate(-180deg);
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+.categoryContentWrapper {
+  padding: 2rem;
+  position: absolute;
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+}
+
+.categoryItemLeft {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: space-around;
+  height: 100%;
+  flex: 8;
+}
+.categoryIconRight {
+  flex: 4;
+}
+.categoryTitleText {
+  text-align: start;
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 78px;
+  line-height: 96px;
+  /* or 123% */
+
+  letter-spacing: -0.24px;
+  text-transform: uppercase;
+
+  color: #37e710;
+}
+.catBannerBtnWrapper {
+  width: 370px;
+  height: 65px;
+
+  background: #001219;
+  border: 1px solid #c1c1c198;
+  border-radius: 46px;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+}
+.catBannerBtnWrapperBox {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  gap: 2rem;
+}
+.catBtnOption {
+  width: 173px;
+  height: 53px;
+  background-color: transparent;
+  border-radius: 46px;
+  border: none;
+  outline: none;
+}
+.catBtnOption span {
+  font-style: normal;
+  font-family: "poppins";
+  font-weight: 500;
+  font-size: 17px;
+  line-height: 18px;
+  /* identical to box height, or 106% */
+  text-align: center;
+  letter-spacing: -0.084px;
+  color: #ffffff;
+  opacity: 0.5;
+}
+
+.activeCatOption {
+  background-color: #37e710;
+}
+.activeCatOption span {
+  opacity: 1;
+  color: #001219;
+}
+.catItemImg {
+  width: 164px;
+}
+.appCatPopularPostHeader {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+}
+.appCatPostWrapper {
+  padding: 2rem;
+}
+.appCatHeaderHrLine {
+  flex: 1;
+  height: 4px;
+  background-color: #ffffff;
+}
+.appCatBackText {
+  color: #37e710;
+
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 19px;
+  line-height: 28px;
+  /* identical to box height */
+
+  letter-spacing: 0.12em;
+
+  color: #37e710;
+}
+.mostPopularText {
+  font-family: "poppins";
+  font-style: normal;
+  font-weight: 900;
+  font-size: 46px;
+  line-height: 18px;
+  /* identical to box height, or 39% */
+
+  text-align: center;
+  letter-spacing: -0.084px;
+
+  color: #ffffff;
+}
+.postWrappers {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 2rem;
+  width: 100%;
+  padding-top: 2rem;
+}

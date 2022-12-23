@@ -1,0 +1,13 @@
+.homeWrapper {
+  display: flex;
+  height: calc(100vh - 130px);
+}
+
+.homeLeft {
+  flex: 9;
+  border-right: 4px solid #001219;
+  height: 100%;
+}
+.homeRight {
+  flex: 3;
+}

@@ -1,0 +1,28 @@
+.slideActive {
+  color: white;
+  background-color: green;
+}
+.slide {
+  background-color: red;
+}
+.catArrows {
+  position: absolute;
+  display: inline-block;
+  bottom: 0;
+  margin: auto;
+  cursor: pointer;
+  top: 6rem;
+}
+.catArrows img {
+  width: 60px;
+}
+
+.rightArrow {
+  right: 1.5rem;
+  text-align: end;
+}
+.leftArrow {
+  left: 1.5rem;
+  z-index: 33;
+  text-align: start;
+}

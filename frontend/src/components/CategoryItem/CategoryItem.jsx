@@ -1,0 +1,17 @@
+import React from 'react'
+import { Link } from 'react-router-dom'
+import styles from "./category.module.css"
+
+
+const CatItem = ({ catItem, currentFocus }) => {
+  return (
+    <Link className={`${currentFocus ? styles.currentLink : ""} ${styles.catItemLink}`} to={`/category/${catItem.name}`}>
+      <div className={`${styles.categoryItem}  ${currentFocus ? styles.activeItem : ""} `}>
+        <img className={styles.catMainImg} src={catItem?.img} alt="events" />
+        <p style={{ fontSize: "10px" }}>  {catItem.name} </p>
+      </div>
+    </Link>
+  )
+}
+
+export default CatItem
