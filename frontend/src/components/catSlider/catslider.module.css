@@ -12,6 +12,7 @@
   margin: auto;
   cursor: pointer;
   top: 6rem;
+  z-index: 33;
 }
 .catArrows img {
   width: 60px;
@@ -23,6 +24,6 @@
 }
 .leftArrow {
   left: 1.5rem;
-  z-index: 33;
+
   text-align: start;
 }

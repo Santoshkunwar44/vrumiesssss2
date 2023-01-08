@@ -40,7 +40,7 @@
   font-family: "Poppins";
   font-style: normal;
   font-weight: 700;
-  font-size: 78px;
+  font-size: 60px;
   line-height: 96px;
   /* or 123% */
 
@@ -143,5 +143,6 @@
   flex-wrap: wrap;
   gap: 2rem;
   width: 100%;
+  min-height: 400px;
   padding-top: 2rem;
 }

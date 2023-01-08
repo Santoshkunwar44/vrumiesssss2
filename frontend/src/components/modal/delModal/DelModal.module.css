@@ -1,0 +1,14 @@
+.modalOverlay {
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.modalBody {
+  background-color: #000000;
+
+  padding: 2rem;
+  padding-top: 1rem;
+}

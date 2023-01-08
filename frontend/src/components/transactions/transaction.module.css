@@ -1,0 +1,119 @@
+.transaction {
+}
+.transactionHeader {
+  width: 80%;
+  display: flex;
+  align-items: center;
+  padding: 2rem 1rem;
+  gap: 2rem;
+}
+.transactionHeader h2 {
+  color: #37e710;
+}
+.transactionHeaderLine {
+  height: 2px;
+  flex: 1;
+  background-color: #37e710;
+}
+/*  option buttons  */
+.catBannerBtnWrapper {
+  width: 360px;
+  height: 60px;
+
+  background: #001219;
+  border: 1px solid #c1c1c198;
+  border-radius: 46px;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+}
+.catBannerBtnWrapperBox {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  gap: 2rem;
+}
+.catBtnOption {
+  width: 173px;
+  height: 53px;
+  background-color: transparent;
+  border-radius: 46px;
+  border: none;
+  outline: none;
+}
+.catBtnOption span {
+  font-style: normal;
+  font-family: "poppins";
+  font-weight: 500;
+  font-size: 17px;
+  line-height: 18px;
+  /* identical to box height, or 106% */
+  text-align: center;
+  letter-spacing: -0.084px;
+  color: #ffffff;
+  opacity: 0.5;
+}
+
+.activeCatOption {
+  background-color: #37e710;
+}
+.activeCatOption span {
+  opacity: 1;
+  color: #001219;
+}
+/* main container header  */
+
+.mainContentHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.contentHeaderLeft {
+  text-align: start;
+}
+.greenText {
+  color: #37e710;
+}
+.editDirectDeposit {
+  width: fit-content;
+  padding: 0 20px;
+  background-color: #37e710;
+}
+/* transactionListBox */
+.transactionListBox {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+.transactionTable {
+  padding: 4rem 0;
+}
+.tableRow {
+  margin-bottom: 1rem;
+  height: 60px;
+}
+.tableHead {
+  height: 70px;
+}
+.saveBtn,
+.postLinkBtn {
+  font-size: 14px;
+  width: 90%;
+  height: 40px;
+  background-color: #37e710;
+}
+.transactionBtn {
+  width: 90%;
+  font-size: 14px;
+  height: 40px;
+}
+/* transactionStatusSelection */
+.transactionStatusSelection {
+  width: 82%;
+  height: 100%;
+  font-size: 13px;
+  text-align: center;
+  background: transparent;
+  outline: none;
+  border: none;
+}

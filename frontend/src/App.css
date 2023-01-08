@@ -3,6 +3,11 @@
   padding: 0;
   box-sizing: border-box;
   text-decoration: none;
+  font-family: "poppins";
+}
+button {
+  border: none;
+  outline: none;
 }
 
 .slick-track {
@@ -30,6 +35,10 @@ button {
 .App-logo {
   height: 40vmin;
   pointer-events: none;
+}
+
+.slick-slide {
+  height: auto !important;
 }
 
 @media (prefers-reduced-motion: no-preference) {

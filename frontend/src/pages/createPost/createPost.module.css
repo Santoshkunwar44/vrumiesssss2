@@ -1,0 +1,660 @@
+.createPost {
+  width: 100%;
+  height: calc(100vh - 100px);
+}
+.createPostWrapper {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  width: 100%;
+  padding: 2rem;
+  gap: 2rem;
+}
+
+.createPostTopBox {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  height: 175px;
+  border: 3px solid #37e710;
+  border-radius: 11px;
+}
+.createPostMainContent {
+  flex: 8.5;
+  width: 100%;
+}
+.createPostTopLeftWrapper {
+  display: flex;
+  padding: 0 10px;
+  gap: 1rem;
+  flex: 1;
+  align-items: center;
+}
+.createPostTopRight {
+  display: flex;
+  gap: 1rem;
+  flex-direction: column;
+  align-items: flex-start;
+  flex: 1;
+}
+.topRightWrapper {
+  display: flex;
+  gap: 1rem;
+  padding: 10px;
+  flex-direction: column;
+  align-items: flex-start;
+}
+.hrLine {
+  height: 80%;
+  width: 0.4px;
+  background-color: gray;
+}
+.postTopOptionsItem {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+.checkBoxWrapper {
+  background: #000000;
+  border: 1px solid #c9c9c9;
+  border-radius: 5px;
+  border: 2px solid #c9c9c9;
+  box-shadow: 0px 4px 9px rgba(55, 231, 16, 0.1);
+  width: 280px;
+  display: flex;
+  align-items: center;
+  height: 60px;
+  justify-content: center;
+  border-radius: 5px;
+  gap: 1rem;
+}
+.enabledOption {
+  border: 2px solid #37e710;
+}
+.checkBoxWrapper span {
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 20px;
+  /* or 91% */
+
+  text-align: center;
+  color: #979797;
+  letter-spacing: 1.76px;
+}
+.enabledOption span {
+  color: #37e710;
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 22px;
+  line-height: 20px;
+  /* or 91% */
+  text-align: center;
+  letter-spacing: 1.76px;
+}
+
+.checkBoxWrapper input {
+  width: 30px;
+  background-color: transparent;
+  height: 30px;
+}
+.greenText {
+  color: #37e710;
+}
+.optionsRow {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+}
+.postLeftContents {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+}
+.postLocationText {
+  color: #37e710;
+  font-size: 14px;
+}
+.postLeftContents p {
+  text-align: start;
+  color: #37e710;
+  margin-bottom: 1rem;
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 21px;
+  line-height: 20px;
+  /* identical to box height, or 95% */
+
+  letter-spacing: -0.24px;
+
+  color: #37e710;
+}
+.postLocationCityCountryBox {
+  flex: 1;
+  min-height: 60px;
+}
+.locationCityBox {
+  display: flex;
+  gap: 2rem;
+  align-items: center;
+}
+.locationCityBox select {
+  width: 146px;
+  height: 45px;
+
+  background: #000000;
+  border: 2px solid #808080;
+  border-radius: 4px;
+  color: #808080;
+  outline: none;
+  font-size: 17px;
+  padding: 0 10px;
+}
+.locationCityBox select option {
+  color: #808080;
+}
+.postLocationBtnsBox {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+.postTopRightHeader {
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 21px;
+  line-height: 20px;
+  /* identical to box height, or 95% */
+
+  text-align: start;
+  letter-spacing: -0.24px;
+
+  color: #37e710;
+}
+.postToprightInfosBox {
+  display: flex;
+  gap: 3px;
+  align-items: flex-start;
+  flex-direction: column;
+}
+.postToprightInfosBox p {
+  text-align: start;
+}
+.key {
+  color: #979797;
+}
+/* createPostContentWrapper */
+
+.createPostContentWrapper {
+  width: 100%;
+  display: flex;
+
+  gap: 3rem;
+}
+.createPostContentWrapper_left {
+  gap: 2rem;
+  flex: 6;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+.createPostBottomVBTInfoTextBox {
+  text-align: start;
+}
+.minimumVBTwarnText {
+  margin-top: 8px;
+  font-size: 13px;
+}
+.createPostContentWrapper_left_header {
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 30px;
+  line-height: 22px;
+  /* or 44% */
+  text-align: start;
+
+  color: #37e710;
+}
+
+.createPost_left_input {
+  border: none;
+  outline: none;
+  width: 810px;
+  height: 57px;
+  left: 131px;
+  top: 387px;
+  color: #808080;
+  font-size: 17px;
+  padding: 0 1rem;
+  background: #001219;
+  border: 1px solid #ffffff;
+  border-radius: 8px;
+  width: 100%;
+}
+
+.createPost_description {
+  height: 200px;
+  outline: none;
+  color: #808080;
+  font-size: 17px;
+  padding: 1rem;
+  background: #001219;
+  border: 1px solid #ffffff;
+  border-radius: 8px;
+}
+.createPost_inputWrapper {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  gap: 2rem;
+}
+/* cratePostContentRight */
+
+.cratePostContentRight {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+
+  flex: 6;
+}
+.createPostTypeSelect {
+  width: 266px;
+  height: 50px;
+
+  background: #001219;
+  border: 1px solid #c1c1c198;
+  border-radius: 46px;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+}
+.createPostTypeOption {
+  width: 130px;
+  height: 45px;
+  background-color: transparent;
+  border-radius: 46px;
+  border: none;
+  outline: none;
+}
+.createPostTypeOption span {
+  font-style: normal;
+  font-family: "poppins";
+  font-weight: 500;
+  font-size: 15px;
+  line-height: 18px;
+  /* identical to box height, or 106% */
+  text-align: center;
+  letter-spacing: -0.084px;
+  color: #ffffff;
+  opacity: 0.5;
+}
+.createPostRightInputsBox {
+  display: flex;
+  align-items: flex-start;
+  flex-direction: column;
+  gap: 1rem;
+  flex: 6;
+}
+.createPostSelect {
+  width: 250px;
+  height: 50px;
+  outline: none;
+
+  background: #001219;
+  border: 3px solid #37e710;
+  box-shadow: 0px 4px 9px rgba(55, 231, 16, 0.1);
+  border-radius: 5px;
+  color: white;
+  font-family: "Poppins";
+  font-style: normal;
+  font-size: 22px;
+  line-height: 20px;
+  /* identical to box height, or 91% */
+
+  text-align: center;
+  letter-spacing: -0.24px;
+
+  color: #ffffff;
+}
+.typeSelect {
+  display: flex;
+  align-items: flex-start;
+  flex-direction: column;
+  gap: 1rem;
+}
+.priceSettingItem {
+  display: flex;
+  align-items: flex-start;
+  flex-direction: column;
+  gap: 1rem;
+}
+.createPostRightInputsItem {
+  display: flex;
+  flex-direction: column;
+  outline: none;
+  align-items: flex-start;
+  gap: 0.51rem;
+}
+
+.label {
+  font-family: "Poppins";
+  font-style: normal;
+  font-size: 14px;
+  line-height: 20px;
+  /* identical to box height, or 91% */
+
+  text-align: center;
+  letter-spacing: -0.24px;
+
+  color: #808080;
+}
+.activeCreatePostTypeOption {
+  background-color: #37e710;
+}
+.activeCreatePostTypeOption span {
+  opacity: 1;
+  color: #001219;
+}
+.priceSettingBox {
+  width: 250px;
+  height: 50px;
+  left: 1034px;
+  top: 800px;
+
+  background: #001219;
+  border: 3px solid #37e710;
+  box-shadow: 0px 4px 9px rgba(55, 231, 16, 0.1);
+  border-radius: 5px;
+}
+.priceSettingBox input {
+  border: none;
+  outline: none;
+  color: #808080;
+  font-size: 17px;
+}
+.contentRightOptionsBottom {
+  width: 100%;
+  display: flex;
+  align-items: flex-start;
+  gap: 0.5rem;
+}
+.contentRightOptionsBottom img {
+  display: flex;
+  width: 35px;
+}
+.tokenRequiredTextBox {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+
+  gap: 10px;
+}
+.tokenRequiredTextBox p {
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 20px;
+  /* identical to box height, or 111% */
+
+  text-align: center;
+  letter-spacing: -0.24px;
+
+  color: #37e710;
+}
+.totalBalance {
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px !important;
+  line-height: 20px;
+  /* identical to box height, or 125% */
+  text-align: start;
+  letter-spacing: -0.24px;
+
+  color: #ffffff !important;
+}
+.priceSettingBox input {
+  width: 100%;
+  height: 100%;
+  padding: 0 1rem;
+  background: transparent;
+}
+.priceSettingBox input::placeholder {
+  font-size: 18px;
+}
+.contentRightTop {
+  display: flex;
+}
+.createPostImageWrapper {
+  background-image: url("../../../public/images/create/border.png");
+  background-position: center;
+  background-repeat: no-repeat;
+  height: 200px;
+  width: 200px;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+}
+.createPostImageWrapper {
+  flex: 6;
+}
+/* createPostBottomContent */
+
+.createPostBottomContent {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  padding: 2rem;
+}
+.vbtTextBottom {
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 15px;
+  line-height: 20px;
+  /* identical to box height, or 91% */
+
+  letter-spacing: -0.24px;
+
+  color: #37e710;
+}
+.vbtcount {
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 27px;
+  line-height: 20px;
+  /* identical to box height, or 74% */
+
+  text-align: center;
+  letter-spacing: -0.24px;
+
+  color: #ffffff;
+}
+.vbtBox {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+.vbtBox img {
+  width: 25px;
+  cursor: pointer;
+}
+.bottom_BtnWrapper {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+.postBtn {
+  height: 50px;
+  width: 150px;
+  left: 1467px;
+  top: 969px;
+
+  background: #37e710;
+  border-radius: 7px;
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 22px;
+  /* or 110% */
+
+  letter-spacing: 5.76px;
+
+  color: #000000;
+}
+.backBtn {
+  width: 150px;
+  height: 50px;
+  justify-content: center;
+  gap: 1rem;
+  background-color: transparent;
+  border: 1px solid #37e710;
+  border-radius: 7px;
+  display: flex;
+  align-items: center;
+}
+.backBtn span {
+  font-style: normal;
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 22px;
+  /* or 110% */
+
+  letter-spacing: 5.76px;
+
+  color: #37e710;
+}
+.backBtn img {
+  width: 25px;
+}
+.catBannerBtnWrapperBox {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  gap: 2rem;
+}
+.catBtnOption {
+  width: 132px;
+  height: 44px;
+  background-color: transparent;
+  border-radius: 46px;
+  border: none;
+  outline: none;
+}
+.catBtnOption span {
+  font-style: normal;
+  font-family: "poppins";
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 18px;
+  /* identical to box height, or 106% */
+  text-align: center;
+  letter-spacing: -0.084px;
+  color: #ffffff;
+  opacity: 0.5;
+}
+.catBannerBtnWrapper {
+  width: 220px;
+  height: 50px;
+  padding: 0px 2px;
+
+  background: #001219;
+  border: 1px solid #c1c1c198;
+  border-radius: 46px;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+}
+.catBannerBtnWrapperBox {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  gap: 2rem;
+}
+.activeCatOption {
+  background-color: #37e710;
+}
+.activeCatOption span {
+  opacity: 1;
+  color: #001219;
+}
+/* inventoryOptionBox */
+.inventoryDisabled {
+  pointer-events: none;
+  opacity: 0.4;
+}
+.inventoryOptionBox {
+  padding: 0 1rem;
+  width: 100%;
+  height: 157px;
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  border: 1px solid #ffffff;
+  border-radius: 8px;
+}
+.inventoryRightBox {
+  width: 100%;
+}
+.inventoryChooseBox {
+  display: flex;
+  align-items: center;
+  flex: 1;
+}
+.inventoryRight,
+.inventoryLeft,
+.inventoryMid {
+  border: 1px solid #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 40px;
+  color: #37e710;
+  font-weight: bold;
+  cursor: pointer;
+}
+.inventoryLeft {
+  flex: 3;
+}
+.inventoryMid {
+  flex: 6;
+  color: white;
+}
+.inventoryRight {
+  flex: 3;
+}
+@media screen and (min-width: 768px) and (max-width: 1024px) {
+  .createPostSelect {
+    font-size: 16px;
+    width: 250px;
+  }
+  .checkBoxWrapper {
+    width: 230px;
+    height: 55px;
+  }
+  .checkBoxWrapper span {
+    font-size: 17px;
+  }
+  .checkBoxWrapper input {
+    width: 20px;
+    height: 20px;
+  }
+  .optionBottomText {
+    font-size: 15px;
+  }
+  .postToprightInfosBox p {
+    text-align: start;
+    font-size: 14px;
+  }
+}

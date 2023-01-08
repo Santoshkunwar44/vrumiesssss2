@@ -1,30 +1,159 @@
+import { useState } from 'react'
 import Navbar from '../../components/Navbar/Navbar'
+import Mypost from '../../components/profile/MyPost/Mypost'
+import Transactions from '../../components/transactions/Transactions'
 import styles from './profile.module.css'
+import { useEffect } from "react"
+import { getUserById, updateUser } from '../../utils/apis/user/userApi'
+import { useParams } from 'react-router-dom'
+import { useRef } from 'react'
+import UploadImageProgress from '../../components/uploadImage/UploadImageProgress'
+import { useDispatch } from 'react-redux'
+import { setToastifyInfo } from '../../redux/actions/otherAction'
 
 const Profile = () => {
+
+    const [currentInspect, setCurrentInspect] = useState("myPost")
+    const [currentUser, setCurrentUser] = useState({})
+    const [editMode, setEditMode] = useState(false)
+    const [nameEdit, setNameEdit] = useState(false)
+    const [userObjData, setUserObjData] = useState({})
+    const userId = useParams().userId
+    const [profileFile, setProfileFile] = useState([])
+    const [uploadImageStart, setUploadImageStart] = useState(false)
+    const [uploadImageCompleted, setUploadImageCompleted] = useState(false)
+    const editableDivRef = useRef()
+    const nameRef = useRef()
+    const imageRef = useRef()
+    const dispatch = useDispatch()
+
+    const newInputRef = useRef()
+    useEffect(() => {
+
+
+        if (editMode && currentUser?.about) {
+
+            editableDivRef.current.focus()
+
+        } else if (editMode && !currentUser?.about) {
+            setTimeout(() => {
+                newInputRef.current.focus()
+            }, 0);
+        }
+
+    }, [editMode, currentUser])
+
+
+    useEffect(() => {
+        if (nameEdit) {
+            nameRef.current.focus()
+        }
+    }, [nameEdit])
+
+    useEffect(() => {
+
+
+        if (!userId) return
+        fetchCurrentuser()
+
+
+    }, [userId])
+
+
+    const fetchCurrentuser = async () => {
+        try {
+            const { data } = await getUserById(userId)
+            setCurrentUser(data.message)
+
+        } catch (error) {
+            console.log(error)
+        }
+
+
+    }
+
+    const handleUpdateUser = async () => {
+        if (editMode && currentUser?.about) {
+            setUserObjData((prev) => {
+                return { ...prev, about: editableDivRef.current.innerText }
+            })
+            setEditMode(false)
+        } else if (editMode) {
+            setUserObjData((prev) => {
+                return { ...prev, about: newInputRef.current.value }
+            })
+            setEditMode(false)
+        } else if (nameEdit) {
+            setUserObjData((prev) => {
+                return { ...prev, username: nameRef.current.innerText }
+            })
+            setNameEdit(false)
+        }
+
+    }
+
+    useEffect(() => {
+
+        postUserUpdatedData()
+    }, [userObjData])
+
+
+
+    useEffect(() => {
+        if (profileFile?.length === 0) return
+        setUploadImageStart(true)
+    }, [profileFile])
+
+
+    useEffect(() => {
+        if (uploadImageCompleted) {
+            fetchCurrentuser()
+        }
+    }, [uploadImageCompleted])
+
+    const postUserUpdatedData = async () => {
+
+        if (Object.keys(userObjData).length === 0) return
+
+        try {
+            await updateUser(userId, userObjData)
+            dispatch(setToastifyInfo({
+                text: "profile updated successfully",
+                type: "success"
+            }))
+            fetchCurrentuser()
+        } catch (error) {
+            console.log(error)
+            dispatch(setToastifyInfo({
+                text: "Error while updating profile",
+                type: "error"
+            }))
+        }
+    }
     return (
         <div className={styles.profile}>
             <Navbar />
+            {uploadImageStart ? <UploadImageProgress uploadImages={[...profileFile]} uploadData={userObjData} setCompleted={() => { setUploadImageStart(false); setUploadImageCompleted(true) }} updateMethod={true} urlPath={`/user/${userId}`} /> : ""}
             <div className={styles.profileWrapper}>
                 <div className={styles.profileInfoLeft}>
                     <img className={styles.profileMark} src="/images/profilemark.png" alt="profileMark" />
                     <div className={styles.profileMainInfo}>
-                        <div className={styles.imageWrapper}>
-                            <img className={styles.profileImage} src="/images/profileImage.png" alt="profileImage" />
+                        <div onClick={() => imageRef.current.click()} className={styles.imageWrapper}>
+                            <img className={styles.profileImage} src={currentUser?.profileImg} alt="profileImage" />
                             <div className={styles.imageBg}>
-
                                 <img src="/images/profileCamera.png" alt="profileCamera" />
-
-
+                                <input multiple style={{ display: "none" }} onChange={(e) => setProfileFile([e.target.files[0]])} type="file" name="profileImg" id="" ref={imageRef} />
 
                             </div>
                         </div>
 
                         <div className={styles.profileNameInfo}>
+                            {
+                                nameEdit ? <img alt='doneImg' className={styles.pencilEdit} onClick={() => handleUpdateUser()} src="https://img.icons8.com/emoji/48/null/check-mark-emoji.png" /> : <img onClick={() => setNameEdit(true)} className={styles.pencilEdit} src="/images/pencil.png" alt="pencilEdit" />
+                            }
 
-                            <img className={styles.pencilEdit} src="/images/pencil.png" alt="pencilEdit" />
-                            <p className={styles.profileUsername}>ALEX ANDERSON</p>
-                            <p className={styles.profileEmail}>Anderson33@gmail.com</p>
+                            <p ref={nameRef} contentEditable={nameEdit} className={styles.profileUsername}> {currentUser?.username} </p>
+                            <p className={styles.profileEmail}>{currentUser?.email}</p>
 
                         </div>
 
@@ -35,13 +164,19 @@ const Profile = () => {
                         <div className={styles.profileDescHeader}>
 
                             <p className={styles.aboutText}>About Me</p>
-                            <p className={styles.editText}>Edit</p>
+                            {
+                                editMode ? <p onClick={() => handleUpdateUser()} className={styles.editText}>Save</p> :
+                                    <p onClick={() => setEditMode(true)} className={styles.editText}>Edit</p>
 
-
+                            }
                         </div>
+
                         <div className={styles.profileAboutText}>
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit ut aliquam, purus sit amet luctus venenatis, lectus magna fringilla urna, porttitor rhoncus dolor purus non enim praesent elementum facilisis leo, vel fringilla est ullamcorper eget nulla facilisi etiam dignissim diam quis enim lobortis scelerisque fermentum dui faucibus in ornare quam viverra orci sagittis eu volutpat odio facilisis mauris sit amet massa vitae tortor condimentum lacinia quis vel eros donec ac odio
+                            {
+                                currentUser?.about ? editMode ? <div contentEditable ref={editableDivRef} > {currentUser?.about} </div> : currentUser?.about : editMode ? <textarea ref={newInputRef} rows={"10"} className={styles.editInput} placeholder='start typing...' ></textarea> : <span className={styles.typeText}>Type about  yourself here...</span>
+                            }
                         </div>
+
                     </div>
 
                 </div>
@@ -49,74 +184,31 @@ const Profile = () => {
                     <div className={styles.profileRightTop}>
                         <div className={styles.profileRightTopIitems}>
 
-                            <div className={styles.profileTopItem}>
+                            <div onClick={() => setCurrentInspect("myPost")} className={`${styles.profileTopItem}  ${currentInspect === "myPost" ? styles.activeProfileTopItem : ""} `}>
 
-                                <img src="/images/profileInfo.png" alt="profileInfo" />
+                                <img src="/profile/post.png" alt="profileInfo" />
                                 <p>My posts</p>
                             </div>
 
-                            <div className={`${styles.profileTopItem} ${styles.activeProfileTopItem}`}>
+                            <div onClick={() => setCurrentInspect("myTransactions")} className={`${styles.profileTopItem} ${currentInspect === "myTransactions" ? styles.activeProfileTopItem : ""} `}>
+
+                                <img src="/profile/transaction.png" alt="loctionImage" />
+                                <p>My Transaction</p>
+                            </div>
+                            {/* <div className={`${styles.profileTopItem} ${styles.activeProfileTopItem}`}>
 
                                 <img src="/images/myLocation.png" alt="loctionImage" />
                                 <p>Location Filter</p>
-                            </div>
+                            </div> */}
 
 
 
                         </div>
                     </div>
                     <div className={styles.profileRightBottom}>
-                        <div className={styles.locationOptionHeader}>
-                            <h3>My Location Filter Options</h3>
-
-
-                        </div>
-                        <div className={styles.locationOptionItems}>
-                            <div className={styles.locationOptionItem}>
-
-                                <p>View Live Map</p>
-                                <div className={styles.ltnOptionImgWrapper}>
-
-                                    <img className={styles.liveMap} src="/images/liveMap.png" alt="liveMap" />
-                                </div>
-
-                            </div>
-                            <div className={styles.locationOptionItem}>
-
-                                <p>View Live Map</p>
-                                <div className={styles.ltnOptionImgWrapper}>
-
-                                    <img className={styles.setLocationImg} src="/images/setMyLocation.png" alt="myLocation" />
-                                </div>
-
-                            </div>
-                            <div className={styles.locationOptionItem}>
-
-                                <p>Estimate Distance</p>
-                                <div className={styles.ltnOptionImgWrapper}>
-
-                                    <img className={styles.estimateLocation} src="/images/estimateDistance.png" alt="myLocation" />
-                                </div>
-
-                            </div>
-
-                        </div>
-                        <div className={styles.otherLocationFilters}>
-                            <div className={styles.otherLocationLeft}>
-
-                                <h5 className={styles.otherLocationHeaderText}>Choose which Location filter Posts to use:</h5>
-
-                                <div className={styles.otherLocationFilterBtn}>
-                                    <button>Near Me</button>
-                                    <button>Online Post Only</button>
-                                </div>
-                                <button className={styles.showAllPostBtn}>Show All Post</button>
-
-                            </div>
-                            <button className={styles.okeyBtn}>
-                                Ok
-                            </button>
-                        </div>
+                        {
+                            currentInspect === "myPost" ? <Mypost /> : <Transactions />
+                        }
                     </div>
                 </div>
             </div>

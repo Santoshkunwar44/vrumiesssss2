@@ -3,12 +3,18 @@ import { useState } from "react";
 import styles from "./catslider.module.css"
 import Slider from "react-slick";
 import CatItem from "../CategoryItem/CategoryItem";
-import { appCategoryList } from "../../utils/data/AppCategoreis";
+import { useEffect } from "react";
+import { getAllCategories } from "../../utils/apis/category/categoryApi";
 
 
 const Catslider = () => {
 
+
+
+
+
     const [slideIndex, setSlideIndex] = useState(0)
+    const [appCategoryList, setAppCategoryList] = useState([])
 
     const settings = {
         dots: true,
@@ -19,13 +25,42 @@ const Catslider = () => {
         autoplaySpeed: 1000,
         slidesToScroll: 1,
         beforeChange: (current, next) => setSlideIndex(next),
-        nextArrow: <SampleNextArrow />,
-        prevArrow: <SamplePrevArrow />,
+        nextArrow: <SamplePrevArrow />,
+        prevArrow: <SampleNextArrow />,
         className: "center"
 
 
 
     };
+
+    // useState 
+
+    useEffect(() => {
+
+
+        fetchCategoriess()
+
+    }, [])
+
+
+    const fetchCategoriess = async () => {
+
+
+        try {
+
+
+            const { data } = await getAllCategories()
+            console.log(data)
+            setAppCategoryList(data.message)
+
+
+        } catch (error) {
+            console.log(error)
+        }
+
+    }
+
+
 
 
 

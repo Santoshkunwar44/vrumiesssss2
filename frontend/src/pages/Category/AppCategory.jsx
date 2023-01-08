@@ -1,26 +1,89 @@
 import { useState } from 'react'
 import { useEffect } from 'react'
-import { Link, useParams } from 'react-router-dom'
+import { Link, useLocation } from 'react-router-dom'
 import styles from "./appCategory.module.css"
-import { appCategoryList } from "../../utils/data/AppCategoreis"
 import Navbar from '../../components/Navbar/Navbar'
 import Post from '../../components/post/Post'
+import { getPostByCat } from '../../utils/apis/post/postApi'
+import { useRef } from 'react'
+import NotFound from '../../components/notFound/NotFound'
 const AppCategory = () => {
-    const catName = useParams().catName
     const [currentCatData, setCurrentCatData] = useState({})
+    const [postFilter, setPostFilters] = useState({
+        subcategory: "",
+        type: "Advertise",
+    })
+    const [thePosts, setTheposts] = useState([])
+    const [theFilterdPost, setTheFilteredPost] = useState([])
+    const catData = useLocation().state.data
+    const postWrapperRef = useRef()
+
+
+
+
+
 
 
     useEffect(() => {
-        if (catName) {
-
-            const theData = appCategoryList.find((cat) => cat.name === catName)
-            if (theData) {
-                setCurrentCatData(theData)
-            }
+        if (catData) {
+            setCurrentCatData(catData)
         }
-    }, [catName])
+
+    }, [catData])
 
 
+    useEffect(() => {
+        if (catData?.name) {
+
+            fetchThePosts(catData?.displayName)
+        }
+
+    }, [catData])
+
+
+
+    useEffect(() => {
+        let getPost;
+        getPost = thePosts.filter((post) => post.type === postFilter.type);
+        getPost = getPost.filter((post) => post.subCategory === postFilter.subcategory)
+
+        setTheFilteredPost(getPost)
+
+    }, [postFilter, thePosts])
+
+
+    useEffect(() => {
+        postWrapperRef.current.scrollIntoView({ behavior: "smooth" })
+    }, [theFilterdPost])
+
+
+    useEffect(() => {
+
+        if (currentCatData?.subCategory) {
+
+            setPostFilters({
+                type: "Advertise",
+                subcategory: currentCatData?.subCategory[0]
+            })
+        }
+
+    }, [currentCatData])
+
+
+
+
+    const fetchThePosts = async (catName) => {
+
+        try {
+            const { data } = await getPostByCat(catName)
+            setTheposts(data.message)
+        } catch (error) {
+            console.log(error)
+        }
+
+    }
+
+    console.log(currentCatData, postFilter?.subcategory, thePosts)
 
 
     return (
@@ -37,23 +100,35 @@ const AppCategory = () => {
                         <div className={styles.categoryItemLeft}>
 
 
-                            <h2 className={styles.categoryTitleText}>{currentCatData?.title}</h2>
+                            <h2 className={styles.categoryTitleText}>{currentCatData?.name}</h2>
 
                             <div className={styles.catBannerBtnWrapperBox}>
-                                {
-                                    currentCatData?.btns?.map((item, index) => {
-                                        return (
-                                            <>
-                                                <div className={styles.catBannerBtnWrapper}>
+                                <div className={styles.catBannerBtnWrapper}>
 
-                                                    <button className={`${styles.catBtnOption} ${styles.activeCatOption}`}> <span>{item.option1}</span></button>
-                                                    <button className={styles.catBtnOption}> <span>{item.option2}</span></button>
-                                                </div>
-                                            </>
-                                        )
 
-                                    })
-                                }
+                                    <button onClick={() => setPostFilters((prev) => {
+                                        return {
+                                            ...prev, type: "Advertise"
+                                        }
+                                    })} className={`${styles.catBtnOption} ${postFilter.type === "Advertise" ? styles.activeCatOption : ""}  `}> <span>Advertise</span></button>
+                                    <button onClick={() => setPostFilters((prev) => {
+                                        return {
+                                            ...prev, type: "Request"
+                                        }
+                                    })} className={`${styles.catBtnOption} ${postFilter.type === "Request" ? styles.activeCatOption : ""}  `}> <span>Request</span></button>
+
+                                </div>
+                                <div className={styles.catBannerBtnWrapper}>
+
+
+                                    {/* <button className={`${styles.catBtnOption} ${styles.activeCatOption}`}> <span>{item.option1}</span></button> */}
+                                    {
+                                        currentCatData?.subCategory?.map((item, index) => (
+                                            <button onClick={() => setPostFilters((prev) => { return { ...prev, subcategory: item } })} key={index} className={`${styles.catBtnOption} ${postFilter.subcategory === item ? styles.activeCatOption : ""}  `}> <span>{item}</span></button>
+                                        ))
+                                    }
+                                </div>
+
 
 
 
@@ -79,12 +154,12 @@ const AppCategory = () => {
                         </Link>
 
                     </div>
-                    <div className={styles.postWrappers}>
-
-
-                        <Post />
-                        <Post />
-                        <Post />
+                    <div ref={postWrapperRef} className={styles.postWrappers}>
+                        {
+                            theFilterdPost.length > 0 ? theFilterdPost.map((post) => (
+                                <Post post={post} key={post?._id} />
+                            )) : <NotFound text={"No post found of your choice"} />
+                        }
                     </div>
 
                 </div>

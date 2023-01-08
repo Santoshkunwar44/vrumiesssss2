@@ -57,6 +57,7 @@
 }
 .navPostBtn {
   width: 45px;
+  cursor: pointer;
 }
 .tokenBox {
   display: flex;
@@ -75,6 +76,7 @@
   width: 54px;
   height: 54px;
   border-radius: 50%;
+  object-fit: cover;
   margin-right: 10px;
 }
 .navProfileBoxEmail {
@@ -85,6 +87,6 @@
 }
 .navPofileBoxInfo {
   display: flex;
-
+  align-items: flex-start;
   flex-direction: column;
 }

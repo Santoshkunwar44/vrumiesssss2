@@ -1,0 +1,54 @@
+.category {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  width: 100vw;
+}
+.category_box {
+  background-color: #151515;
+  width: 550px;
+  border-radius: 20px;
+  padding: 3rem 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
+}
+.category_box input {
+  color: cornflowerblue;
+
+  background-color: transparent;
+  width: 100%;
+  height: 40px;
+  border: none;
+  font-size: 18px;
+  padding: 0 8px;
+
+  width: 80%;
+
+  outline: none;
+  border-bottom: 0.3px solid cornflowerblue;
+}
+button {
+  height: 50px;
+  width: fit-content;
+  font-size: 15px;
+  border-radius: 4px;
+}
+.category_multiple {
+  width: 100% !important;
+}
+.multiple-value-text-input {
+  width: 77%;
+}
+.multiple-value-text-input label {
+  color: #151515;
+}
+.multiple-value-text-input-item-container {
+  text-align: start;
+  margin: 10px 0;
+}
+.warnText {
+  color: #808080;
+}

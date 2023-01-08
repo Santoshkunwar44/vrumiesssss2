@@ -1,0 +1,28 @@
+.slideActive {
+  color: white;
+  background-color: green;
+}
+.slide {
+  background-color: red;
+}
+.sliderArrow {
+  position: absolute;
+  display: inline-block;
+  bottom: 0;
+  margin: auto;
+  cursor: pointer;
+  top: 10rem;
+  z-index: 33;
+}
+.sliderArrow img {
+  width: 40px;
+}
+
+.rightArrow {
+  right: 1.5rem;
+  text-align: end;
+}
+.leftArrow {
+  left: 1.5rem;
+  text-align: start;
+}

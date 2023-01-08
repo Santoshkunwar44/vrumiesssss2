@@ -1,0 +1,118 @@
+.startOrderBottom {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 1.42rem;
+  padding: 2rem 0;
+}
+.startOrderTotalSelectedBox {
+  height: 55px;
+  background: #293241;
+  border-radius: 11px;
+  align-items: center;
+  padding: 0 2rem;
+  display: flex;
+  justify-content: space-between;
+  margin: auto;
+  margin-top: 3rem;
+  width: 100%;
+}
+.startOrderTotalSelectedBox p {
+  color: #37e710;
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 600;
+  font-size: 22.01px;
+  line-height: 51px;
+  /* or 158% */
+
+  letter-spacing: -0.608184px;
+
+  color: #37e710;
+}
+.orderNowBtn {
+  width: 150px;
+  height: 45px;
+
+  background: #37e710;
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 800;
+  font-size: 18.01px;
+  /* or 175% */
+
+  text-align: center;
+  letter-spacing: -0.608184px;
+
+  color: #ffffff;
+
+  border-radius: 11px;
+}
+.orderTopSelectVbt {
+  display: flex;
+  justify-content: end;
+  align-items: center;
+  gap: 1rem;
+}
+.vbtQuantity,
+.vbtText {
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 20.0115px;
+  line-height: 51px;
+  /* or 133% */
+
+  text-align: center;
+  letter-spacing: -0.608184px;
+
+  color: #ffffff;
+}
+.orderTopSelectVbt img {
+  width: 25px;
+  cursor: pointer;
+}
+.startOrderBox {
+  display: flex;
+  height: 100%;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.startOrderHeader {
+  display: flex;
+  margin-top: 1rem;
+}
+.startOrderheaderLeft {
+  text-align: start;
+  flex: 6;
+}
+.basicOrderText {
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 21px;
+  line-height: 9px;
+  /* identical to box height */
+
+  letter-spacing: 0.11em;
+
+  color: #37e710;
+}
+.selectQuantityText {
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 600;
+  font-size: 20.01px;
+  line-height: 51px;
+  /* or 158% */
+
+  text-align: center;
+  letter-spacing: -0.608184px;
+
+  color: #ffffff;
+}
+.startOrderHeaderRight {
+  flex: 6;
+  display: flex;
+  justify-content: end;
+}

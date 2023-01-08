@@ -23,12 +23,7 @@ const HomeCategory = () => {
 
             </div>
             <div className={styles.cateoriesBox}>
-                {/* <div className={styles.arrowWrapper}>
 
-                    <img onClick={() => { goLeft() }} src="/images/leftArrow.png" alt="leftArrow" />
-                    <img onClick={() => { goRight() }} src="/images/rightArrow.png" alt="rightArrow" />
-
-                </div> */}
                 <div className={styles.arrowWrapperSlider}>
                     <Catslider />
 
