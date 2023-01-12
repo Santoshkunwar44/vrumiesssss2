@@ -15,6 +15,10 @@ const postModel = mongoose.Schema({
     orderNowBtn: { type: Boolean, default: false },
     onlineOnly: Boolean,
     location: { state: String, city: String, },
+    isHidden: {
+        type: Boolean,
+        default: false
+    },
     setLocation: Boolean,
     inventoryCount: Number,
     owner: {

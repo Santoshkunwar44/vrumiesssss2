@@ -117,3 +117,15 @@
   outline: none;
   border: none;
 }
+/* viewingTransaction */
+.viewingTransaction {
+  /* background-color: rebeccapurple; */
+  outline: auto;
+  border: 3px solid red;
+}
+/* no transaction wrapper */
+.noTrasactionWrapper {
+  width: 100%;
+  display: grid;
+  place-items: center;
+}

@@ -4,7 +4,10 @@ import styles from "./catslider.module.css"
 import Slider from "react-slick";
 import CatItem from "../CategoryItem/CategoryItem";
 import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux"
 import { getAllCategories } from "../../utils/apis/category/categoryApi";
+import { setCategoryIndex } from "../../redux/actions/otherAction";
+import { useRef } from "react";
 
 
 const Catslider = () => {
@@ -12,25 +15,29 @@ const Catslider = () => {
 
 
 
-
+    const { categorySliderIndex } = useSelector((state) => state.otherReducer)
     const [slideIndex, setSlideIndex] = useState(0)
     const [appCategoryList, setAppCategoryList] = useState([])
+    const dispatch = useDispatch()
+
+
+
+
+
+
+
+    useEffect(() => {
+        dispatch(setCategoryIndex(slideIndex))
+    }, [slideIndex])
 
     const settings = {
-        dots: true,
         centerMode: true,
         infinite: true,
         centerPadding: "60px",
         slidesToShow: 3,
-        autoplaySpeed: 1000,
-        slidesToScroll: 1,
         beforeChange: (current, next) => setSlideIndex(next),
         nextArrow: <SamplePrevArrow />,
         prevArrow: <SampleNextArrow />,
-        className: "center"
-
-
-
     };
 
     // useState 
@@ -50,7 +57,6 @@ const Catslider = () => {
 
 
             const { data } = await getAllCategories()
-            console.log(data)
             setAppCategoryList(data.message)
 
 
@@ -59,7 +65,6 @@ const Catslider = () => {
         }
 
     }
-
 
 
 
@@ -103,6 +108,7 @@ const SamplePrevArrow = ({ onClick }) => {
 }
 
 const SampleNextArrow = ({ onClick }) => {
+
 
     return (
         <>

@@ -1,5 +1,5 @@
 .replyQuotes {
-  width: 260px;
+  width: 280px;
   padding: 10px;
   background: #001219;
   border-radius: 8px;
@@ -7,6 +7,11 @@
   flex-direction: column;
   gap: 2rem;
   margin: 0 5px;
+  position: relative;
+}
+.deleteBtn {
+  width: 40px;
+  cursor: pointer;
 }
 .qoutesUserInfo {
   display: flex;
@@ -74,4 +79,69 @@
   display: flex;
   flex-direction: column;
   align-items: flex-start;
+}
+/* addLessBtns */
+.replyActions {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  height: 0;
+  transition: all 0.3s ease-in;
+  overflow: hidden;
+}
+.addMoreText {
+  color: #ffb800;
+  font-size: 14px;
+}
+.addLessBtns {
+  width: 100%;
+  align-items: center;
+  display: flex;
+  gap: 20px;
+}
+.addLessBtns img {
+  width: 30px;
+  cursor: pointer;
+}
+.addLessBtns input {
+  height: 30px;
+  font-size: 20px;
+  border: none;
+  font-weight: bold;
+  text-align: center;
+  outline: none;
+  width: 40px;
+}
+.replyActionBtns {
+  gap: 1rem;
+  display: flex;
+}
+.replyActionBtns button {
+  height: 45px;
+  padding: 0 10px;
+}
+/* butnImg */
+.butnImg {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.actionVbtCount {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.deleteRplyBtn {
+  background: white;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.submitReplyChanges {
+  background-color: #37e710;
+}
+/* showActionBtns */
+.showActionBtns {
+  height: 150px;
+  overflow: visible;
 }

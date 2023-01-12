@@ -1,9 +1,12 @@
 import styles from "./signup.module.css"
-import { Link, useNavigate } from "react-router-dom"
+import { Link } from "react-router-dom"
 const Signup = () => {
 
 
+    const handleLoginInGoogle = async () => {
+        window.open("http://localhost:8000/api/passport/google", "_self")
 
+    }
 
     return (
         <div className={styles.signup}>
@@ -24,7 +27,7 @@ const Signup = () => {
                 <h3 className={styles.signUpText}>Welcome to Vrumies!</h3>
                 <p className={styles.signUpsecondaryText}>An advertisement platform for the automotive industry.</p>
 
-                <div className={styles.signupBtn}>
+                <div className={styles.signupBtn} onClick={handleLoginInGoogle}>
                     <img src="/images/google.png" alt="googlePng" />
                     <p>Sign in with Google</p>
 

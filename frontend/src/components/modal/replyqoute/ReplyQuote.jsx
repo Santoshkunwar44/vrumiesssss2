@@ -10,11 +10,14 @@ import { useState } from "react"
 import { addReply } from "../../../utils/apis/reply/replyApi"
 import { useDispatch, useSelector } from "react-redux"
 import { setToastifyInfo, startRefresh } from "../../../redux/actions/otherAction"
+import { useNavigate } from "react-router-dom"
+import { useEffect } from "react"
 
-function ReplyQuoteModal({ children, postId, handleSetReply }) {
+function ReplyQuoteModal({ children, postId, handleSetReply, postData }) {
     const { isOpen, onOpen, onClose } = useDisclosure()
     const { userData } = useSelector(state => state.userReducer)
     const disptach = useDispatch()
+    const navigate = useNavigate()
 
     const [replyQuoteData, setReplyQuoteData] = useState({
         title: "",
@@ -25,6 +28,15 @@ function ReplyQuoteModal({ children, postId, handleSetReply }) {
         user: userData?._id
 
     })
+
+    useEffect(() => {
+        if (!postId) return
+        setReplyQuoteData((prev) => {
+            return { ...prev, post: postId }
+        })
+    }, [postId])
+
+
 
     const handleChangeInputs = (events) => {
 
@@ -37,14 +49,23 @@ function ReplyQuoteModal({ children, postId, handleSetReply }) {
     }
 
     const changeVBt = (type) => {
-
+        console.log(userData.tokenAvailabe)
         if (type === "add") {
+            if (!userData?.tokenAvailabe) return disptach(setToastifyInfo({
+                text: "No enough tokens ",
+                type: "error"
+            }))
+            if (userData?.tokenAvailabe <= replyQuoteData.vbtUsed) {
+                return disptach(setToastifyInfo({
+                    text: "No enough tokens available",
+                    type: "error"
+                }))
+            }
             setReplyQuoteData((prev) => {
                 return { ...prev, vbtUsed: prev.vbtUsed + 1 }
             })
         } else {
             if (replyQuoteData.vbtUsed <= 0) return
-
             setReplyQuoteData((prev) => {
                 return { ...prev, vbtUsed: prev.vbtUsed - 1 }
             })
@@ -71,7 +92,7 @@ function ReplyQuoteModal({ children, postId, handleSetReply }) {
         }
 
         try {
-            const { data } = await addReply(replyQuoteData)
+            await addReply(replyQuoteData)
             disptach(setToastifyInfo({
                 text: "Replied to the post",
                 type: "success"
@@ -88,11 +109,10 @@ function ReplyQuoteModal({ children, postId, handleSetReply }) {
         }
 
     }
-    console.log(replyQuoteData)
 
     return (
         <>
-            <span onClick={onOpen}>{children}</span>
+            <span onClick={() => userData?.username ? onOpen() : navigate("/signup")} className={`${postData?.owner?._id === userData?._id ? styles.fadeReplyBtn : ""}`}>{children}</span>
             <Modal isOpen={isOpen} closeOnOverlayClick={true} onClose={onClose}>
                 <ModalOverlay className={styles.modalOverlay} />
                 <ModalContent className={styles.modalContent}>

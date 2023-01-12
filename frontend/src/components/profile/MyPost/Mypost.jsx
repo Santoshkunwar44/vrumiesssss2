@@ -4,6 +4,7 @@ import { useSelector } from "react-redux"
 import { getPostByUserId } from "../../../utils/apis/post/postApi"
 import { getReplyQuoteByUserId } from "../../../utils/apis/reply/replyApi"
 import ItemSlider from "../../itemSlider/ItemSlider"
+import NotFound from "../../notFound/NotFound"
 import styles from "./mypost.module.css"
 
 const Mypost = () => {
@@ -54,7 +55,10 @@ const Mypost = () => {
                     </div>
                 </div>
                 <div className={styles.postItemWrapper}>
-                    <ItemSlider items={myPostRequestList} />
+                    {
+                        myPostRequestList.length <= 0 ? <NotFound img="/items/post.png" text={"No post items yet !"} /> :
+                            <ItemSlider type={"post"} items={myPostRequestList} />
+                    }
                 </div>
             </div>
             <div className={styles.myPostItem}>
@@ -65,7 +69,11 @@ const Mypost = () => {
                     </div>
                 </div>
                 <div className={styles.postItemWrapper}>
-                    <ItemSlider type="reply" items={myReplyQuotesList} />
+                    {
+                        myReplyQuotesList.length <= 0 ? <NotFound text={"You haven't replied to any post"} img="/images/profile/noreply.png" /> :
+                            <ItemSlider type="reply" items={myReplyQuotesList} />
+
+                    }
                 </div>
 
             </div>

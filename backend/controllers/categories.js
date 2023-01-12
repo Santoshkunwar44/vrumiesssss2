@@ -4,7 +4,6 @@ class categoryController {
 
 
     async addNewCateogry(req, res) {
-        console.log(req.body)
         try {
             const savedCategory = await category.create(req.body)
             res.status(200).json({ message: savedCategory, success: true })
@@ -20,6 +19,7 @@ class categoryController {
             return res.status(200).json({ message: categoryList, success: true })
 
         } catch (error) {
+            console.log(error)
             return res.status(500).json({ message: error, success: false })
         }
 

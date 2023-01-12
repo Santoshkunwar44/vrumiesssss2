@@ -3,8 +3,6 @@ import { useSelector } from "react-redux"
 
 const HomeBanner = () => {
     const { userData } = useSelector((state) => state.userReducer)
-
-
     return (
         <div className={styles.homeBanner}>
             <div className={styles.homeBannerWrapper}>
@@ -16,7 +14,7 @@ const HomeBanner = () => {
                     </div>
                     <div className={styles.blurContentBox}>
                         <div className={styles.blurContentProfileDetails}>
-                            <h5 className={styles.welcomeText}>Welcome to Vrumies, <span className={styles.welcomeProfileName}>{userData?.username}!</span></h5>
+                            <h5 className={styles.welcomeText}>Welcome to Vrumies, <span className={styles.welcomeProfileName}>{userData?.username ? userData?.username.split(" ")[0] : "user "} !</span></h5>
                             <p className={styles.welcomeSecondaryText}>Find something you need right now .</p>
 
                         </div>

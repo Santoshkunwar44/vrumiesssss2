@@ -7,7 +7,11 @@ import Post from '../../components/post/Post'
 import { getPostByCat } from '../../utils/apis/post/postApi'
 import { useRef } from 'react'
 import NotFound from '../../components/notFound/NotFound'
+import { useDispatch, useSelector } from 'react-redux'
+import { setRemoveFilterLocationData } from '../../redux/actions/otherAction'
+import PostFilterPopOver from '../../components/popOvers/postFilterPopover/PostFilterPopOver'
 const AppCategory = () => {
+    const { locationFilterPostItem, locationFilters } = useSelector((state) => state.otherReducer)
     const [currentCatData, setCurrentCatData] = useState({})
     const [postFilter, setPostFilters] = useState({
         subcategory: "",
@@ -17,11 +21,7 @@ const AppCategory = () => {
     const [theFilterdPost, setTheFilteredPost] = useState([])
     const catData = useLocation().state.data
     const postWrapperRef = useRef()
-
-
-
-
-
+    const dispatch = useDispatch()
 
 
     useEffect(() => {
@@ -54,7 +54,7 @@ const AppCategory = () => {
 
     useEffect(() => {
         postWrapperRef.current.scrollIntoView({ behavior: "smooth" })
-    }, [theFilterdPost])
+    }, [theFilterdPost, locationFilterPostItem])
 
 
     useEffect(() => {
@@ -83,7 +83,6 @@ const AppCategory = () => {
 
     }
 
-    console.log(currentCatData, postFilter?.subcategory, thePosts)
 
 
     return (
@@ -136,7 +135,7 @@ const AppCategory = () => {
                         </div>
                         <div className={styles.categoryIconRight}>
 
-                            <img className={styles.catItemImg} src={currentCatData?.img} alt={currentCatData?.name} />
+                            <img draggable={"false"} className={styles.catItemImg} src={currentCatData?.img} alt={currentCatData?.name} />
 
                         </div>
                     </div>
@@ -144,22 +143,39 @@ const AppCategory = () => {
                 <div className={styles.appCatPostWrapper}>
                     <div className={styles.appCatPopularPostHeader}>
                         <h1 className={styles.mostPopularText}>MOST POPULAR</h1>
+                        {
+
+                            locationFilters ? <div className={styles.filterLocationButton}>
+                                <p>Filter Location</p>
+                                <button>
+                                    {locationFilters?.state} / {locationFilters?.city ? locationFilters?.city : "___"}
+                                    <img onClick={() => dispatch(setRemoveFilterLocationData())} src="/order/close.png" alt="closeImig" />
+                                </button>
+                            </div> : <PostFilterPopOver>
+
+                                <button className={styles.filterByLocation}>
+                                    <img src="/NavMap.png" alt="mapImg" />
+                                    Filter By Location
+                                </button>
+                            </PostFilterPopOver>
+                        }
                         <div className={styles.appCatHeaderHrLine}></div>
                         <Link to={"/"}>
                             <div className={styles.appCatBackText}>
 
                                 BACK
-
                             </div>
                         </Link>
 
                     </div>
                     <div ref={postWrapperRef} className={styles.postWrappers}>
                         {
-                            theFilterdPost.length > 0 ? theFilterdPost.map((post) => (
-                                <Post post={post} key={post?._id} />
-                            )) : <NotFound text={"No post found of your choice"} />
+                            locationFilterPostItem ? locationFilterPostItem.length > 0 ? locationFilterPostItem.map((post) => <Post post={post} key={post?._id} />) : <NotFound img='/items/post.png' text={"No post found of your choice"} /> : ""
                         }
+                        {
+                            !locationFilterPostItem ? theFilterdPost.length > 0 ? theFilterdPost.map((post) => <Post post={post} key={post?._id} />) : <NotFound img='/items/post.png' text={"No post found of your choice"} /> : null
+                        }
+
                     </div>
 
                 </div>

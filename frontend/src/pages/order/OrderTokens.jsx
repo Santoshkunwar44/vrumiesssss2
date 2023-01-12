@@ -16,26 +16,26 @@ const OrderTokens = () => {
     const dispatch = useDispatch()
     const [paymentResultInfo, setPaymentResultInfo] = useState("")
     const [orderTokenData, setOrderTokenData] = useState({
-
         VBTcount: 0,
-        totalAmount: 0
+        totalAmount: 0,
+        firstName: "",
+        lastName: "",
+        cardNumber: "",
+        expDate: "",
+        cvv: "",
+        zip: ""
     })
+    console.log(orderTokenData)
     const handleChangeTokenQuantity = (method) => {
         if (method === "sum") {
 
             setOrderTokenData((prev) => {
-
-
                 return { ...prev, VBTcount: orderTokenData.VBTcount + 1 }
-
             }
             )
         } else {
-
             setOrderTokenData((prev) => {
-
                 return { ...prev, VBTcount: orderTokenData.VBTcount - 1 }
-
             }
             )
         }
@@ -54,11 +54,42 @@ const OrderTokens = () => {
     }, [orderTokenData.VBTcount])
 
 
+    const handleTokenDataChange = (name, value) => {
+
+        setOrderTokenData((prev) => {
+            return {
+                ...prev,
+                [name]: value
+            }
+        })
+
+
+    }
+
     const handlePay = async () => {
+
+        let error = null;
+        console.log(orderTokenData)
+        for (const [key, value] of Object.entries(orderTokenData)) {
+            console.log(key)
+            if (!value) {
+                error = key
+                console.log("inside ", key)
+
+            }
+        }
+        console.log(error)
+        if (error) {
+            dispatch(setToastifyInfo({
+                type: "error",
+                text: `${error} field is missing`,
+            }))
+            return
+        }
         try {
             await buyTokensApi({
-                userId: userData._id,
-                VBTcount: orderTokenData?.VBTcount
+                ...orderTokenData,
+                userId: userData?._id
             })
             setPaymentResultInfo("success")
             dispatch(setToastifyInfo({
@@ -66,10 +97,17 @@ const OrderTokens = () => {
                 text: "Payment successful",
 
             }))
-            setOrderTokenData({
-                VBTcount: 0,
-                totalAmount: 0
+            setOrderTokenData((prev) => {
+                return {
+                    ...prev, VBTcount: 0, totalAmount: 0, firstName: "",
+                    lastName: "",
+                    cardNumber: "",
+                    expDate: "",
+                    cvv: "",
+                    zip: ""
+                }
             })
+            setOrderType("select")
             dispatch(startRefresh())
         } catch (error) {
             setPaymentResultInfo("error")
@@ -95,7 +133,6 @@ const OrderTokens = () => {
                             src="/images/order/headerText.png" alt="headerText" />
                     </div>
                     <div className={styles.orderContentWrappper}>
-
                         <div className={styles.orderInfoLeft} >
                             <div className={styles.orderInfoLeftWrapper}>
                                 <img src="/images/order/tokenImgBig.png" alt="tokenImage" />
@@ -103,7 +140,7 @@ const OrderTokens = () => {
                                     Vrumies Bump Tokens
                                 </div>
                                 <p className={styles.youHaveText}>You have</p>
-                                <h1 className={styles.vbtCount}>100 VBT</h1>
+                                <h1 className={styles.vbtCount}>{userData?.tokenAvailabe} VBT</h1>
                                 <p className={styles.vbtRate}>1 VBT = $0.25</p>
                             </div>
                         </div>
@@ -121,13 +158,21 @@ const OrderTokens = () => {
                                 <div className={styles.orderBox}>
                                     <div className={styles.theOrderBoxOptions}>
 
-                                        <p className={`${orderType === "select" && styles.currentOrder}`} onClick={() => handleChangeOrder("select")}>Start Order</p>
-                                        <p className={`${orderType === "myOrder" && styles.currentOrder}`} onClick={() => handleChangeOrder("myOrder")}>Your Order</p>
+                                        <p className={`${orderType === "select" && styles.currentOrder} ${orderType === "myOrder" && styles.fade}`} onClick={() => handleChangeOrder("select")}>Start Order</p>
+                                        <p className={`${orderType === "myOrder" && styles.currentOrder} ${orderType === "select" && styles.fade}`} onClick={() => handleChangeOrder("myOrder")}>Your Order</p>
 
                                     </div>
 
                                     {
-                                        orderType === "select" ? <SelectQuantity setOrderType={setOrderType} orderTokenData={orderTokenData} handleChangeTokenQuantity={handleChangeTokenQuantity} /> : <Myorders handlePay={handlePay} orderTokenData={orderTokenData} setOrderType={setOrderType} />
+                                        orderType === "select" ? <SelectQuantity
+                                            setOrderType={setOrderType}
+                                            orderTokenData={orderTokenData}
+                                            handleChangeTokenQuantity={handleChangeTokenQuantity}
+
+                                        /> : <Myorders handleTokenDataChange={handleTokenDataChange}
+                                            handlePay={handlePay}
+                                            orderTokenData={orderTokenData}
+                                            setOrderType={setOrderType} />
                                     }
                                 </div>
                             </div>

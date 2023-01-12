@@ -67,11 +67,11 @@
 .profileEmail {
   font-style: normal;
   font-weight: 400;
-  font-size: 13px;
+  font-size: 10px;
   line-height: 20px;
   /* identical to box height */
 
-  letter-spacing: 0.4em;
+  letter-spacing: 1.1 px;
 
   color: #ffffff;
 }

@@ -85,6 +85,7 @@
 }
 .payBtn {
   width: 138px;
+  cursor: pointer;
   height: 40px;
   font-size: 14px;
   display: flex;

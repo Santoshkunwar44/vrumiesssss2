@@ -178,3 +178,8 @@
   background: #37e710 !important;
   border-radius: 6.24426px;
 }
+/* fade */
+.fade {
+  opacity: 0.4;
+  pointer-events: none;
+}

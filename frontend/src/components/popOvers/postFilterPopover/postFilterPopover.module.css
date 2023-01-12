@@ -1,0 +1,103 @@
+.popOverMain {
+  width: 400px;
+  position: relative;
+  z-index: 33;
+}
+.catBannerBtnWrapper {
+  width: 298px;
+  margin: auto;
+  height: 50px;
+
+  background: #001219;
+  border: 1px solid #c1c1c198;
+  border-radius: 46px;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+}
+.catBannerBtnWrapperBox {
+  display: flex;
+  width: 100%;
+  align-items: center;
+}
+.catBtnOption {
+  width: 145px;
+  height: 45px;
+  background-color: transparent;
+  border-radius: 46px;
+  border: none;
+  outline: none;
+}
+.catBtnOption span {
+  font-style: normal;
+  font-family: "poppins";
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 18px;
+  /* identical to box height, or 106% */
+  text-align: center;
+  letter-spacing: -0.084px;
+  color: #ffffff;
+  opacity: 0.5;
+}
+
+.activeCatOption {
+  background-color: #37e710;
+}
+.activeCatOption span {
+  opacity: 1;
+  color: #001219;
+}
+/* content */
+.content {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+.mainContentBox {
+  height: 170px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.mainContentLeft {
+  height: 100%;
+  display: grid;
+  place-items: center;
+  flex: 1;
+}
+/* mainContentRight */
+.mainContentRight {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  flex: 1;
+  justify-content: center;
+  align-items: flex-end;
+}
+.vrLine {
+  width: 4px;
+  height: 100%;
+  background-color: #ffffff;
+}
+.mainContentRight select {
+  width: 130px;
+  height: 60px;
+  background: #000000;
+  padding: 0 10px;
+  border: 3px solid #ffffff;
+  border-radius: 10px;
+  color: white;
+}
+.filterLocationBtn {
+  width: 100px;
+  background-color: #37e710;
+  border-radius: 4px;
+  height: 55px;
+}
+/* fadeContentBox */
+.fadeContentBox {
+  opacity: 0.4;
+  pointer-events: none;
+}

@@ -5,10 +5,11 @@ import {
     useDisclosure,
     ModalBody
 } from '@chakra-ui/react'
-import { useEffect } from 'react'
-import { useState } from 'react'
-import { useSelector } from 'react-redux'
+import { useState, useEffect } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { setToastifyInfo } from '../../../redux/actions/otherAction'
 import { addTransactionApi } from '../../../utils/apis/transactions/transactionsApi'
+import { useNavigate } from "react-router-dom"
 import styles from "./orderModal.module.css"
 
 
@@ -19,9 +20,9 @@ function OrderNowModal({ children, postData }) {
     const [totalPrice, setTotalPrice] = useState()
     const { userData } = useSelector(state => state.userReducer)
 
-    const [orderData, setOrderData] = useState({
-
-    })
+    const [orderData, setOrderData] = useState({})
+    const dispatch = useDispatch()
+    const navigate = useNavigate()
 
 
     useEffect(() => {
@@ -47,20 +48,29 @@ function OrderNowModal({ children, postData }) {
 
     const handleOrder = async () => {
         try {
-            const { data } = await addTransactionApi(orderData)
-            console.log(data)
+            await addTransactionApi(orderData)
+            dispatch(setToastifyInfo({
+                text: "Order placed successfully",
+                type: "success"
+            }))
+            onClose()
         } catch (error) {
+            dispatch(setToastifyInfo({
+                text: "Failed to place order",
+                type: "error"
+            }))
+            onClose()
             console.log(error)
         }
     }
     return (
         <>
-            <span style={{ display: "inline", width: "100%", textAlign: "end" }} onClick={onOpen}>{children}</span>
+            <span style={{ display: "inline", width: "100%", textAlign: "end" }} onClick={() => userData?.username ? onOpen() : navigate("/signup")} className={`${postData?.owner?._id === userData?._id ? styles.fadeOrderBtn : ""}`}>{children}</span>
             <Modal isOpen={isOpen} closeOnOverlayClick={true} onClose={onClose}>
                 <ModalOverlay className={styles.modalOverlay} />
                 <ModalContent className={styles.modalContent}>
                     <ModalBody className={styles.ModalBody}>
-                        <img className={styles.closeImg} src="/order/close.png" alt="closeImg" />
+                        <img onClick={onClose} className={styles.closeImg} src="/order/close.png" alt="closeImg" />
                         <div className={styles.orderBoxWrapper}>
 
                             <div className={styles.orderBoxHeader}>

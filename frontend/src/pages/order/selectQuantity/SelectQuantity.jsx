@@ -1,7 +1,10 @@
-import { useEffect, useState } from "react"
+import { useDispatch } from "react-redux"
+import { setToastifyInfo } from "../../../redux/actions/otherAction"
 import styles from "./selectQuantity.module.css"
 
 const SelectQuantity = ({ handleChangeTokenQuantity, orderTokenData, setOrderType }) => {
+
+    const dispatch = useDispatch()
 
 
     return (
@@ -32,7 +35,12 @@ const SelectQuantity = ({ handleChangeTokenQuantity, orderTokenData, setOrderTyp
                         <p className={styles.totalText}>Total</p>
                         <p className={styles.totalFee}>${orderTokenData.totalAmount}</p>
                     </div>
-                    <button onClick={() => setOrderType("myOrder")} className={styles.orderNowBtn}>ORDER NOW</button>
+                    <button onClick={() => {
+                        orderTokenData.VBTcount < 20 ? dispatch(setToastifyInfo({
+                            text: "Atleast 20 VBT is needed to order",
+                            type: 'error'
+                        })) : setOrderType("myOrder")
+                    }} className={styles.orderNowBtn}>ORDER NOW</button>
                 </div>
 
             </div>

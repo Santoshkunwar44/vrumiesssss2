@@ -115,3 +115,8 @@
   cursor: pointer;
   width: 30px;
 }
+/* /* fadeOrderBtn */
+.fadeOrderBtn {
+  opacity: 0.4;
+  pointer-events: none !important;
+}

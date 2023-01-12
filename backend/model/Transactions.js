@@ -14,6 +14,19 @@ const transactionModel = mongoose.Schema({
         ref: "Post"
     },
     price: Number,
+    disputes: [
+        {
+            reportedDisputeBy: {
+                type: mongoose.Schema.Types.ObjectId,
+                ref: "User",
+            },
+            gotDispute: {
+                type: mongoose.Schema.Types.ObjectId,
+                ref: "User",
+            },
+            comment: String
+        }
+    ],
     sellersFeedback: {
         response: {
             type: String,

@@ -2,24 +2,44 @@ import styles from "./transaction.module.css"
 import { Link } from "react-router-dom"
 import { useState } from "react"
 import { useEffect } from "react"
-import { getTransactionInspectApi, updateTransactionApi } from "../../utils/apis/transactions/transactionsApi"
+import { createDisputesApi, getTransactionInspectApi, updateTransactionApi } from "../../utils/apis/transactions/transactionsApi"
 import { changeTime } from "../../services/changeTime"
 import { useDispatch, useSelector } from "react-redux"
 import { setToastifyInfo } from "../../redux/actions/otherAction"
+import DisputeModal from "../modal/disputePopover/DisputePopover"
+import { useRef } from "react"
+import NotFound from "../notFound/NotFound"
+import BuyTransaction from "./BuyTransaction/BuyTransaction"
+import SellTransaction from "./sellTransaction/SellTransaction"
 
-const Transactions = () => {
+const Transactions = ({ transactionId }) => {
 
-    const [viewAs, setViewAs] = useState("seller")
+    const [viewAs, setViewAs] = useState(null)
     const [sellerTransactionList, setSellerTransactionList] = useState([])
+    const [currentTransactionEdit, setCurrentTransactionEdit] = useState(null)
     const [buyerTransactionList, setBuyerTransactionList] = useState([])
     const [transactionEditData, setTransactionEditData] = useState({
-
     })
+    const [startDisputePopover, setStartDisputePopover] = useState(false)
     const dispatch = useDispatch()
     const { userData } = useSelector(state => state.userReducer)
+    const orderRef = useRef()
+
+    console.log(transactionEditData)
+
+    useEffect(() => {
+        if (transactionId) {
+            setViewAs("buyer")
+        } else {
+            setViewAs("seller")
+        }
+    }, [transactionId])
 
 
-
+    useEffect(() => {
+        if (!orderRef) return
+        orderRef?.current?.scrollIntoView({ behavior: "smooth" })
+    }, [buyerTransactionList])
 
 
     //  set the transaction data to the object 
@@ -64,6 +84,7 @@ const Transactions = () => {
 
 
     useEffect(() => {
+        if (!viewAs) return
         fetchTransactions()
         setTransactionEditData({})
     }, [viewAs])
@@ -84,8 +105,10 @@ const Transactions = () => {
     }
 
 
-    const handleSaveTransaction = async (transaction) => {
 
+    const handleSaveTransaction = async (transaction, disputeComment) => {
+
+        console.log("the current transaction eidit", transaction)
         let neededKeys = ['rating', 'response']
         let availableKey = []
         let newObj = { ...transactionEditData }
@@ -113,12 +136,24 @@ const Transactions = () => {
             return
         }
         try {
-            const { data } = await updateTransactionApi(transaction?._id, newObj)
+            await updateTransactionApi(transaction?._id, newObj)
+            if (startDisputePopover) {
+                await createDisputesApi({
+                    userId: userData?._id,
+                    userType: viewAs,
+                    comment: disputeComment,
+                    transactionId: transaction?._id,
+                    nextUser: viewAs === "seller" ? transaction?.buyer?._id : transaction?.seller?._id
+                })
+
+            }
             dispatch(setToastifyInfo({
                 text: "Trasaction updated successfully",
                 type: "success"
             }))
-            console.log(data)
+
+
+
         } catch (error) {
             dispatch(setToastifyInfo({
                 text: "Error while updating Transaction",
@@ -127,12 +162,27 @@ const Transactions = () => {
             console.log(error)
         }
     }
-
+    const handleStartTransactionSave = (transaction) => {
+        let feedBack = null
+        if (viewAs === "seller") {
+            feedBack = transactionEditData.sellersFeedback
+        } else {
+            feedBack = transactionEditData.buyersFeedback
+        }
+        if (feedBack?.response && feedBack?.response === "dispute") {
+            setCurrentTransactionEdit(transaction)
+            setStartDisputePopover(true)
+        } else {
+            handleSaveTransaction(transaction)
+        }
+    }
     return (
         <div
             className={styles.transactions}
         >
-
+            {
+                (startDisputePopover && currentTransactionEdit) ? <DisputeModal currentTransactionEdit={currentTransactionEdit} handleSaveTransaction={handleSaveTransaction} viewAs={viewAs} /> : ""
+            }
             <div className={styles.transactionHeader}>
 
                 <h2>My Transactions</h2>
@@ -143,16 +193,12 @@ const Transactions = () => {
 
                 <div className={styles.mainContentHeader}>
                     <div className={styles.contentHeaderLeft}>
-                        <div>Average  Rating :  <span className={styles.greenText}>{userData?.avgRating}/ {userData?.ratings?.length}</span> </div>
+                        <div>Average  Rating :  <span className={styles.greenText}>{userData?.avgRating}/ 10    </span> </div>
                         <div>Disputes : <span className={styles.greenText}>{userData?.disputes}</span></div>
                     </div>
                     <div className={styles.contentHeader}>
 
                         <div className={styles.catBannerBtnWrapper}>
-
-
-
-
                             <button onClick={() => setViewAs("seller")} className={`${styles.catBtnOption} ${viewAs === "seller" && styles.activeCatOption}  `}> <span>As Seller </span></button>
                             <button onClick={() => setViewAs("buyer")} className={`${styles.catBtnOption}  ${viewAs === "buyer" && styles.activeCatOption} `}> <span>As Buyer </span></button>
 
@@ -200,137 +246,25 @@ const Transactions = () => {
                         </thead>
                         <tbody>
                             {
-                                viewAs === "seller" ? sellerTransactionList?.map((item) => (
-                                    <tr className={styles.tableRow}>
-                                        <td>
-                                            {item.buyer?.username}
-                                        </td>
-                                        <td>
-                                            {changeTime(item?.createdAt)}
-                                        </td>
-                                        <td>
-                                            ${item.price}
-                                        </td>
-                                        <td>
-                                            {item.buyersFeedback?.response}
-                                        </td>
+                                viewAs === "buyer" && buyerTransactionList?.map((item) => <BuyTransaction
+                                    transactionEditData={transactionEditData}
+                                    item={item}
+                                    handleStartTransactionSave={handleStartTransactionSave}
+                                    handleTransactionFeedback={handleTransactionFeedback}
+                                    orderRef={orderRef}
+                                    transactionId={transactionId}
+                                />)
+                            }
+                            {
 
-                                        <td>
-                                            <Link to={`/post/${item?.post}`}>
-                                                <button className={styles.postLinkBtn}>
-
-                                                    post link
-                                                </button>
-                                            </Link>
-                                        </td>
-                                        <td>
-                                            <button className={styles.transactionBtn}>
-
-                                                <select onChange={(e) => handleTransactionFeedback("rating", e.target.value)} className={styles.transactionStatusSelection} value={
-
-                                                    transactionEditData?.sellersFeedback?.rating ? transactionEditData?.sellersFeedback?.rating : item?.sellersFeedback?.rating
-                                                }  >
-                                                    <option value="1">1</option>
-                                                    <option value="2">2</option>
-                                                    <option value="3">3</option>
-                                                    <option value="4">4</option>
-                                                    <option value="5">5</option>
-                                                    <option value="6">6</option>
-                                                    <option value="7">7</option>
-                                                    <option value="8">8</option>
-                                                    <option value="9">9</option>
-                                                    <option value="10">10</option>
-                                                </select>
-
-                                            </button>
-                                        </td>
-                                        <td>
-                                            <button className={styles.transactionBtn}>
-                                                <select onChange={(e) => handleTransactionFeedback("response", e.target.value)} className={styles.transactionStatusSelection} value={transactionEditData?.sellersFeedback?.response ? transactionEditData?.sellersFeedback?.response : item?.sellersFeedback?.response} >
-                                                    <option value="in progress">in progress</option>
-                                                    <option value="dispute">disputes</option>
-                                                    <option value="completed">completed</option>
-                                                </select>
-
-                                            </button>
-                                        </td>
-                                        <td >
-                                            <button onClick={() => handleSaveTransaction(item)} className={styles.saveBtn}>
-                                                save
-                                            </button>
-                                        </td>
-
-                                    </tr>
-                                )) : buyerTransactionList?.map((item) => (
+                                viewAs === "seller" && sellerTransactionList?.map((item) => <SellTransaction
+                                    transactionEditData={transactionEditData}
+                                    item={item}
+                                    handleStartTransactionSave={handleStartTransactionSave}
+                                    handleTransactionFeedback={handleTransactionFeedback}
 
 
-                                    <tr className={styles.tableRow}>
-                                        <td>
-                                            {item.seller?.username}
-                                        </td>
-                                        <td>
-                                            {changeTime(item?.createdAt)}
-                                        </td>
-                                        <td>
-                                            ${item.price}
-                                        </td>
-                                        <td>
-                                            {item.sellersFeedback?.response}
-                                        </td>
-
-                                        <td>
-                                            <Link to={`/post/${item?.post}`}>
-                                                <button className={styles.postLinkBtn}>
-
-                                                    post link
-                                                </button>
-                                            </Link>
-                                        </td>
-                                        <td>
-                                            <button className={styles.transactionBtn}>
-                                                <select onChange={(e) => handleTransactionFeedback("rating", e.target.value)} className={styles.transactionStatusSelection} value={
-
-                                                    transactionEditData?.buyersFeedback?.rating ? transactionEditData?.buyersFeedback?.rating : item?.buyersFeedback?.rating
-                                                }  >
-                                                    <option value="1">1</option>
-                                                    <option value="2">2</option>
-                                                    <option value="3">3</option>
-                                                    <option value="4">4</option>
-                                                    <option value="5">5</option>
-                                                    <option value="6">6</option>
-                                                    <option value="7">7</option>
-                                                    <option value="8">8</option>
-                                                    <option value="9">9</option>
-                                                    <option value="10">10</option>
-                                                </select>
-
-                                            </button>
-                                        </td>
-                                        <td>
-                                            <button className={styles.transactionBtn}>
-                                                <select onChange={
-                                                    (e) => handleTransactionFeedback("response", e.target.value)} className={styles.transactionStatusSelection} value={
-                                                        transactionEditData?.buyersFeedback?.response ? transactionEditData?.buyersFeedback?.response : item?.buyersFeedback?.response
-
-                                                    } >
-                                                    <option value="in progress">in progress</option>
-                                                    <option value="dispute">disputes</option>
-                                                    <option value="completed">completed</option>
-                                                </select>
-
-                                            </button>
-                                        </td>
-                                        <td >
-                                            <button onClick={() => handleSaveTransaction(item)} className={styles.saveBtn}>
-
-                                                save
-                                            </button>
-                                        </td>
-
-                                    </tr>
-
-
-                                ))
+                                />)
                             }
                         </tbody>
                     </table>
@@ -342,7 +276,7 @@ const Transactions = () => {
 
 
 
-        </div>
+        </div >
     )
 }
 

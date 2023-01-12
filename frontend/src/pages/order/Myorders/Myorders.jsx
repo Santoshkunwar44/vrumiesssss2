@@ -1,5 +1,5 @@
 import styles from "./myorders.module.css"
-const Myorders = ({ orderTokenData, setOrderType, handlePay }) => {
+const Myorders = ({ orderTokenData, setOrderType, handlePay, handleTokenDataChange }) => {
     return (
         <div className={styles.myOrders}>
             <div className={styles.myOrdersHeader}>
@@ -9,7 +9,6 @@ const Myorders = ({ orderTokenData, setOrderType, handlePay }) => {
                 <div className={styles.myOrderInfo}>
                     <div className={styles.orderDate}>
                         08/21/2022
-
                     </div>
                     <div className={styles.orderInfoQuantity}>
                         <div className={styles.orderInfoText}>
@@ -45,12 +44,12 @@ const Myorders = ({ orderTokenData, setOrderType, handlePay }) => {
                         <div className={styles.inputItem}>
                             <label > First Name</label>
 
-                            <input type="text" name="" id="" />
+                            <input type="text" name="" id="" value={orderTokenData.firstName} onChange={(e) => handleTokenDataChange("firstName", e.target.value)} />
                         </div>
                         <div className={styles.inputItem}>
                             <label > Last Name</label>
 
-                            <input type="text" name="" id="" />
+                            <input value={orderTokenData.lastName} onChange={(e) => handleTokenDataChange("lastName", e.target.value)} type="text" name="" id="" />
                         </div>
 
                     </div>
@@ -58,7 +57,7 @@ const Myorders = ({ orderTokenData, setOrderType, handlePay }) => {
                         <div className={styles.inputItem}>
                             <label > Card Number</label>
 
-                            <input type="text" name="" id="" />
+                            <input value={orderTokenData.cardNumber} onChange={(e) => handleTokenDataChange("cardNumber", e.target.value)} type="text" name="" id="" />
                         </div>
 
 
@@ -67,17 +66,17 @@ const Myorders = ({ orderTokenData, setOrderType, handlePay }) => {
                         <div className={styles.inputItem}>
                             <label > Expiration </label>
 
-                            <input type="text" name="" id="" />
+                            <input value={orderTokenData.expDate} onChange={(e) => handleTokenDataChange("expDate", e.target.value)} type="text" name="" id="" />
                         </div>
                         <div className={styles.inputItem}>
                             <label >CVV</label>
 
-                            <input type="text" name="" id="" />
+                            <input value={orderTokenData.cvv} onChange={(e) => handleTokenDataChange("cvv", e.target.value)} type="text" name="" id="" />
                         </div>
                         <div className={styles.inputItem}>
                             <label > Zip </label>
 
-                            <input type="text" name="" id="" />
+                            <input value={orderTokenData.zip} onChange={(e) => handleTokenDataChange("zip", e.target.value)} type="text" name="" id="" />
                         </div>
 
                     </div>

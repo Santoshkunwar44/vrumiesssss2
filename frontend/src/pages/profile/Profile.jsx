@@ -9,7 +9,8 @@ import { useParams } from 'react-router-dom'
 import { useRef } from 'react'
 import UploadImageProgress from '../../components/uploadImage/UploadImageProgress'
 import { useDispatch } from 'react-redux'
-import { setToastifyInfo } from '../../redux/actions/otherAction'
+import { setToastifyInfo, startRefresh } from '../../redux/actions/otherAction'
+import { useLocation } from 'react-router-dom'
 
 const Profile = () => {
 
@@ -22,10 +23,30 @@ const Profile = () => {
     const [profileFile, setProfileFile] = useState([])
     const [uploadImageStart, setUploadImageStart] = useState(false)
     const [uploadImageCompleted, setUploadImageCompleted] = useState(false)
+    const [viewTransaction, setViewTransaction] = useState(null)
     const editableDivRef = useRef()
     const nameRef = useRef()
     const imageRef = useRef()
     const dispatch = useDispatch()
+
+
+    const locationState = useLocation().state
+    useEffect(() => {
+        if (locationState) {
+            const { transactionId } = locationState
+            setViewTransaction(transactionId)
+        }
+        console.log()
+    }, [locationState])
+
+
+
+    useEffect(() => {
+        if (viewTransaction) {
+            setCurrentInspect("myTransactions")
+
+        }
+    }, [viewTransaction])
 
     const newInputRef = useRef()
     useEffect(() => {
@@ -108,6 +129,12 @@ const Profile = () => {
     useEffect(() => {
         if (uploadImageCompleted) {
             fetchCurrentuser()
+            dispatch(setToastifyInfo({
+                text: "Profile Image uploaded successfully",
+                type: "success"
+            }))
+            dispatch(startRefresh())
+            setUploadImageCompleted(false)
         }
     }, [uploadImageCompleted])
 
@@ -123,7 +150,6 @@ const Profile = () => {
             }))
             fetchCurrentuser()
         } catch (error) {
-            console.log(error)
             dispatch(setToastifyInfo({
                 text: "Error while updating profile",
                 type: "error"
@@ -195,19 +221,13 @@ const Profile = () => {
                                 <img src="/profile/transaction.png" alt="loctionImage" />
                                 <p>My Transaction</p>
                             </div>
-                            {/* <div className={`${styles.profileTopItem} ${styles.activeProfileTopItem}`}>
-
-                                <img src="/images/myLocation.png" alt="loctionImage" />
-                                <p>Location Filter</p>
-                            </div> */}
-
 
 
                         </div>
                     </div>
                     <div className={styles.profileRightBottom}>
                         {
-                            currentInspect === "myPost" ? <Mypost /> : <Transactions />
+                            currentInspect === "myPost" ? <Mypost /> : <Transactions transactionId={viewTransaction} />
                         }
                     </div>
                 </div>

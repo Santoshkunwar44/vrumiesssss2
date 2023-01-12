@@ -1,5 +1,6 @@
 const initialState = {
     userData: null,
+
 }
 
 export const userReducer = (state = initialState, action) => {
@@ -8,8 +9,9 @@ export const userReducer = (state = initialState, action) => {
             return {
                 ...state, userData: action.data
             }
+
         case "LOG_OUT":
-            return initialState
+            return { ...state, userData: null }
         default:
             return state
     }

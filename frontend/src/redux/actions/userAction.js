@@ -12,10 +12,10 @@ export const setUserData = (data) => async (dispatch) => {
 }
 
 
-// // login action
+// logout action
 
-// export const logout = () => async (dispatch) => {
+export const logoutUser = () => async (dispatch) => {
 
-//     dispatch({ type: "LOG_OUT" })
+    dispatch({ type: "LOG_OUT" })
 
-// }
+}

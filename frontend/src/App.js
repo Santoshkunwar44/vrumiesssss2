@@ -10,7 +10,7 @@ import Category from './category/Category';
 import { useSelector, useDispatch } from "react-redux"
 import SinglePost from './pages/singlePost/SinglePost';
 import { useEffect } from 'react';
-import { getUserById } from './utils/apis/user/userApi';
+import { getLoggedInUser, getUserById } from './utils/apis/user/userApi';
 import { setUserData } from './redux/actions/userAction';
 import NotifyToast from './components/notifyToast/NotifyToast';
 
@@ -24,13 +24,12 @@ function App() {
   }, [refresh])
   const fetchCuurentUser = async () => {
     try {
-      const { data } = await getUserById("63b3f63a1c784ae54e5a91e5")
+      const { data } = await getLoggedInUser()
       dispatch(setUserData(data.message))
     } catch (error) {
       console.log(error)
     }
   }
-
 
   return (
     <div className="App">

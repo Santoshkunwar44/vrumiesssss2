@@ -1,4 +1,3 @@
-import Navbar from "../Navbar/Navbar"
 import NotFound from "../notFound/NotFound"
 import ReplyQuotes from "../replyQuotes/ReplyQuotes"
 import styles from "./replyContainer.module.css"

@@ -5,17 +5,14 @@ import Navbar from "../../components/Navbar/Navbar"
 import UploadImageProgress from "../../components/uploadImage/UploadImageProgress"
 import useFetchItems from "../../hooks/useFetchItems"
 import styles from "./createPost.module.css"
-// import countryData from "../../utils/data/location/country.json"
-import state from "../../utils/data/location/state.json"
-import city from "../../utils/data/location/city.json"
 import { useDispatch, useSelector } from "react-redux"
 import { setToastifyInfo } from "../../redux/actions/otherAction"
+import { getCitiesInState, getStatesOfAmerica } from "../../utils/apis/location/locationApi"
 const CreatePost = () => {
 
-    const currentUser = "63ab1884164e821f6abcc61b"
     const { userData } = useSelector((state) => state.userReducer)
     const [createPostData, setCreatePostData] = useState({
-        owner: currentUser,
+        owner: userData?._id,
         type: "Advertise",
         VBTused: 0,
         orderNowBtn: false,
@@ -36,47 +33,49 @@ const CreatePost = () => {
     const fileRef = useRef()
     const [startUpload, setStartUpload] = useState(false)
     const [imageFiles, setImageFiles] = useState([])
-    const [theCity, setCity] = useState(city)
-    const [theState, setstate] = useState(state)
+    const [theCity, setCity] = useState([])
+    const [theState, setstate] = useState([])
     const dispatch = useDispatch()
 
 
-
     useEffect(() => {
-        if (state) {
-            setstate(state.filter((state) => state.country_id === "231"))
+        if (userData?._id) {
+            setCreatePostData((prev) => {
+                return {
+                    ...prev, owner: userData._id
+                }
+            })
         }
-    }, [])
+    }, [userData])
 
 
-    useEffect(() => {
-
-        let theCurrState = createPostData?.location?.state
-        if (theCurrState) {
-            let thecities = city[0].data?.filter((city) => city.state_id === theCurrState)
-            setCity(thecities)
-        }
-
-
-    }, [createPostData?.location?.state])
 
 
     // useEffect(() => {
-    //     if (createPostData.inventoryCount > 20) {
-    //         setCreatePostData((prev) => {
-    //             return {
-    //                 ...prev,
-    //                 orderNowBtn: false,
-    //                 inventoryCount: 1
-    //             }
 
-    //         })
+    //     let theCurrState = createPostData?.location?.state
+    //     if (theCurrState) {
+
     //     }
 
-    // }, [createPostData.inventoryCount])
+
+    // }, [createPostData?.location?.state])
+
+
 
     const { data } = useFetchItems('/category')
 
+
+    useEffect(() => {
+        getAllStatesOfUSA()
+    }, [])
+
+    useEffect(() => {
+        const selectedState = createPostData?.location?.state
+        if (selectedState) {
+            getAllCitiesInStates(selectedState)
+        }
+    }, [createPostData?.location?.state])
 
     useEffect(() => {
 
@@ -117,6 +116,30 @@ const CreatePost = () => {
         setCreatePostData((prev) => {
             return { ...prev, [event.target.name]: event.target.value }
         })
+
+    }
+
+
+    const getAllStatesOfUSA = async () => {
+
+        try {
+
+            const { data } = await getStatesOfAmerica()
+            setstate(data?.data?.states)
+        } catch (error) {
+            console.log(error)
+        }
+
+    }
+    const getAllCitiesInStates = async (selectedState) => {
+
+        try {
+
+            const { data } = await getCitiesInState(selectedState)
+            setCity(data.data)
+        } catch (error) {
+            console.log(error)
+        }
 
     }
 
@@ -204,22 +227,16 @@ const CreatePost = () => {
             return { ...prev, location: { ...prev.location, [locationType]: value } }
         })
     }
-
+    console.log(createPostData, imageFiles)
     const handleStartUpload = () => {
-
-        if (!createPostData.price || !createPostData.title || !createPostData.desc || !createPostData.type || !createPostData.subCategory || !createPostData.category || (createPostData.setLocation && !createPostData.location.state)) {
+        if (!createPostData.price || !createPostData.title || !createPostData.desc || !createPostData.type || !createPostData.subCategory || !createPostData.category || imageFiles.length < 1 || (createPostData.setLocation && !createPostData.location.state)) {
             dispatch(setToastifyInfo({
                 text: "Fill required Fields",
                 type: "error"
             }))
             return;
         }
-
         setStartUpload(true)
-        dispatch(setToastifyInfo({
-            text: "Post created successfully",
-            type: "success"
-        }))
     }
 
     return (
@@ -253,7 +270,7 @@ const CreatePost = () => {
                                                     <option >state</option>
                                                     {
                                                         theState?.map((state) => (
-                                                            <option value={state?.state_id}>{state?.state_name}</option>
+                                                            <option value={state?.name}>{state?.name}</option>
                                                         ))
                                                     }
 
@@ -263,7 +280,7 @@ const CreatePost = () => {
                                                     {
                                                         theCity?.map((city) => (
                                                             <>
-                                                                <option value={city.city_name}>{city.city_name}</option>
+                                                                <option value={city}>{city}</option>
                                                             </>
                                                         ))
                                                     }
@@ -434,7 +451,7 @@ const CreatePost = () => {
                             {
                                 startUpload ? <UploadImageProgress
                                     setCompleted={() => setStartUpload(false)}
-                                    uploadData={createPostData} uploadImages={imageFiles} urlPath="/post" /> : ""
+                                    uploadData={createPostData} uploadImages={imageFiles} setImageFiles={setImageFiles} setCreatePostData={setCreatePostData} urlPath="/post" /> : ""
                             }
 
                         </div>

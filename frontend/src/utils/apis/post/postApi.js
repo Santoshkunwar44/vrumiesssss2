@@ -6,7 +6,9 @@ export const getPostById = (postId) => instance.get(`/post/${postId}/byId`);
 
 export const getPostByUserId = (userId) => instance.get(`/post/${userId}/byUserId`)
 
+export const getPostByLocation = (category, state, city) => instance.get(`/post/location?state=${state}&city=${city}&category=${category}`)
 
+export const deletePost = (postId) => instance.delete(`/post/${postId}`);
 
 
 

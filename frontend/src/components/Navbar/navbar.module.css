@@ -5,7 +5,7 @@
 }
 .navbar {
   position: relative;
-  z-index: 1;
+  z-index: 99;
   height: 100px;
   left: 0px;
   top: 0px;
@@ -89,4 +89,19 @@
   display: flex;
   align-items: flex-start;
   flex-direction: column;
+}
+.signUpBtn {
+  width: fit-content;
+  padding: 0 10px;
+  height: 45px;
+  background-color: #000000;
+  color: #37e710;
+  border: 3px solid #37e710;
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.signUpBtn img {
+  width: 25px;
 }

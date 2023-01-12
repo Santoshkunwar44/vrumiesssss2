@@ -1,4 +1,5 @@
 const User = require("../model/User");
+const { isUserUpdated } = require("../services/authService/AuthService");
 
 class UserController {
 
@@ -66,6 +67,38 @@ class UserController {
         } catch (error) {
             res.status(500).json({ message: error, success: false })
         }
+    }
+
+
+
+
+    async loggedInUser(req, res) {
+        const passportSessionUser = req.session?.passport?.user
+
+
+
+        if (passportSessionUser) {
+            let updatedUser = await isUserUpdated(passportSessionUser)
+            return res.status(200).json({ message: updatedUser, success: true })
+        } else {
+            return res.status(500).json({ message: "User has not Logged IN", success: true })
+        }
+    }
+
+
+
+    async logout(req, res) {
+        req.session.destroy((err) => {
+            if (err) {
+                res.status(500).send(err);
+            } else {
+                // Remove the session user from the MongoDB
+                // Or perform any other actions that should be done to log the user out
+                res.send('User logged out');
+            }
+        });
+
+
     }
 }
 module.exports = new UserController()

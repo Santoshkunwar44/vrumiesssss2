@@ -218,3 +218,8 @@
   letter-spacing: -0.1px;
   color: #ffffff;
 }
+/* /* fadeReplyBtn */
+.fadeReplyBtn {
+  opacity: 0.4;
+  pointer-events: none !important;
+}

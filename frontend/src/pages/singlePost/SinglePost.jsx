@@ -6,10 +6,10 @@ import { useNavigate, useParams } from "react-router-dom"
 import { useEffect } from "react"
 import { getPostById } from "../../utils/apis/post/postApi"
 import { useState } from "react"
-import ReplyQuoteModal from "../../components/modal/replyqoute/ReplyQuote"
 import { getReplyByPost } from "../../utils/apis/reply/replyApi"
-import OrderNowModal from "../../components/modal/orderModal/OrderModal"
 import { useSelector } from "react-redux"
+import ItemSlider from "../../components/itemSlider/ItemSlider"
+import PostCard from "../../components/postCard/PostCard"
 
 
 const SinglePost = () => {
@@ -18,6 +18,7 @@ const SinglePost = () => {
     const { refresh } = useSelector((state) => state.otherReducer)
     const [postData, setPostData] = useState({})
     const [theReplies, setTheReplies] = useState([])
+
     const navigate = useNavigate()
 
     useEffect(() => {
@@ -30,8 +31,6 @@ const SinglePost = () => {
 
 
     const fetchReplies = async () => {
-
-
         try {
 
             const { data } = await getReplyByPost(thePostId)
@@ -50,6 +49,7 @@ const SinglePost = () => {
             console.log(error)
         }
     }
+
     return (
         <>
             <Navbar />
@@ -63,14 +63,8 @@ const SinglePost = () => {
 
                         </div>
                         <div className={styles.imageSlider}>
-                            {
-                                postData?.postImg?.map((img, index) => (
+                            <ItemSlider type={"postImg"} items={postData?.postImg} />
 
-
-                                    <img key={index} src={img} alt="iphoneImg" />
-
-                                ))
-                            }
 
 
                         </div>
@@ -89,135 +83,20 @@ const SinglePost = () => {
                                     <span className={styles.postDetailsKey}>View Location :</span> <span className={styles.postDetailsValue}> {postData?.setLocation ? "Enabled" : "Disabled"} </span>
                                 </div>
                                 {
-
                                     postData?.setLocation && <div className={styles.postDetailsHeaderItem}>
-
-                                        <span className={styles.postDetailsValue}>spanHouston,Texas</span>
+                                        <span className={styles.postDetailsValue}>{postData?.location?.state ? postData?.location?.state : "____"} , {postData?.location?.city ? postData?.location?.city : "____"}</span>
                                     </div>
                                 }
                                 <div className={styles.postDetailsHeaderItem}>
 
-                                    <span className={styles.postDetailsKey}>Average Rating :</span> <span className={styles.postDetailsValue}>8/10</span>
+                                    <span className={styles.postDetailsKey}>Average Rating :</span> <span className={styles.postDetailsValue}>{postData?.owner?.avgRating}/10</span>
                                 </div>
                             </div>
                         </div>
 
                     </div>
-                    <div className={styles.postInfoCard}>
-                        <div className={styles.card_content}>
-                            <div className={styles.postCardHeader}>
 
-                                <div className={styles.userProfileBox}>
-                                    <img style={{ width: "70px", height: "70px", borderRadius: "50%", objectFit: "cover" }} src={postData?.owner?.profileImg} alt="userImg" />
-                                    <span> {postData?.owner?.username} </span>
-                                </div>
-                                {
-                                    postData?.VBTused <= 0 ? <button className={styles.orderButton}>
-
-                                        Free Post
-
-                                    </button> : postData?.orderNowBtn ? <OrderNowModal postData={postData}>
-
-
-                                        <button className={styles.orderButton}>
-                                            Order Now ${postData?.price}
-
-                                        </button>
-                                    </OrderNowModal>
-
-                                        : <button className={styles.orderButton}>
-                                            Paid Post
-
-                                        </button>
-                                }
-
-
-
-
-                            </div>
-                            <div className={styles.cartTitle}>
-                                <div className={styles.cardTitleWrapper}>
-
-                                    {postData?.title}
-                                </div>
-
-                            </div>
-                            <div className={styles.cardInfoBox}>
-                                <div className={styles.cardContentTop}>
-
-                                    <div className={styles.infoLeft}>
-
-                                        <div className={styles.infoLeftItem}>
-                                            <span>Category :</span>
-                                            <span>{postData?.category}</span>
-
-                                        </div>
-                                        <div className={styles.infoLeftItem}>
-                                            <span>Subsection :</span>
-                                            <span>{postData?.subCategory}</span>
-
-                                        </div>
-                                        <div className={styles.infoLeftItem}>
-                                            <span>Type :</span>
-                                            <span>{postData?.type}</span>
-
-                                        </div>
-
-                                    </div>
-                                    <div className={styles.infoRight}>
-                                        <div>
-                                            5 minute
-                                        </div>
-                                        <div className={styles.infoRightVBTInfo}>
-                                            <div className={styles.VBTquantity}>
-                                                {postData?.VBTused}
-                                            </div>
-                                            <img src="/token.png" alt="tokenImg" />
-                                        </div>
-
-                                    </div>
-                                </div>
-                                <div className={styles.cardContentBottom}>
-                                    <div className={`${styles.infoLeft} ${styles.websiteInfo}`} >
-                                        <div className={styles.websiteText}>
-                                            Website
-                                        </div>
-                                        <div className={styles.websiteUrl}>
-                                            {
-                                                postData?.websiteLink ? postData?.websiteLink : "No website available"
-                                            }
-                                        </div>
-                                    </div>
-                                    <div className={styles.infoRight}>
-                                        <div className={styles.priceWrapper}>
-                                            <span className={styles.priceText}>Price : </span><span>${postData?.price}</span>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div className={styles.replyQuoteBox}>
-                                    <ReplyQuoteModal handleSetReply={(newItem) => setTheReplies((prev) => [...prev, newItem])} postId={thePostId}>
-
-                                        <button className={styles.replyQuoteBtn}>
-                                            <span> Reply with Quote </span>
-                                            <div className={styles.replyBtnVBTtext}>
-                                                <span>4 VBT</span>
-                                                <img src="/token.png" alt="tokenImg" />
-                                            </div>
-
-                                        </button>
-                                    </ReplyQuoteModal>
-                                </div>
-                            </div>
-                        </div>
-                        <div className={styles.postDescription}>
-                            {
-                                postData?.desc
-                            }
-
-                        </div>
-
-                    </div>
-
+                    <PostCard postData={postData} setTheReplies={setTheReplies} />
 
                 </div>
 

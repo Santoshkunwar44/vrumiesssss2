@@ -26,3 +26,9 @@
   left: 1.5rem;
   text-align: start;
 }
+.postImgSlider {
+  width: 120px !important;
+  height: 120px;
+  object-fit: cover;
+  border-radius: 8px;
+}

@@ -1,4 +1,3 @@
-import { useState } from "react";
 import Slider from "react-slick";
 import Post from "../post/Post";
 import ReplyQuotes from "../replyQuotes/ReplyQuotes";
@@ -7,15 +6,14 @@ import styles from "./itemSlider.module.css"
 const ItemSlider = ({ items, type }) => {
 
 
+
     console.log(items)
-
-
 
 
     const settings = {
         dots: true,
         infinite: false,
-        slidesToShow: items.length < 3 ? items.length : 3,
+        slidesToShow: items?.length < 3 ? items?.length : 3,
         slidesToScroll: 3,
         nextArrow: <SamplePrevArrow />,
         prevArrow: <SampleNextArrow />,
@@ -40,7 +38,12 @@ const ItemSlider = ({ items, type }) => {
                         type === "reply" && items.map((item) => <ReplyQuotes reply={item} key={item?._id} />)
                     }
                     {
-                        type !== "reply" && items.map((item) => <Post post={item} key={item?._id} />)
+                        type === "post" && items.map((item) => <Post post={item} key={item?._id} />)
+                    }
+                    {
+                        type === "postImg" && items?.map((item) => <img
+                            className={styles.postImgSlider}
+                            src={item} key={item} alt="postImg" />)
                     }
 
                 </Slider>
