@@ -127,9 +127,9 @@ const SingleContentItem = ({ contentType, data }) => {
                 <ReactToContent contentType={contentType} data={data} />
             </div>
             <div className={styles.single_content_item_secondary_action}>
-                <button>
+                {/* <button>
                     <p>comments </p>
-                </button>
+                </button> */}
                 <button>
                     <img src="/icons/share.png" alt="shareIcon" />
                     <p>Share</p>
