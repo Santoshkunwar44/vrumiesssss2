@@ -6,7 +6,6 @@ import Signup from './pages/auth/Signup';
 import AppCategory from './pages/Category/AppCategory';
 import CreatePost from './pages/createPost/CreatePost';
 import OrderTokens from './pages/order/OrderTokens';
-import Category from './category/Category';
 import { useSelector, useDispatch } from "react-redux"
 import SinglePost from './pages/singlePost/SinglePost';
 import { useEffect, useState } from 'react';
@@ -111,7 +110,6 @@ function App() {
           <Route path='transactions' element={<Transaction />} />
           <Route path='content' element={<Contents />} />
         </Route>
-        <Route path="/category" element={<Category />} />
         <Route path='/category/:catName' element={<AppCategory />} />
         <Route path="/signup" element={<Signup />} />
         <Route path="/createpost" element={<ProtectedRoute> <CreatePost /> </ProtectedRoute>} />
