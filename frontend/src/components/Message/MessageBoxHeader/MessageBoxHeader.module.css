@@ -1,0 +1,30 @@
+.message_box_header {
+  height: 70px;
+  background-color: #001219;
+  border-radius: 4px;
+  padding: 10px;
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+}
+.arrow_back_icon {
+  fill: white;
+  font-size: 2rem;
+  cursor: pointer;
+}
+.message_box_user_img {
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+.message_box_user_details {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+}
+.message_username {
+  color: white;
+  letter-spacing: 1px;
+  font-weight: 500;
+}

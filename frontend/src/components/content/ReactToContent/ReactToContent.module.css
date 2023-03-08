@@ -1,0 +1,28 @@
+.action_box_wrapper {
+  display: flex;
+  height: 120px;
+  gap: 5rem;
+}
+
+.action_box_item:nth-of-type(1) p {
+  color: #37e710;
+}
+.action_box_item:nth-of-type(2) p {
+  color: red;
+}
+.action_box_item {
+  opacity: 0.5;
+}
+.shineItem {
+  opacity: 1 !important;
+}
+.mini_reaction .action_box_item img {
+  width: 22px !important;
+  transition: all 0.3s;
+}
+.mini_reaction .action_box_item img:hover {
+  scale: 1.2;
+}
+.mini_reaction.action_box_wrapper {
+  gap: 1rem !important;
+}

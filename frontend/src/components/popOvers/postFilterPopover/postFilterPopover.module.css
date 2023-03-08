@@ -1,7 +1,8 @@
 .popOverMain {
-  width: 400px;
+  max-width: 400px;
   position: relative;
   z-index: 33;
+  width: 100%;
 }
 .catBannerBtnWrapper {
   width: 298px;
@@ -100,4 +101,78 @@
 .fadeContentBox {
   opacity: 0.4;
   pointer-events: none;
+}
+.mini_filteby_location {
+  display: none;
+}
+
+@media screen and (max-width: 600px) {
+  .mini_filteby_location {
+    display: block;
+  }
+  .popOverMain {
+    /* width: 200px; */
+  }
+  .catBannerBtnWrapper {
+    width: 145px;
+    height: 43px;
+  }
+  .catBtnOption span {
+    font-size: 10px;
+  }
+  .catBtnOption {
+    width: 69px;
+    height: 37px;
+  }
+  .catBtnOption span {
+    font-size: 9px;
+  }
+  .mainContentRight select {
+    height: 34px;
+    width: 93px;
+    border-radius: 4px;
+  }
+  .filterLocationBtn {
+    width: 60px;
+    height: 35px;
+    font-size: 12px;
+  }
+  .mainContentLeft img {
+    width: 40px;
+  }
+}
+@media screen and (min-width: 600px) and (max-width: 780px) {
+  .mini_filteby_location {
+    display: block;
+  }
+  .popOverMain {
+    /* width: 200px; */
+  }
+  .catBannerBtnWrapper {
+    width: 187px;
+    height: 43px;
+  }
+  .catBtnOption span {
+    font-size: 10px;
+  }
+  .catBtnOption {
+    width: 91px;
+    height: 37px;
+  }
+  .catBtnOption span {
+    font-size: 9px;
+  }
+  .mainContentRight select {
+    height: 34px;
+    width: 93px;
+    border-radius: 4px;
+  }
+  .filterLocationBtn {
+    width: 60px;
+    height: 35px;
+    font-size: 12px;
+  }
+  .mainContentLeft img {
+    width: 40px;
+  }
 }

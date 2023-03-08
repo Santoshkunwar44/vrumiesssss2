@@ -1,0 +1,88 @@
+.messages_input_box {
+  height: 60px;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  position: relative;
+}
+.messages_major_content {
+  flex: 1;
+  background-color: #001219;
+  height: 100%;
+  display: flex;
+  gap: 1rem;
+  padding: 0 2rem;
+  padding-left: 0;
+  padding-right: 0;
+  align-items: center;
+
+  border-radius: 4px;
+}
+.gallary_box {
+  cursor: pointer;
+  width: 70px;
+
+  height: 100%;
+  display: grid;
+  place-items: center;
+}
+.gallary_box:hover {
+  background-color: #022635;
+}
+.messages_major_content input {
+  width: 100%;
+  height: 100%;
+  background-color: transparent;
+  border: none;
+  outline: none;
+  color: grey;
+  padding: 0 1rem;
+  border-radius: 3px;
+  letter-spacing: 1px;
+}
+.messages_major_content input:focus {
+  background-color: #022635;
+}
+.messages_send_box {
+  background-color: #001219;
+  display: grid;
+  place-items: center;
+  width: 60px;
+  cursor: pointer;
+  border-radius: 4px;
+  height: 100%;
+  transition: 0.3s all;
+}
+.messages_send_box:hover {
+  background-color: #022635;
+}
+.gallary_icon {
+  cursor: pointer;
+}
+.disableBtn {
+  opacity: 0.5;
+  pointer-events: none;
+}
+.imagePreviewBox {
+  position: absolute;
+  top: -80px;
+  left: 0;
+}
+
+.imagePreviewBox img {
+  border-radius: 7px;
+  object-fit: cover;
+}
+.sendingGIF {
+  animation: rotate 1s linear infinite;
+  width: 30px;
+}
+@keyframes rotate {
+  0% {
+    rotate: 0deg;
+  }
+  100% {
+    rotate: 360deg;
+  }
+}

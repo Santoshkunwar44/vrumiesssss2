@@ -1,0 +1,195 @@
+.profilePost {
+  width: 100%;
+  background-color: #000000;
+  padding-bottom: 2rem;
+}
+.profilePostTop {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  min-height: 250px;
+  background-color: #001219;
+  border-radius: 12px;
+  padding: 15px;
+}
+
+.postHeader {
+  display: flex;
+}
+.postHeaderLeft {
+  gap: 1rem;
+  display: flex;
+  align-items: flex-start;
+  flex-direction: column;
+  flex: 8;
+  padding: 5px 10px;
+}
+.postTitle {
+  text-transform: capitalize;
+  color: #37e710;
+  letter-spacing: 1px;
+}
+.postCategoryInfo {
+  display: flex;
+  align-items: center;
+  font-size: 10px;
+  color: #37e710;
+}
+.postUsernameAndCatBox {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 5px;
+  align-items: flex-start;
+}
+.postProfileImg {
+  border-radius: 50%;
+  width: 45px;
+  height: 45px;
+}
+.postLeftInnerBox {
+  width: 100%;
+  display: flex;
+  gap: 5px;
+  align-items: center;
+}
+.postTimAgoDiv {
+  width: 100%;
+  padding-right: 15px;
+  justify-content: space-between;
+  display: flex;
+  align-items: flex-end;
+}
+.createdAt {
+  font-size: 10px;
+}
+.postHeaderRight {
+  flex: 4;
+}
+.rightDetailsBox {
+  display: flex;
+  padding: 10px;
+  flex-direction: column;
+  align-items: flex-start;
+}
+.rightDetailsItem {
+  text-align: start;
+  font-size: 13px;
+}
+
+.rightDetailsItem span {
+  color: #37e710;
+}
+.postOrderBox {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+}
+.postVBtBox {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.orderBtn {
+  background-color: #000000;
+  border: 1px solid #37e710;
+  border-radius: 20px;
+  height: 35px;
+
+  color: #37e710;
+  font-size: 13px;
+  padding: 0 10px;
+}
+/* PostImageSlider */
+.PostImageSlider {
+  padding: 1rem 0;
+  min-height: 200px;
+  background: #000000;
+}
+.postHeaderBottom {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+.share_comment_btn_box {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.share_comment_btn_box button img {
+  width: 18px;
+}
+.share_comment_btn_box button,
+.VBTupdateBtn {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  background-color: #000000;
+  border: 1px solid #37e710;
+  border-radius: 20px;
+  height: 35px;
+  color: #37e710;
+  font-size: 13px;
+  padding: 0 20px;
+}
+.postDescription {
+  text-align: start;
+  padding: 0 5px;
+  font-size: 11px;
+  letter-spacing: 1px;
+  color: #8f8f8f;
+}
+/* replyHeaderText */
+.replyQuotesContainer {
+  margin: 2rem;
+}
+.replyHeaderText {
+  color: #37e710;
+}
+.replyHeader {
+  width: 100%;
+  display: flex;
+}
+.replyHeaderLeft {
+  text-align: start;
+  flex: 1;
+}
+.moreVBTbox {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+}
+.vbtActionBtn {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.vbtActionBtn img {
+  width: 20px;
+}
+.vbtDetailsBox {
+  gap: 7px;
+  display: flex;
+  align-items: center;
+}
+.moreVBTInfoText {
+  font-size: 12px;
+  color: #ffb800;
+}
+.balanceText {
+  color: #37e710;
+}
+.VBTupdateBtn {
+  border-radius: 4px;
+  background-color: #37e710;
+  color: #000000;
+  font-weight: bold;
+}
+/* replyQuotesSliderBox */
+.replyQuotesSliderBox {
+  width: 100%;
+  min-height: 250px;
+  margin: 2rem 0;
+}

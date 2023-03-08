@@ -1,13 +1,31 @@
+.home {
+  width: 100vw;
+  max-width: 100%;
+  height: calc(100vh);
+  overflow: hidden;
+}
 .homeWrapper {
+  margin-top: 100px;
   display: flex;
-  height: calc(100vh - 130px);
+  height: calc(100vh - 100px);
 }
 
 .homeLeft {
   flex: 9;
-  border-right: 4px solid #001219;
+  border-right: 4px solid #00121987;
   height: 100%;
 }
 .homeRight {
   flex: 3;
+}
+
+@media screen and (max-width: 992px) {
+  .homeRight {
+    display: none;
+    flex: 0;
+  }
+  .homeLeft {
+    flex: 12;
+    border: none;
+  }
 }

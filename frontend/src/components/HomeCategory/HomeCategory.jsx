@@ -2,10 +2,10 @@ import Catslider from "../catSlider/Catslider"
 import styles from "./homecategory.module.css"
 
 
-const HomeCategory = () => {
+const HomeCategory = ({ fullWidth }) => {
 
 
-
+    console.log("catboxwidth2", fullWidth)
 
 
     return (
@@ -18,16 +18,11 @@ const HomeCategory = () => {
                     <h3 className={styles.categoryText}>Explore Categories</h3>
                     <img src="/images/catText.png" alt="catText" />
                 </div>
-
-
-
             </div>
-            <div className={styles.cateoriesBox}>
+            <div style={{ width: "100%" }} className={styles.cateoriesBox}>
 
-                <div className={styles.arrowWrapperSlider}>
-                    <Catslider />
+                <Catslider fullWidth={fullWidth} />
 
-                </div>
 
             </div>
 

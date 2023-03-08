@@ -2,14 +2,15 @@ import Navbar from "../../components/Navbar/Navbar"
 import ReplyContainer from "../../components/replyQuotesContainer/ReplyContainer"
 import styles from "./singlePost.module.css"
 
-import { useNavigate, useParams } from "react-router-dom"
+import { useLocation, useNavigate, useParams } from "react-router-dom"
 import { useEffect } from "react"
 import { getPostById } from "../../utils/apis/post/postApi"
 import { useState } from "react"
 import { getReplyByPost } from "../../utils/apis/reply/replyApi"
 import { useSelector } from "react-redux"
-import ItemSlider from "../../components/itemSlider/ItemSlider"
 import PostCard from "../../components/postCard/PostCard"
+import SinglePostSkeleton from "../../components/skeleton/singlePostSkeleton/SinglePostSkeleton"
+import { PostImgSlider } from "../../components/itemSlider/postImgSlider/PostImgSlider"
 
 
 const SinglePost = () => {
@@ -18,8 +19,15 @@ const SinglePost = () => {
     const { refresh } = useSelector((state) => state.otherReducer)
     const [postData, setPostData] = useState({})
     const [theReplies, setTheReplies] = useState([])
-
     const navigate = useNavigate()
+    const isFromProfile = useLocation().state?.from;
+
+    useEffect(() => {
+        let fromTop = window.scrollY
+        if (fromTop > 0) {
+            window.scrollTo(0, 0)
+        }
+    }, [])
 
     useEffect(() => {
         if (!thePostId) return
@@ -50,6 +58,12 @@ const SinglePost = () => {
         }
     }
 
+    if (!postData?.title) {
+        return <>
+            <Navbar />
+            <SinglePostSkeleton />
+        </>
+    }
     return (
         <>
             <Navbar />
@@ -60,18 +74,40 @@ const SinglePost = () => {
                         <div className={styles.postHeader}>
                             <h3 className={styles.postTitle}> {postData?.title} </h3>
 
-
                         </div>
                         <div className={styles.imageSlider}>
-                            <ItemSlider type={"postImg"} items={postData?.postImg} />
 
-
-
+                            <PostImgSlider
+                                items={postData?.postImg}
+                            />
                         </div>
                     </div>
-                    <ReplyContainer replies={theReplies} />
-                </div>
+                    <div className={styles.mini_post_card}>
+                        <div className={styles.postDetailsHeader}>
+                            <div className={styles.postDetailsBack} onClick={() => navigate(-1)} >BACK</div>
+                            <div className={styles.detailsBox}>
+                                <div className={styles.detailsWrapper}>
 
+                                    <div className={styles.postDetailsHeaderItem}>
+
+                                        <span className={styles.postDetailsKey}>View Location :</span> <span className={styles.postDetailsValue}> {postData?.setLocation ? "Enabled" : "Disabled"} </span>
+                                    </div>
+                                    {
+                                        postData?.setLocation && <div className={styles.postDetailsHeaderItem}>
+                                            <span className={styles.postDetailsValue}>{postData?.location?.state ? postData?.location?.state : "____"} , {postData?.location?.city ? postData?.location?.city : "____"}</span>
+                                        </div>
+                                    }
+                                    <div className={styles.postDetailsHeaderItem}>
+
+                                        <span className={styles.postDetailsKey}>Average Rating :</span> <span className={styles.postDetailsValue}>{Math.trunc(postData?.owner?.avgRating)}/10</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <PostCard postData={postData} setTheReplies={setTheReplies} />
+                    </div>
+                    <ReplyContainer postData={postData} isFromProfile={isFromProfile} postId={postData?._id} replies={theReplies} />
+                </div>
                 <div className={styles.rightContent}>
                     <div className={styles.postDetailsHeader}>
                         <div className={styles.postDetailsBack} onClick={() => navigate(-1)} >BACK</div>
@@ -89,7 +125,7 @@ const SinglePost = () => {
                                 }
                                 <div className={styles.postDetailsHeaderItem}>
 
-                                    <span className={styles.postDetailsKey}>Average Rating :</span> <span className={styles.postDetailsValue}>{postData?.owner?.avgRating}/10</span>
+                                    <span className={styles.postDetailsKey}>Average Rating :</span> <span className={styles.postDetailsValue}>{Math.trunc(postData?.owner?.avgRating)}/10</span>
                                 </div>
                             </div>
                         </div>

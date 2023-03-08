@@ -4,7 +4,8 @@ const Signup = () => {
 
 
     const handleLoginInGoogle = async () => {
-        window.open("http://localhost:8000/api/passport/google", "_self")
+        window.open(`${process.env.REACT_APP_API_URL}/passport/google`, "_self")
+        // instance.get(`${process.env.REACT_APP_API_URL}/passport/google`)
 
     }
 

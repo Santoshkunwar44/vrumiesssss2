@@ -47,31 +47,36 @@ const PostCard = ({ postData, setTheReplies }) => {
         <div className={styles.postInfoCard}>
             {
                 postData?.owner?._id === userData?._id &&
-                <DelModal itemId={postData?._id} type="post">
-
-                    <button className={styles.deletePostBtn}>
-                        <img src="/items/trash.png" alt="trashImg" />    Delete post
-                    </button>
-                </DelModal>
+                <>
+                    <div className={styles.owner_action_btn}>
+                        <DelModal itemId={postData?._id} type="post">
+                            <button className={styles.deletePostBtn}>
+                                <img src="/items/trash.png" alt="trashImg" />    Delete post
+                            </button>
+                        </DelModal>
+                    </div>
+                </>
             }
             <div className={styles.card_content}>
                 <div className={styles.postCardHeader}>
 
                     <div className={styles.userProfileBox}>
-                        <img style={{ width: "70px", height: "70px", borderRadius: "50%", objectFit: "cover" }} src={postData?.owner?.profileImg} alt="userImg" />
+                        <img src={postData?.owner?.profileImg} alt="userImg" />
                         <span> {postData?.owner?.username} </span>
                     </div>
 
                     {
-                        hadAlreadyOrdered && <Link state={{ from: "orderPost", transactionId: hadAlreadyOrdered }} style={{ display: "inline", alignSelf: "end" }} to={`/profile/${userData?._id}`}>
-                            <button className={`${styles.orderButton}`}>
-                                View your order
+                        postData?.owner?._id !== userData?._id ?
 
-                            </button>
-                        </Link>
+                            hadAlreadyOrdered && <Link state={{ from: "orderPost", transactionId: hadAlreadyOrdered }} style={{ display: "inline", alignSelf: "end" }} to={`/profile/${userData?._id}`}>
+                                <button className={`${styles.orderButton}`}>
+                                    View your order
+
+                                </button>
+                            </Link> : ""
                     }
                     {
-                        !hadAlreadyOrdered ? postData?.VBTused <= 0 ? <button className={`${styles.orderButton}  ${postData?.owner?._id === userData?._id ? styles.fadeBtn : ""}`}>
+                        (postData?.owner?._id !== userData?._id) && !hadAlreadyOrdered ? postData?.VBTused <= 0 ? <button className={`${styles.orderButton}  ${postData?.owner?._id === userData?._id ? styles.fadeBtn : ""}`}>
 
                             Free Post
 
@@ -107,17 +112,17 @@ const PostCard = ({ postData, setTheReplies }) => {
                         <div className={styles.infoLeft}>
 
                             <div className={styles.infoLeftItem}>
-                                <span>Category :</span>
+                                <span className={styles.postSubTitle}><span>Sub-section</span>    <span> &nbsp;:</span> </span>
                                 <span>{postData?.category}</span>
 
                             </div>
                             <div className={styles.infoLeftItem}>
-                                <span>Subsection :</span>
+                                <span className={styles.postSubTitle}> <span>Sub-section</span>  <span> &nbsp;:</span></span>
                                 <span>{postData?.subCategory}</span>
 
                             </div>
                             <div className={styles.infoLeftItem}>
-                                <span>Type :</span>
+                                <span className={styles.postSubTitle}> <span>Type</span>   <span> &nbsp;:</span></span>
                                 <span>{postData?.type}</span>
 
                             </div>
@@ -143,7 +148,7 @@ const PostCard = ({ postData, setTheReplies }) => {
                             </div>
                             <div className={styles.websiteUrl}>
                                 {
-                                    postData?.websiteLink ? postData?.websiteLink : "No website available"
+                                    postData?.websiteLink ? <a href={postData?.websiteLink} target={"_blank"}>  {postData?.websiteLink}  </a> : "No website available"
                                 }
                             </div>
                         </div>
@@ -153,17 +158,28 @@ const PostCard = ({ postData, setTheReplies }) => {
                             </div>
                         </div>
                     </div>
-                    <div className={styles.replyQuoteBox}>
-                        <ReplyQuoteModal postData={postData} handleSetReply={(newItem) => setTheReplies((prev) => [...prev, newItem])} postId={postData?._id}>
-                            <button className={`${styles.replyQuoteBtn}  ${postData?.owner?._id === userData?._id ? styles.fadeReplyBtn : ""}`}>
-                                <span> Reply with Quote </span>
-                                <div className={styles.replyBtnVBTtext}>
-                                    <span>4 VBT</span>
-                                    <img src="/token.png" alt="tokenImg" />
-                                </div>
+                    <div className={styles.postCard_button_box}>
+
+                        {
+                            (postData?.owner?._id !== userData?._id) && <div className={styles.replyQuoteBox}>
+                                <ReplyQuoteModal postData={postData} handleSetReply={(newItem) => setTheReplies((prev) => [...prev, newItem])} postId={postData?._id}>
+                                    <button className={`${styles.replyQuoteBtn}  ${postData?.owner?._id === userData?._id ? styles.fadeReplyBtn : ""}`}>
+                                        <span> Reply with Quote </span>
+                                        <div className={styles.replyBtnVBTtext}>
+                                            <span>4 VBT</span>
+                                            <img src="/token.png" alt="tokenImg" />
+                                        </div>
+                                    </button>
+                                </ReplyQuoteModal>
+                            </div>
+                        }
+                        <Link to={`/chat/user/${postData?.owner?._id}`}>
+                            <button className={`${styles.replyQuoteBtn}`}>
+                                <span> Message User </span>
+                                <img className={styles.mailIcon} src="/icons/mail.png" alt="mainIcon" />
 
                             </button>
-                        </ReplyQuoteModal>
+                        </Link>
                     </div>
                 </div>
             </div>

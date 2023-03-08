@@ -1,11 +1,12 @@
 import { useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
+import { useLocation } from "react-router-dom"
 import { setToastifyInfo, startRefresh } from "../../redux/actions/otherAction"
 import { addMoreVBTTApi } from "../../utils/apis/reply/replyApi"
 import DelModal from "../modal/delModal/DelModal"
 import styles from "./replyquotes.module.css"
 
-const ReplyQuotes = ({ reply }) => {
+const ReplyQuotes = ({ reply, slider }) => {
 
 
     const { userData } = useSelector((state) => state.userReducer)
@@ -14,6 +15,7 @@ const ReplyQuotes = ({ reply }) => {
         VBTused: 0
     })
     const dispatch = useDispatch()
+    const sitePath = useLocation().pathname.split("/")[1]
 
 
 
@@ -53,7 +55,7 @@ const ReplyQuotes = ({ reply }) => {
                 userId: userData?._id,
                 replyId: reply?._id
             })
-
+            setShowEdit(false)
             setReplyChangesData((prev) => {
                 return { ...prev, VBTused: 0 }
             })
@@ -72,9 +74,14 @@ const ReplyQuotes = ({ reply }) => {
 
     }
 
+    const openEdit = () => {
+        if (userData?._id !== reply?.user?._id || sitePath !== "profile") return
+        if (showEdit) return
+        setShowEdit(true)
+    }
 
     return (
-        <div onClick={() => setShowEdit(!showEdit)} className={styles.replyQuotes} >
+        <div onClick={openEdit} className={`${styles.replyQuotes} ${styles.sliderQuotes} `} >
 
             <div className={styles.qoutesUserInfo}>
                 <img src={reply?.user?.profileImg} alt="userImg" />
@@ -102,7 +109,7 @@ const ReplyQuotes = ({ reply }) => {
                         <img src="/token.png" alt="tokenImg" />
 
                     </div>
-                    <div>
+                    <div className={styles.replyPrice}>
                         ${reply?.price}
                     </div>
 
@@ -110,6 +117,7 @@ const ReplyQuotes = ({ reply }) => {
             </div>
             <div className={`${styles.replyActions}  ${showEdit && styles.showActionBtns}`}>
 
+                <img onClick={() => setShowEdit(false)} style={{ position: "absolute", right: "0px", top: "-4rem", cursor: "pointer" }} width={"30px"} alt="closeImg" src="https://img.icons8.com/fluency/48/null/delete-sign.png" />
                 <div className={styles.addMoreText}>
                     Add more VBT's ? (Balance: {userData?.tokenAvailabe} VBT)
                 </div>

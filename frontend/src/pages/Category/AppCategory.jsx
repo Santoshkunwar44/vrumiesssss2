@@ -8,10 +8,11 @@ import { getPostByCat } from '../../utils/apis/post/postApi'
 import { useRef } from 'react'
 import NotFound from '../../components/notFound/NotFound'
 import { useDispatch, useSelector } from 'react-redux'
-import { setRemoveFilterLocationData } from '../../redux/actions/otherAction'
+import { removeLoadingData, setLoadingData, setRemoveFilterLocationData } from '../../redux/actions/otherAction'
 import PostFilterPopOver from '../../components/popOvers/postFilterPopover/PostFilterPopOver'
+import { PostSkeleton } from '../../components/skeleton/postSkeleton/PostSkeletion'
 const AppCategory = () => {
-    const { locationFilterPostItem, locationFilters } = useSelector((state) => state.otherReducer)
+    const { locationFilterPostItem, locationFilters, loading } = useSelector((state) => state.otherReducer)
     const [currentCatData, setCurrentCatData] = useState({})
     const [postFilter, setPostFilters] = useState({
         subcategory: "",
@@ -23,9 +24,12 @@ const AppCategory = () => {
     const postWrapperRef = useRef()
     const dispatch = useDispatch()
 
-
     useEffect(() => {
         if (catData) {
+            dispatch(setLoadingData({
+                isLoading: true,
+                path: "appCategory"
+            }))
             setCurrentCatData(catData)
         }
 
@@ -37,7 +41,6 @@ const AppCategory = () => {
 
             fetchThePosts(catData?.displayName)
         }
-
     }, [catData])
 
 
@@ -53,6 +56,7 @@ const AppCategory = () => {
 
 
     useEffect(() => {
+
         postWrapperRef.current.scrollIntoView({ behavior: "smooth" })
     }, [theFilterdPost, locationFilterPostItem])
 
@@ -77,7 +81,9 @@ const AppCategory = () => {
         try {
             const { data } = await getPostByCat(catName)
             setTheposts(data.message)
+            dispatch(removeLoadingData())
         } catch (error) {
+            dispatch(removeLoadingData())
             console.log(error)
         }
 
@@ -98,13 +104,15 @@ const AppCategory = () => {
 
                         <div className={styles.categoryItemLeft}>
 
+                            <div className={styles.categoryItemTopcontent}>
 
-                            <h2 className={styles.categoryTitleText}>{currentCatData?.name}</h2>
+
+                                <h2 className={styles.categoryTitleText}>{currentCatData?.name}</h2>
+                                <img draggable={"false"} className={styles.catItemImg} src={currentCatData?.img} alt={currentCatData?.name} />
+                            </div>
 
                             <div className={styles.catBannerBtnWrapperBox}>
                                 <div className={styles.catBannerBtnWrapper}>
-
-
                                     <button onClick={() => setPostFilters((prev) => {
                                         return {
                                             ...prev, type: "Advertise"
@@ -130,7 +138,25 @@ const AppCategory = () => {
 
 
 
+                            </div>
+                            <div className={styles.mini_filteby_location}>
 
+                                {
+
+                                    locationFilters ? <div className={styles.filterLocationButton}>
+                                        <p>Filter Location</p>
+                                        <button>
+                                            {locationFilters?.state} / {locationFilters?.city ? locationFilters?.city : "___"}
+                                            <img onClick={() => dispatch(setRemoveFilterLocationData())} src="/order/close.png" alt="closeImig" />
+                                        </button>
+                                    </div> : <PostFilterPopOver>
+
+                                        <button className={styles.filterByLocation}>
+                                            <img src="/NavMap.png" alt="mapImg" />
+                                            Filter By Location
+                                        </button>
+                                    </PostFilterPopOver>
+                                }
                             </div>
                         </div>
                         <div className={styles.categoryIconRight}>
@@ -142,23 +168,28 @@ const AppCategory = () => {
                 </div>
                 <div className={styles.appCatPostWrapper}>
                     <div className={styles.appCatPopularPostHeader}>
+
                         <h1 className={styles.mostPopularText}>MOST POPULAR</h1>
-                        {
+                        <div className={styles.max_filter_box}>
 
-                            locationFilters ? <div className={styles.filterLocationButton}>
-                                <p>Filter Location</p>
-                                <button>
-                                    {locationFilters?.state} / {locationFilters?.city ? locationFilters?.city : "___"}
-                                    <img onClick={() => dispatch(setRemoveFilterLocationData())} src="/order/close.png" alt="closeImig" />
-                                </button>
-                            </div> : <PostFilterPopOver>
+                            {
 
-                                <button className={styles.filterByLocation}>
-                                    <img src="/NavMap.png" alt="mapImg" />
-                                    Filter By Location
-                                </button>
-                            </PostFilterPopOver>
-                        }
+                                locationFilters ? <div className={styles.filterLocationButton}>
+                                    <p>Filter Location</p>
+                                    <button>
+                                        {locationFilters?.state} / {locationFilters?.city ? locationFilters?.city : "___"}
+                                        <img onClick={() => dispatch(setRemoveFilterLocationData())} src="/order/close.png" alt="closeImig" />
+                                    </button>
+                                </div> : <PostFilterPopOver>
+
+                                    <button className={styles.filterByLocation}>
+                                        <img src="/NavMap.png" alt="mapImg" />
+                                        Filter By Location
+                                    </button>
+                                </PostFilterPopOver>
+                            }
+                        </div>
+
                         <div className={styles.appCatHeaderHrLine}></div>
                         <Link to={"/"}>
                             <div className={styles.appCatBackText}>
@@ -169,6 +200,9 @@ const AppCategory = () => {
 
                     </div>
                     <div ref={postWrapperRef} className={styles.postWrappers}>
+                        {
+                            loading.isLoading && loading.path === "appCategory" && <PostSkeleton />
+                        }
                         {
                             locationFilterPostItem ? locationFilterPostItem.length > 0 ? locationFilterPostItem.map((post) => <Post post={post} key={post?._id} />) : <NotFound img='/items/post.png' text={"No post found of your choice"} /> : ""
                         }

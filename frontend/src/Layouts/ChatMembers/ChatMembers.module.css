@@ -1,0 +1,20 @@
+.chat_members {
+  flex: 4;
+  display: flex;
+  gap: 1rem;
+  flex-direction: column;
+  height: 100%;
+  border-right: 2px solid #001219a9;
+}
+
+/* chat_member_list */
+.chat_member_list {
+  height: 100%;
+  border-radius: 4px;
+}
+
+@media screen and (max-width: 768px) {
+  .mini {
+    display: none;
+  }
+}

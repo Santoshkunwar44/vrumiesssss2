@@ -1,8 +1,8 @@
 .OrderTokens {
+  margin-top: 100px;
 }
 .orderTokensWrapper {
   display: flex;
-  padding: 2rem;
 }
 .tokenHeaderBox {
   width: 100%;
@@ -34,22 +34,24 @@
   display: flex;
 }
 .orderInfoLeft {
-  flex: 5;
+  flex: 4;
   padding-top: 8rem;
 }
 .orderBoxRight {
-  flex: 7;
+  flex: 8;
 }
 .orderContentSide {
-  flex: 8;
+  flex: 9;
   border-right: 4px solid #001219;
-  padding-right: 2rem;
+  padding: 2rem;
+  padding-top: 1rem;
 }
 .openSpace {
   flex: 3;
 }
 .orderInfoLeftWrapper {
   display: flex;
+  opacity: 0.8;
   gap: 0.71rem;
   flex-direction: column;
   align-items: center;
@@ -78,7 +80,7 @@
 .vbtCount {
   font-family: "Poppins";
   font-style: normal;
-  font-size: 17px;
+  font-size: 22px;
   line-height: 20px;
 
   text-align: center;
@@ -89,12 +91,12 @@
 .vbtRate {
   font-family: "Poppins";
   font-style: normal;
-  font-size: 20px;
+  font-size: 14px;
   line-height: 20px;
   /* or 100% */
 
   text-align: center;
-  letter-spacing: -0.24px;
+  letter-spacing: 1px;
 
   color: #37e710;
 
@@ -112,6 +114,7 @@
   border-radius: 16px;
 }
 .orderBoxRightWrapper {
+  width: 100%;
   gap: 1rem;
   display: flex;
   flex-direction: column;
@@ -182,4 +185,228 @@
 .fade {
   opacity: 0.4;
   pointer-events: none;
+}
+.orderInfoLeftWrapper {
+  padding: 0 1rem;
+}
+
+@media screen and (min-width: 768px) and (max-width: 992px) {
+  .orderBox {
+    padding: 15px;
+  }
+  .orderTokensWrapper {
+    padding: 2rem 0;
+  }
+  .orderContentSide {
+    flex: 9;
+  }
+  .theOrderBoxOptions {
+    gap: 1rem;
+  }
+  .orderInfoLeftWrapper img {
+    width: 51px;
+  }
+  .mainText {
+    font-size: 13px;
+    letter-spacing: 1px;
+  }
+  .vbtRate {
+    font-size: 14px;
+  }
+
+  .vbtCount {
+    font-size: 22px;
+  }
+  .youHaveText {
+    font-size: 13px;
+    color: #dbd5d5;
+    letter-spacing: -0.24px;
+  }
+}
+@media screen and (min-width: 600px) and (max-width: 768px) {
+  .openSpace {
+    display: none;
+  }
+  .orderBox {
+    padding: 15px;
+  }
+  .orderTokensWrapper {
+    padding: 2rem 0;
+  }
+  .orderContentSide {
+    flex: 9;
+  }
+  .theOrderBoxOptions {
+    gap: 1rem;
+  }
+  .orderInfoLeftWrapper img {
+    width: 51px;
+  }
+  .mainText {
+    letter-spacing: 1px;
+  }
+  .youHaveText {
+    font-size: 13px;
+    color: #dbd5d5;
+    letter-spacing: -0.24px;
+  }
+  .vbtRate {
+    font-size: 14px;
+  }
+  .vbtCount {
+    font-size: 22px;
+  }
+}
+@media screen and (min-width: 480px) and (max-width: 600px) {
+  .theOrderBoxOptions p::before {
+    content: "";
+    position: absolute;
+    width: 60%;
+    top: -0.4rem;
+    left: 0;
+    right: 0;
+    margin: auto;
+    height: 2.76px;
+    background: #646464;
+    border-radius: 6.24426px;
+  }
+  .orderContentSide {
+    padding: 1rem;
+  }
+  .orderInfoLeftWrapper {
+    gap: 0.5rem;
+    opacity: 0.8;
+  }
+  .orderContentWrappper {
+    flex-direction: column;
+    gap: 2rem;
+  }
+  .orderInfoLeft {
+    padding-top: 2rem;
+  }
+  .orderTokensHeaderImg {
+    width: 100px;
+  }
+  .openSpace {
+    display: none;
+  }
+  .orderBox {
+    width: 88%;
+    margin: auto;
+    padding: 15px;
+  }
+  .orderTokensWrapper {
+  }
+  .orderContentSide {
+    flex: 9;
+  }
+  .theOrderBoxOptions {
+    gap: 1rem;
+  }
+  .orderInfoLeftWrapper img {
+    width: 43px;
+  }
+  .mainText {
+    letter-spacing: 2.2px;
+    font-size: 14px;
+  }
+  .vbtRate {
+    font-size: 12px;
+  }
+  .youHaveText {
+    font-size: 13px;
+    color: #dbd5d5;
+    letter-spacing: -0.24px;
+  }
+  .theOrderBoxOptions p {
+    font-size: 9px;
+  }
+  .basicOrder {
+    width: 113px;
+    height: 40px;
+
+    font-size: 15px;
+  }
+  .orderRightBoxHeader {
+    padding: 0 2rem;
+  }
+}
+@media screen and (max-width: 480px) {
+  .orderRightBoxHeader {
+    padding: 0 2rem;
+  }
+  .orderTokensHeaderImg {
+    width: 75px;
+  }
+  .basicOrder {
+    width: 96px;
+    height: 30px;
+    font-size: 11px;
+  }
+  .orderContentSide {
+    padding: 0 !important;
+  }
+  .orderInfoLeftWrapper {
+    opacity: 0.8;
+    gap: 0.2rem;
+  }
+  .orderContentWrappper {
+    flex-direction: column;
+    gap: 2rem;
+  }
+  .orderInfoLeft {
+    padding-top: 10px;
+  }
+
+  .openSpace {
+    display: none;
+  }
+  .orderBox {
+    width: 95%;
+    margin: auto;
+    min-height: 320px;
+    padding: 15px;
+  }
+  .orderTokensWrapper {
+    padding: 2rem 0;
+  }
+  .orderContentSide {
+    flex: 9;
+  }
+  .theOrderBoxOptions {
+    gap: 8px;
+  }
+  .theOrderBoxOptions p {
+    font-size: 7px;
+  }
+  .orderInfoLeftWrapper img {
+    width: 30px;
+  }
+  .mainText {
+    letter-spacing: 1.2px;
+    font-size: 13px;
+  }
+  .vbtRate {
+    font-size: 11px;
+  }
+  .youHaveText {
+    font-size: 11px;
+    color: #a4a4a4;
+    letter-spacing: -0.24px;
+  }
+  .OrderTokens {
+    font-size: 7px;
+  }
+  .theOrderBoxOptions p::before {
+    content: "";
+    position: absolute;
+    width: 60%;
+    top: -0.4rem;
+    left: 0;
+    right: 0;
+    margin: auto;
+    height: 2.76px;
+    background: #646464;
+    border-radius: 6.24426px;
+  }
 }

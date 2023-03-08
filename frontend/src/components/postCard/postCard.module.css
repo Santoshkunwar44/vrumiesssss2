@@ -12,6 +12,18 @@
   background: #001219;
   border-radius: 10px;
 }
+.owner_action_btn {
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+.owner_action_btn .editPostBtn {
+  min-width: 100px;
+  height: 40px;
+  background-color: #000000;
+  border: 2px solid #37e710;
+  color: #37e710;
+}
 .deletePostBtn {
   cursor: pointer;
   position: absolute;
@@ -23,11 +35,11 @@
   gap: 10px;
   display: flex;
   height: 40px;
-  padding: 0 20px;
-  top: 10px;
+  padding: 0 7px;
+  top: 18px;
 }
 .deletePostBtn img {
-  width: 20px;
+  width: 15px;
 }
 /* .card_content */
 .card_content {
@@ -47,19 +59,24 @@
   gap: 1rem;
   align-items: center;
 }
+.userProfileBox {
+  text-align: start;
+}
 .postCardHeader img {
+  width: 70px;
+  height: 70px;
+  object-fit: cover;
   border-radius: 50%;
 }
 .orderButton {
   align-self: flex-end;
   width: fit-content;
-  padding: 0 20px;
-  height: 40px;
+  height: 45px;
   border-radius: 30px;
   background-color: #000000;
-  font-size: 15px;
+  font-size: 16px;
 
-  border: 1px solid #37e710;
+  border: 2px solid #37e710;
   color: #37e710;
 
   font-style: normal;
@@ -68,15 +85,17 @@
   line-height: 20px;
   /* identical to box height */
 
-  letter-spacing: 0.06em;
-
+  letter-spacing: 1px;
   color: #37e710;
+  padding: 0 20px;
+  letter-spacing: 1.1px;
 }
 
 /* card title */
 .cardTitleWrapper {
   width: 100%;
   text-align: start;
+  letter-spacing: 1.1px;
 }
 .cartTitle {
   font-family: "Poppins";
@@ -99,6 +118,7 @@
 }
 .infoLeft {
   text-align: start;
+  flex: 1;
 }
 .infoRight {
   display: flex;
@@ -125,7 +145,6 @@
 }
 .websiteInfo {
   display: flex;
-  align-items: center;
   gap: 10px;
 }
 .cardContentBottom {
@@ -134,12 +153,12 @@
   justify-content: space-between;
 }
 .websiteUrl {
+  letter-spacing: 1.04px;
   color: #37e710;
 }
 .websiteText {
   font-family: "poppins";
   font-style: normal;
-  font-weight: 800;
   font-size: 15px;
   line-height: 20px;
   /* identical to box height */
@@ -200,4 +219,202 @@
 }
 .replyBtnVBTtext img {
   width: 20px;
+}
+/* post description  */
+.postDescription {
+  text-align: start;
+  word-break: break-all;
+  font-size: 14px;
+  color: #808080;
+}
+.postSubTitle {
+  margin-right: 10px;
+  color: #37e710;
+}
+.infoLeftItem {
+  display: flex;
+
+  align-items: flex-start;
+  margin-bottom: 8px;
+}
+.infoLeftItem span:nth-of-type(1) {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  letter-spacing: 0.88px;
+  text-transform: lowercase;
+}
+
+.infoLeftItem span:nth-of-type(2) {
+  flex: 8;
+  text-align: start;
+  color: #808080;
+}
+.infoRight {
+  color: #808080;
+}
+/* postCard_button_box */
+.postCard_button_box {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+.mailIcon {
+  width: 20px;
+  
+}
+@media screen and (max-width: 600px) {
+  .postInfoCard {
+    padding: 10px;
+  }
+  .userProfileBox img {
+    width: 50px;
+    height: 50px;
+  }
+  .cartTitle {
+    font-size: 13px;
+  }
+  .cardInfoBox {
+    font-size: 10px;
+  }
+  .websiteText {
+    font-size: 10px;
+  }
+  .websiteUrl {
+    font-size: 10px;
+    letter-spacing: 1.04px;
+  }
+  .postDescription {
+    font-size: 10px;
+  }
+  .replyQuoteBtn {
+    height: 35px;
+  }
+  .replyQuoteBtn span {
+    font-size: 10px;
+    letter-spacing: 1.04px;
+  }
+  .replyBtnVBTtext img {
+    width: 17px;
+  }
+  .replyBtnVBTtext span {
+    font-size: 10px;
+  }
+  .orderButton {
+    padding: 0 12px;
+    height: 35px;
+    font-weight: 600;
+    font-size: 11px;
+  }
+  .card_content {
+    gap: 1.5rem;
+  }
+}
+@media screen and (min-width: 600px) and (max-width: 768px) {
+  .userProfileBox img {
+    width: 50px;
+    height: 50px;
+  }
+  .cardInfoBox {
+    font-size: 12px;
+  }
+  .websiteText {
+    font-size: 12px;
+  }
+  .websiteUrl {
+    font-size: 12px;
+    letter-spacing: 1.04px;
+  }
+  .postDescription {
+    font-size: 12px;
+  }
+  .replyQuoteBtn span {
+    font-size: 12px;
+    letter-spacing: 1.04px;
+  }
+  .replyBtnVBTtext img {
+    width: 17px;
+  }
+  .replyBtnVBTtext span {
+    font-size: 12px;
+  }
+  .orderButton {
+    padding: 0 15px;
+    height: 40px;
+  }
+}
+
+@media screen and (min-width: 768px) and (max-width: 992px) {
+  .userProfileBox img {
+    width: 50px;
+    height: 50px;
+  }
+  .userProfileBox span {
+    font-size: 14px;
+  }
+  .infoLeftItem {
+    margin-bottom: 7px;
+  }
+  .orderButton {
+    font-size: 13px;
+    padding: 0 20px;
+    height: 35px;
+    letter-spacing: 1.1px;
+  }
+  .cardTitleWrapper {
+    font-size: 16px;
+    word-break: break-all;
+    letter-spacing: 1.1px;
+  }
+  .postDescription {
+    font-size: 13px;
+  }
+  .cardInfoBox {
+    font-size: 12px;
+  }
+  .replyQuoteBtn span {
+    font-size: 12px;
+    letter-spacing: 1.1px;
+  }
+  .replyBtnVBTtext {
+    font-size: 12px;
+  }
+  .replyQuoteBox img {
+    width: 16px;
+  }
+  .websiteText {
+    font-size: 13px;
+  }
+  .infoLeftItem span:nth-of-type(1) {
+    letter-spacing: 1.1px;
+  }
+}
+
+@media screen and (min-width: 992px) and (max-width: 1200px) {
+  .userProfileBox img {
+    width: 48px;
+    height: 48px;
+  }
+  .userProfileBox span {
+    font-size: 16px;
+  }
+  .card_content {
+    gap: 2rem;
+  }
+  .infoLeftItem span:nth-of-type(1) {
+    letter-spacing: 0.88px;
+    text-transform: lowercase;
+  }
+  .cardInfoBox {
+    font-size: 11px;
+  }
+}
+@media screen and (min-width: 1200px) {
+  .orderButton {
+    text-transform: uppercase;
+    letter-spacing: 1.2px;
+  }
+  .card_content {
+    gap: 2rem;
+  }
 }

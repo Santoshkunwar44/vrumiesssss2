@@ -11,6 +11,7 @@ import { setToastifyInfo } from '../../../redux/actions/otherAction'
 import { addTransactionApi } from '../../../utils/apis/transactions/transactionsApi'
 import { useNavigate } from "react-router-dom"
 import styles from "./orderModal.module.css"
+import OrderPayment from './OrderPayment'
 
 
 
@@ -44,25 +45,25 @@ function OrderNowModal({ children, postData }) {
             })
         }
     }, [postData])
+    console.log("prices", postData.price, transactionFee, orderData.price)
 
 
-    const handleOrder = async () => {
-        try {
-            await addTransactionApi(orderData)
-            dispatch(setToastifyInfo({
-                text: "Order placed successfully",
-                type: "success"
-            }))
-            onClose()
-        } catch (error) {
-            dispatch(setToastifyInfo({
-                text: "Failed to place order",
-                type: "error"
-            }))
-            onClose()
-            console.log(error)
-        }
-    }
+    // const handleOrder = async () => {
+    //     try {
+    //         dispatch(setToastifyInfo({
+    //             text: "Order placed successfully",
+    //             type: "success"
+    //         }))
+    //         onClose()
+    //     } catch (error) {
+    //         dispatch(setToastifyInfo({
+    //             text: "Failed to place order",
+    //             type: "error"
+    //         }))
+    //         onClose()
+    //         console.log(error)
+    //     }
+    // }
     return (
         <>
             <span style={{ display: "inline", width: "100%", textAlign: "end" }} onClick={() => userData?.username ? onOpen() : navigate("/signup")} className={`${postData?.owner?._id === userData?._id ? styles.fadeOrderBtn : ""}`}>{children}</span>
@@ -80,74 +81,17 @@ function OrderNowModal({ children, postData }) {
                                 </h2>
 
                             </div>
-                            <div className={styles.orderBoxContent}>
-                                <div className={styles.orderBoxRowBox}>
-
-                                    <div className={styles.orderItemRowItem}>
-
-                                        Payment Info
-
-                                    </div>
-                                    <div className={styles.orderItemRowItem}>
-
-                                        Inventory Remaining : {postData?.inventoryCount}
-
-                                    </div>
-
-                                </div>
-                                <div className={styles.orderBoxRowBox}>
-
-                                    <input type="text" placeholder='first name' name="" id="" className={styles.orderItemRowItem} />
-                                    <input type="text" placeholder='last name' name="" id="" className={styles.orderItemRowItem} />
-
-                                </div>
-                                <div className={styles.orderBoxRowBox}>
-
-                                    <input type="text" name="" id="" placeholder='address' className={styles.orderItemRowItem} />
-
-                                </div>
-                                <div className={styles.orderBoxRowBox}>
-
-                                    <input style={{ width: "55px" }} type="text" placeholder='city' name="" id="" className={styles.orderItemRowItem} />
-                                    <input style={{ width: "55px" }} type="text" placeholder='state' name="" id="" className={styles.orderItemRowItem} />
-                                    <input type="text" placeholder='Zip code' name="" id="" className={styles.orderItemRowItem} />
-
-                                </div>
-                                <div className={styles.orderBoxRowBox}>
-
-                                    <input type="text" placeholder='card number' name="" id="" className={styles.orderItemRowItem} />
-
-                                </div>
-                                <div className={styles.orderBoxRowBox}>
-
-                                    <input type="text" placeholder='CVV' name="" id="" className={styles.orderItemRowItem} />
-                                    <input type="text" placeholder='EXPIRED DATE' name="" id="" className={styles.orderItemRowItem} />
-
-                                </div>
-                                <div className={styles.orderBottomBox}>
+                            <OrderPayment
+                                transactionFee={transactionFee}
+                                orderData={orderData}
+                                postData={postData} totalPrice={totalPrice}
+                                handleCloseModal={onClose}
+                            />
 
 
-                                    <div className={styles.orderBottomInfo}>
-                                        <div>
-                                            Item : ${postData?.price}
-                                        </div>
-                                        <div>
-
-                                            Transaction Fee : ${transactionFee}
-                                        </div>
-                                        <div>
-                                            Total : ${totalPrice}
-                                        </div>
-                                    </div>
-                                    <button onClick={handleOrder} className={styles.orderNowBtnPost}>
-                                        ORDER NOW
-                                    </button>
 
 
-                                </div>
-
-
-                            </div>
+                            {/* </div> */}
 
                         </div>
 

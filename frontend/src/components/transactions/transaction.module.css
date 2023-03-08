@@ -15,6 +15,11 @@
   flex: 1;
   background-color: #37e710;
 }
+td,
+th {
+  padding: 0 5px;
+  text-align: start;
+}
 /*  option buttons  */
 .catBannerBtnWrapper {
   width: 360px;
@@ -129,3 +134,253 @@
   display: grid;
   place-items: center;
 }
+@media screen and (min-width: 768px) and (max-width: 1024px) {
+  .catBannerBtnWrapper {
+    width: 200px;
+    height: 45px;
+  }
+  .catBtnOption {
+    height: 43px;
+  }
+  .contentHeaderLeft {
+    font-size: 12px;
+  }
+  .editDirectDeposit {
+    padding: 0 8px;
+    height: 40px;
+    font-size: 12px;
+  }
+  .catBtnOption span {
+    font-size: 12px;
+  }
+  .transactionHeader {
+    width: 100%;
+  }
+  .transactionTable {
+    padding: 2rem 0;
+  }
+  th {
+    font-size: 12px;
+  }
+  td {
+    font-size: 11px;
+  }
+  .postLinkBtn,
+  .saveBtn {
+    padding: 0 10px;
+    font-size: 10px;
+    height: 30px;
+  }
+  .transactionBtn {
+    height: 30px;
+    font-size: 10px;
+  }
+}
+
+@media screen and (min-width: 600px) and (max-width: 768px) {
+  .catBannerBtnWrapper {
+    width: 200px;
+    height: 45px;
+  }
+  .catBtnOption {
+    height: 40px;
+  }
+  .contentHeaderLeft {
+    font-size: 12px;
+  }
+  .editDirectDeposit {
+    padding: 0 8px;
+    height: 40px;
+    font-size: 12px;
+  }
+  .catBtnOption span {
+    font-size: 12px;
+  }
+  .transactionHeader {
+    width: 100%;
+  }
+  .transactionTable {
+    padding: 2rem 0;
+  }
+  th {
+    font-size: 12px;
+  }
+  td {
+    font-size: 11px;
+  }
+  .postLinkBtn,
+  .saveBtn {
+    padding: 0 10px;
+    font-size: 10px;
+    height: 30px;
+  }
+  .transactionBtn {
+    height: 30px;
+    font-size: 10px;
+  }
+}
+
+@media screen and (min-width: 480px) and (max-width: 600px) {
+  .catBannerBtnWrapper {
+    width: 161px;
+    height: 42px;
+  }
+  .catBtnOption {
+    height: 38px;
+    width: 86px;
+  }
+  .catBtnOption span {
+    font-size: 11px;
+  }
+  .editDirectDeposit {
+    padding: 0 8px;
+    height: 32px;
+    font-size: 10px;
+  }
+  .contentHeaderLeft {
+    font-size: 10px;
+    letter-spacing: 1px;
+  }
+
+  .catBtnOption {
+    height: 40px;
+  }
+
+  .editDirectDeposit {
+    padding: 0 8px;
+    height: 40px;
+    font-size: 12px;
+  }
+
+  .catBtnOption span {
+    font-size: 12px;
+  }
+  .transactionHeader {
+    width: 100%;
+  }
+  .transactionTable {
+    padding: 2rem 0;
+  }
+  th {
+    font-size: 12px;
+  }
+  td {
+    font-size: 9px;
+  }
+  .postLinkBtn,
+  .saveBtn {
+    padding: 0 7px;
+    font-size: 10px;
+    height: 25px;
+  }
+  .transactionBtn {
+    height: 25px;
+    font-size: 10px;
+  }
+}
+@media screen and (max-width: 480px) {
+  .transactionListBox {
+    overflow-x: scroll;
+  }
+  .catBannerBtnWrapper {
+    width: 170px;
+    height: 35px;
+  }
+  .catBtnOption {
+    height: 31px;
+    width: 83px;
+  }
+  .contentHeaderLeft {
+    font-size: 9px;
+  }
+  .editDirectDeposit {
+    padding: 0 8px;
+    height: 31px;
+    font-size: 10px;
+  }
+  .catBtnOption span {
+    font-size: 10px;
+  }
+  .transactionHeader {
+    width: 100%;
+  }
+  .transactionTable {
+    padding: 2rem 0;
+  }
+  th {
+    font-size: 12px;
+  }
+  td {
+    padding: 0 7px;
+    font-size: 11px;
+  }
+  .postLinkBtn,
+  .saveBtn {
+    padding: 0 10px;
+    font-size: 10px;
+    height: 30px;
+  }
+  .transactionBtn {
+    height: 30px;
+    font-size: 10px;
+  }
+}
+/* 
+@media screen and (min-width: 480px) and (max-width: 600px) {
+  .catBannerBtnWrapper {
+    width: 137px;
+    height: 42px;
+  }
+  .catBtnOption {
+    height: 38px;
+    width: 67px;
+  }
+  .catBtnOption span {
+    font-size: 11px;
+  }
+  .editDirectDeposit {
+    padding: 0 8px;
+    height: 32px;
+    font-size: 10px;
+  }
+  .contentHeaderLeft {
+    font-size: 10px;
+    letter-spacing: 1px;
+  }
+
+  .catBtnOption {
+    height: 40px;
+  }
+
+  .editDirectDeposit {
+    padding: 0 8px;
+    height: 40px;
+    font-size: 12px;
+  }
+
+  .catBtnOption span {
+    font-size: 12px;
+  }
+  .transactionHeader {
+    width: 100%;
+  }
+  .transactionTable {
+    padding: 2rem 0;
+  }
+  th {
+    font-size: 12px;
+  }
+  td {
+    font-size: 9px;
+  }
+  .postLinkBtn,
+  .saveBtn {
+    padding: 0 7px;
+    font-size: 10px;
+    height: 25px;
+  }
+  .transactionBtn {
+    height: 25px;
+    font-size: 10px;
+  }
+} */

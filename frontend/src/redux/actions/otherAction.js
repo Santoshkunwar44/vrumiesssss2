@@ -25,11 +25,13 @@ export const removeToastifyInfo = () => async (dispatch) => {
 export const setFilterPostItem = (category, city, state, filters) => async (dispatch) => {
 
     try {
+        dispatch({ type: "SET_LOADING_DATA", data: { isLoading: true, type: "appCategory" } })
         const { data: { message } } = await getPostByLocation(category, state, city)
         dispatch({ type: "SET_FILTER_POST", data: { message, filters } })
-
+        dispatch({ type: "REMOVE_LOADING_DATA" })
     } catch (error) {
         console.log(error)
+        dispatch({ type: "REMOVE_LOADING_DATA" })
 
     }
 }
@@ -42,4 +44,31 @@ export const setRemoveFilterLocationData = () => async (dispatch) => {
 
 export const setCategoryIndex = (index) => (dispatch) => {
     dispatch({ type: "SET_CATEGORY_SLIDER_INDEX", data: index })
+}
+
+
+
+
+// SET_LOADING_DATA
+
+export const setLoadingData = (data) => (dispatch) => {
+
+    dispatch({ type: "SET_LOADING_DATA", data })
+
+
+}
+export const removeLoadingData = () => (dispatch) => {
+
+    dispatch({ type: "REMOVE_LOADING_DATA" })
+
+
+}
+
+export const setSessionExpired = () => (dispatch) => {
+    dispatch({ type: "SET_SESSION_EXPIRED" })
+
+}
+export const resetSessionExpired = () => (dispatch) => {
+    dispatch({ type: "RESET_SESSION_EXPIRED" })
+
 }

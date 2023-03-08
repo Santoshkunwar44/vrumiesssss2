@@ -13,5 +13,54 @@
 }
 .replyHeader {
   width: 100%;
+  padding-right: 2rem;
+  display: flex;
+  align-items: center;
+}
+.replyHeaderRight {
+  display: flex;
+  gap: 1rem;
+  flex-direction: column-reverse;
+}
+.replyHeaderLeft {
+  flex: 1;
   text-align: start;
+}
+.replyHeaderLeft h2 {
+  color: #37d710;
+}
+.editText {
+  font-size: 11px;
+  color: #ffb800;
+  text-align: start;
+}
+.editVBTBox {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+.submitBtn {
+  background-color: #37d710;
+  height: 40px;
+  width: 100px;
+}
+.VBTBtns {
+  display: flex;
+  gap: 10px;
+}
+.VBTBtns img {
+  width: 25px;
+}
+.VBTcountBox {
+  background-color: aliceblue;
+  width: 30px;
+  color: black;
+  display: grid;
+  place-items: center;
+}
+
+@media screen and (min-width: 992px) and (max-width: 1200px) {
+  .replyHeader h2 {
+    font-size: 30px;
+  }
 }

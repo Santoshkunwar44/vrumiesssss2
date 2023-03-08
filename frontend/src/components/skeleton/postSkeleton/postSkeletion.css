@@ -1,0 +1,35 @@
+@media screen and (max-width: 768px) {
+  .bigBox {
+    display: none !important;
+  }
+  .smallBox {
+    display: red;
+  }
+}
+@media screen and (min-width: 769px) {
+  .smallBox {
+    display: none !important;
+  }
+  .bigBox {
+    display: red;
+  }
+}
+.smallBox {
+  width: 100%;
+}
+.bigBox {
+  display: flex;
+  flex-wrap: wrap;
+
+  width: 100%;
+}
+.dark_skeleton {
+  background-color: #2d2d2d !important;
+}
+.focusCat {
+  display: flex !important;
+}
+.notFocus {
+  scale: 0.7 !important;
+  opacity: 0.4 !important;
+}

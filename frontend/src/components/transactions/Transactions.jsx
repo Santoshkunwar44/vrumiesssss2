@@ -1,31 +1,24 @@
 import styles from "./transaction.module.css"
-import { Link } from "react-router-dom"
 import { useState } from "react"
 import { useEffect } from "react"
 import { createDisputesApi, getTransactionInspectApi, updateTransactionApi } from "../../utils/apis/transactions/transactionsApi"
-import { changeTime } from "../../services/changeTime"
 import { useDispatch, useSelector } from "react-redux"
 import { setToastifyInfo } from "../../redux/actions/otherAction"
 import DisputeModal from "../modal/disputePopover/DisputePopover"
 import { useRef } from "react"
-import NotFound from "../notFound/NotFound"
 import BuyTransaction from "./BuyTransaction/BuyTransaction"
 import SellTransaction from "./sellTransaction/SellTransaction"
 
-const Transactions = ({ transactionId }) => {
 
+
+const Transactions = ({ transactionId }) => {
     const [viewAs, setViewAs] = useState(null)
     const [sellerTransactionList, setSellerTransactionList] = useState([])
-    const [currentTransactionEdit, setCurrentTransactionEdit] = useState(null)
     const [buyerTransactionList, setBuyerTransactionList] = useState([])
-    const [transactionEditData, setTransactionEditData] = useState({
-    })
     const [startDisputePopover, setStartDisputePopover] = useState(false)
-    const dispatch = useDispatch()
     const { userData } = useSelector(state => state.userReducer)
     const orderRef = useRef()
 
-    console.log(transactionEditData)
 
     useEffect(() => {
         if (transactionId) {
@@ -48,45 +41,11 @@ const Transactions = ({ transactionId }) => {
 
 
 
-    const handleTransactionFeedback = (name, value, transactionId) => {
-
-        if (name === "rating") {
-            value = +value
-        }
-
-        if (viewAs === "seller") {
-
-            setTransactionEditData((prev) => {
-                return {
-                    ...prev,
-                    sellersFeedback: {
-                        ...prev.sellersFeedback,
-                        [name]: value
-                    }
-                }
-            })
-
-
-        } else {
-            console.log(value, name)
-            setTransactionEditData((prev) => {
-                return {
-                    ...prev,
-                    buyersFeedback: {
-                        ...prev.buyersFeedback,
-                        [name]: value
-                    }
-                }
-            })
-        }
-
-    }
 
 
     useEffect(() => {
         if (!viewAs) return
         fetchTransactions()
-        setTransactionEditData({})
     }, [viewAs])
 
 
@@ -105,84 +64,11 @@ const Transactions = ({ transactionId }) => {
     }
 
 
-
-    const handleSaveTransaction = async (transaction, disputeComment) => {
-
-        console.log("the current transaction eidit", transaction)
-        let neededKeys = ['rating', 'response']
-        let availableKey = []
-        let newObj = { ...transactionEditData }
-        if (viewAs === "seller") {
-
-            for (let key in transactionEditData?.sellersFeedback) {
-                availableKey.push(key)
-            }
-        } else {
-            for (let key in transactionEditData?.buyersFeedback) {
-                availableKey.push(key)
-            }
-        }
-        if (availableKey.length === 1) {
-            let propertyToBeAccessed = neededKeys.filter(item => availableKey.every(val => item !== val))[0]
-
-            if (viewAs === "seller") {
-
-                newObj.sellersFeedback[propertyToBeAccessed] = transaction?.sellersFeedback[propertyToBeAccessed.toString()]
-            } else {
-                newObj.buyersFeedback[propertyToBeAccessed] = transaction?.buyersFeedback[propertyToBeAccessed.toString()]
-            }
-        } else if (availableKey.length === 0) {
-            console.log("no change")
-            return
-        }
-        try {
-            await updateTransactionApi(transaction?._id, newObj)
-            if (startDisputePopover) {
-                await createDisputesApi({
-                    userId: userData?._id,
-                    userType: viewAs,
-                    comment: disputeComment,
-                    transactionId: transaction?._id,
-                    nextUser: viewAs === "seller" ? transaction?.buyer?._id : transaction?.seller?._id
-                })
-
-            }
-            dispatch(setToastifyInfo({
-                text: "Trasaction updated successfully",
-                type: "success"
-            }))
-
-
-
-        } catch (error) {
-            dispatch(setToastifyInfo({
-                text: "Error while updating Transaction",
-                type: "success"
-            }))
-            console.log(error)
-        }
-    }
-    const handleStartTransactionSave = (transaction) => {
-        let feedBack = null
-        if (viewAs === "seller") {
-            feedBack = transactionEditData.sellersFeedback
-        } else {
-            feedBack = transactionEditData.buyersFeedback
-        }
-        if (feedBack?.response && feedBack?.response === "dispute") {
-            setCurrentTransactionEdit(transaction)
-            setStartDisputePopover(true)
-        } else {
-            handleSaveTransaction(transaction)
-        }
-    }
     return (
         <div
             className={styles.transactions}
         >
-            {
-                (startDisputePopover && currentTransactionEdit) ? <DisputeModal currentTransactionEdit={currentTransactionEdit} handleSaveTransaction={handleSaveTransaction} viewAs={viewAs} /> : ""
-            }
+
             <div className={styles.transactionHeader}>
 
                 <h2>My Transactions</h2>
@@ -193,7 +79,7 @@ const Transactions = ({ transactionId }) => {
 
                 <div className={styles.mainContentHeader}>
                     <div className={styles.contentHeaderLeft}>
-                        <div>Average  Rating :  <span className={styles.greenText}>{userData?.avgRating}/ 10    </span> </div>
+                        <div> Avg Rating :  <span className={styles.greenText}>{userData?.avgRating}/ 10    </span> </div>
                         <div>Disputes : <span className={styles.greenText}>{userData?.disputes}</span></div>
                     </div>
                     <div className={styles.contentHeader}>
@@ -205,7 +91,7 @@ const Transactions = ({ transactionId }) => {
                         </div>
                     </div>
                     <button className={styles.editDirectDeposit}>
-                        EDIT DIRECT DEPOSIT
+                        DEPOSIT DETAILS
                     </button>
 
                 </div>
@@ -247,22 +133,20 @@ const Transactions = ({ transactionId }) => {
                         <tbody>
                             {
                                 viewAs === "buyer" && buyerTransactionList?.map((item) => <BuyTransaction
-                                    transactionEditData={transactionEditData}
                                     item={item}
-                                    handleStartTransactionSave={handleStartTransactionSave}
-                                    handleTransactionFeedback={handleTransactionFeedback}
                                     orderRef={orderRef}
+                                    viewAs={viewAs}
+                                    setStartDisputePopover={setStartDisputePopover}
+                                    startDisputePopover={startDisputePopover}
                                     transactionId={transactionId}
                                 />)
                             }
                             {
-
                                 viewAs === "seller" && sellerTransactionList?.map((item) => <SellTransaction
-                                    transactionEditData={transactionEditData}
+                                    startDisputePopover={startDisputePopover}
+                                    setStartDisputePopover={setStartDisputePopover}
                                     item={item}
-                                    handleStartTransactionSave={handleStartTransactionSave}
-                                    handleTransactionFeedback={handleTransactionFeedback}
-
+                                    viewAs={viewAs}
 
                                 />)
                             }
@@ -270,12 +154,7 @@ const Transactions = ({ transactionId }) => {
                     </table>
 
                 </div>
-
-
             </div>
-
-
-
         </div >
     )
 }

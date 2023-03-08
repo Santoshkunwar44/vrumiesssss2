@@ -1,0 +1,13 @@
+.focusCat {
+  display: flex !important;
+  opacity: 1;
+  scale: 1;
+  transition: all 0.3s ease-in-out;
+}
+.notFocus {
+  scale: 0.5 !important;
+  opacity: 0.4 !important;
+}
+.dark_skeleton {
+  background-color: #2d2d2da4 !important;
+}

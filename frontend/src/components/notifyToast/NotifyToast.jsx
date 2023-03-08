@@ -21,7 +21,7 @@ const NotifyToast = () => {
                 draggable: true,
                 progress: undefined,
                 theme: "colored",
-                icon: ({ theme, type }) => <img alt='token' src='/items/done.jpg' />,
+                // icon: ({ theme, type }) => <img alt='token' src='/items/done.jpg' />,
             });
         } else {
 
@@ -34,7 +34,7 @@ const NotifyToast = () => {
                 draggable: true,
                 progress: undefined,
                 theme: "colored",
-                icon: ({ theme, type }) => <img alt='token' src='/token.png' />,
+                // icon: ({ theme, type }) => <img alt='token' src='/token.png' />,
             });
         }
         setTimeout(() => {

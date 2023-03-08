@@ -1,8 +1,8 @@
 import { Link } from "react-router-dom"
 import styles from "./post.module.css"
-const Post = ({ post }) => {
+const Post = ({ post, slider }) => {
     return (
-        <Link to={`/post/${post?._id}`}><div className={styles.post}>
+        <Link to={slider ? `post/${post?._id}` : `/post/${post?._id}`} state={{ from: slider ? "profile" : null, postData: post }}><div className={`${styles.post} ${slider ? styles.sliderPost : ""}`}>
             <div className={styles.postBlurBg}>
                 <div className={styles.postBlur1}>
                 </div>

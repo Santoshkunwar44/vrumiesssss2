@@ -1,0 +1,29 @@
+.ImageMessage {
+  width: fit-content;
+}
+.ImageMessage img {
+  border-radius: 8px;
+}
+.own {
+  margin-left: auto;
+}
+.messageImg {
+  width: 200px;
+  object-fit: cover;
+}
+.loading_imageUi {
+  width: 200px;
+  position: relative;
+  background-color: rgba(173, 173, 173, 0.7);
+  display: grid;
+  place-items: center;
+  height: 200px;
+  border-radius: 8px;
+}
+.loading_imageUi img {
+}
+@media screen and (max-width: 768px) {
+  .messageImg {
+    width: 150px;
+  }
+}

@@ -1,8 +1,11 @@
 .bannerContainer {
   width: 100%;
   display: flex;
+  height: 45vh;
 }
-
+::-webkit-scrollbar {
+  display: none;
+}
 .homeBanner {
   width: 100%;
 }
@@ -14,19 +17,25 @@
   top: -1.5rem;
 }
 .homeBannerWrapper {
+  height: fit-content;
   width: 100%;
 }
 
 .bannerRoundBox {
+  position: absolute;
+  left: 0;
+  top: -1rem;
   width: 106px;
   height: 106px;
   border-radius: 50%;
   background: #37e710;
 }
 .bannerRoundEclipseBig {
-  width: 255px;
-  height: 255px;
-  margin-left: auto;
+  width: 225px;
+  height: 225px;
+  position: absolute;
+  right: 0;
+  bottom: -21rem;
   border-radius: 50%;
   border: 30px solid #37e710;
 }
@@ -47,15 +56,16 @@
   border-radius: 10px;
   display: flex;
   justify-content: start;
-  padding: 2rem;
+  padding: 1.5rem;
   padding-right: 0;
 }
 .welcomeText {
   font-family: "Poppins";
   font-style: normal;
+  text-align: start;
   font-weight: 500;
   font-size: 42px;
-  line-height: 77px;
+  line-height: 37px;
   /* identical to box height */
 
   color: #ffffff;
@@ -68,6 +78,7 @@
   padding-top: 1rem;
   display: flex;
   flex: 8;
+  gap: 0.8rem;
   justify-content: start;
   flex-direction: column;
   align-items: flex-start;
@@ -88,6 +99,7 @@
   justify-content: center;
   gap: 2.33rem;
   flex: 4;
+  opacity: 0.8;
 }
 .tiltedLine {
   height: 155px;
@@ -109,10 +121,250 @@
   rotate: 216deg;
   height: 120px;
 }
-@media screen and (min-width: 768px) and (max-width: 1024px) {
+
+@media screen and (max-width: 480px) {
+  .homeWrapperContent {
+    width: 100%;
+  }
+  .blurContentProfileDetails {
+    gap: 1rem;
+  }
+  .welcomeText {
+    font-size: 18px;
+    line-height: 20px;
+    text-align: start;
+  }
+  .blurContentBox {
+    height: 145px;
+    padding: 1rem;
+    width: 95%;
+    left: 15px;
+  }
+  .welcomeSecondaryText {
+    text-align: start;
+    font-size: 12px;
+    line-height: 20px;
+  }
+
+  .tiltedLine {
+    height: 125px;
+    width: 0.31px;
+    background-color: #bebcbc;
+    transform: rotate(216deg);
+  }
+  .tiltedLines div:nth-of-type(2) {
+    rotate: 216deg;
+    transform: translateY(16px);
+  }
+  .tiltedLines div:nth-of-type(3) {
+    rotate: 216deg;
+    transform: translateY(-20px);
+    height: 125px;
+  }
+  .tiltedLines div:nth-of-type(4) {
+    transform: translateY(-25px);
+    rotate: 216deg;
+    height: 100px;
+  }
+
+  .bannerRoundEclipseBig {
+    width: 142px;
+    bottom: -15rem;
+    margin-right: 25px;
+    height: 142px;
+    border: 22px solid #37e710;
+  }
+  .welcomeText {
+    font-size: 16px;
+  }
+  .welcomeSecondaryText {
+    font-size: 11px;
+    letter-spacing: 1.04px;
+  }
+  .tiltedLines {
+    position: absolute;
+    opacity: 0.4 !important;
+    right: 2rem;
+    gap: 1.5rem;
+    top: 1rem;
+  }
+  .tiltedLine {
+    height: 89px;
+  }
+  .tiltedLines div:nth-of-type(3) {
+    rotate: 216deg;
+    transform: translateY(-20px);
+    height: 100px;
+  }
+  .tiltedLines div:nth-of-type(4) {
+    transform: translateY(-5px);
+  }
+}
+@media screen and (min-width: 480px) and (max-width: 600px) {
+  .homeWrapperContent {
+    width: 90%;
+  }
+  .blurContentProfileDetails {
+    gap: 1rem;
+  }
+  .welcomeText {
+    font-size: 18px;
+    line-height: 20px;
+    text-align: start;
+  }
+  .blurContentBox {
+    height: 145px;
+    padding: 1rem;
+    width: 95%;
+    left: 15px;
+  }
+  .welcomeSecondaryText {
+    text-align: start;
+    font-size: 12px;
+    line-height: 20px;
+  }
+
+  .tiltedLine {
+    height: 125px;
+    width: 0.31px;
+    background-color: #bebcbc;
+    transform: rotate(216deg);
+  }
+  .tiltedLines div:nth-of-type(2) {
+    rotate: 216deg;
+    transform: translateY(16px);
+  }
+  .tiltedLines div:nth-of-type(3) {
+    rotate: 216deg;
+    transform: translateY(-20px);
+    height: 125px;
+  }
+  .tiltedLines div:nth-of-type(4) {
+    transform: translateY(-25px);
+    rotate: 216deg;
+    height: 100px;
+  }
+
+  .bannerRoundEclipseBig {
+    bottom: -15rem;
+    width: 142px;
+    margin-right: 25px;
+    height: 142px;
+    border: 22px solid #37e710;
+  }
+  .welcomeText {
+    font-size: 22px;
+  }
+  .welcomeSecondaryText {
+    font-size: 12px;
+    letter-spacing: 1.04px;
+  }
+  .tiltedLines {
+    position: absolute;
+    opacity: 0.4;
+    right: 2rem;
+    gap: 1.5rem;
+    top: 1rem;
+  }
+  .tiltedLine {
+    height: 89px;
+  }
+  .tiltedLines div:nth-of-type(3) {
+    rotate: 216deg;
+    transform: translateY(-20px);
+    height: 100px;
+  }
+  .tiltedLines div:nth-of-type(4) {
+    transform: translateY(-5px);
+  }
+}
+@media screen and (min-width: 600px) and (max-width: 768px) {
+  .homeWrapperContent {
+    width: 90%;
+  }
+  .blurContentProfileDetails {
+    gap: 1rem;
+  }
+  .welcomeText {
+    font-size: 18px;
+    line-height: 20px;
+    text-align: start;
+  }
+  .blurContentBox {
+    height: 145px;
+    padding: 1rem;
+    width: 95%;
+    left: 15px;
+  }
+  .welcomeSecondaryText {
+    text-align: start;
+    font-size: 12px;
+    line-height: 20px;
+  }
+
+  .tiltedLine {
+    height: 125px;
+    width: 0.31px;
+    background-color: #bebcbc;
+    transform: rotate(216deg);
+  }
+  .tiltedLines div:nth-of-type(2) {
+    rotate: 216deg;
+    transform: translateY(16px);
+  }
+  .tiltedLines div:nth-of-type(3) {
+    rotate: 216deg;
+    transform: translateY(-20px);
+    height: 125px;
+  }
+  .tiltedLines div:nth-of-type(4) {
+    transform: translateY(-25px);
+    rotate: 216deg;
+    height: 100px;
+  }
+
+  .bannerRoundEclipseBig {
+    width: 142px;
+    margin-right: 55px;
+    height: 142px;
+    border: 22px solid #37e710;
+    bottom: -15rem;
+  }
+  .welcomeText {
+    font-size: 22px;
+  }
+  .welcomeSecondaryText {
+    font-size: 12px;
+    letter-spacing: 1.04px;
+  }
+  .tiltedLines {
+    position: absolute;
+    opacity: 0.4;
+    right: 2rem;
+    gap: 1.5rem;
+    top: 1rem;
+  }
+  .tiltedLine {
+    height: 89px;
+  }
+  .tiltedLines div:nth-of-type(3) {
+    rotate: 216deg;
+    transform: translateY(-20px);
+    height: 100px;
+  }
+  .tiltedLines div:nth-of-type(4) {
+    transform: translateY(-5px);
+  }
+}
+
+@media screen and (min-width: 768px) and (max-width: 992px) {
+  .blurContentProfileDetails {
+    gap: 10px;
+  }
   .bannerRoundEclipseBig {
     width: 185px;
     height: 185px;
+    bottom: -19rem;
   }
   .blurContentBox {
     padding: 1rem;
@@ -120,20 +372,48 @@
   }
   .welcomeText {
     font-size: 23px;
-    line-height: 45px;
+    line-height: 30px;
+    text-align: start;
   }
   .welcomeSecondaryText {
+    text-align: start;
     font-size: 13px;
     letter-spacing: 1.4px;
   }
+  .tiltedLines {
+    gap: 2rem;
+  }
 }
-@media screen and (min-width: 1024px) {
+/* @media screen and (min-width: 768px) and (max-width: 922px) {
   .welcomeText {
     font-size: 27px;
-    line-height: 35 px;
+    line-height: 55px;
   }
   .welcomeSecondaryText {
     letter-spacing: 1.4px;
     font-size: 15px;
+  }
+} */
+@media screen and (min-width: 992px) and (max-width: 1200px) {
+  .welcomeText {
+    font-size: 27px;
+    line-height: 36px;
+  }
+  .welcomeSecondaryText {
+    letter-spacing: 1.4px;
+    font-size: 15px;
+  }
+}
+@media screen and (min-width: 1200px) {
+  .blurContentBox {
+    height: 235px;
+  }
+  .welcomeText {
+    font-size: 32px;
+    line-height: 40px;
+  }
+  .welcomeSecondaryText {
+    letter-spacing: 2px;
+    font-size: 14px;
   }
 }

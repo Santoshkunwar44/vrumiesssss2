@@ -5,18 +5,22 @@
   text-decoration: none;
   font-family: "poppins";
 }
+::-webkit-scrollbar {
+  display: block !important;
+}
+.catBannerBtnWrapper {
+  border: 1px solid #c1c1c142 !important;
+}
 button {
   border: none;
   outline: none;
 }
 
 .slick-track {
-  padding-top: 2rem !important;
-  width: 4656px;
   opacity: 1;
-  height: 300px !important;
+  height: 240px !important;
 }
-a {
+.slick-slide a {
   color: inherit;
 }
 button {
@@ -40,7 +44,12 @@ button {
 .slick-slide {
   height: auto !important;
 }
-
+a {
+  color: inherit !important;
+}
+.chakra-modal__content-container {
+  z-index: 1111 !important;
+}
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
     animation: App-logo-spin infinite 20s linear;
@@ -51,6 +60,9 @@ button {
   color: #61dafb;
 }
 
+.slick-slider {
+  width: 100% !important;
+}
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);

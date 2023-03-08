@@ -6,6 +6,7 @@
   display: flex;
   gap: 1rem;
   align-items: flex-start;
+  margin-top: 100px;
 }
 .profileInfoLeft {
   position: relative;
@@ -51,6 +52,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  position: relative;
   gap: 2rem;
 }
 .profileUsername {
@@ -71,7 +73,7 @@
   line-height: 20px;
   /* identical to box height */
 
-  letter-spacing: 1.1 px;
+  letter-spacing: 1.1px;
 
   color: #ffffff;
 }
@@ -84,6 +86,7 @@
 .profileImage {
   width: 100%;
   height: 100%;
+  object-fit: cover;
   border-radius: 50%;
 }
 
@@ -107,7 +110,7 @@
   position: absolute;
   right: 0rem;
   width: 30px;
-  top: 0px;
+  bottom: 1rem;
 }
 .profileUserDescription {
   display: flex;
@@ -374,7 +377,7 @@
   color: #000000;
 }
 
-@media screen and (min-width: 768px) and (max-width: 1024px) {
+@media screen and (min-width: 992px) and (max-width: 1200px) {
   .locationOptionItem img {
     width: 91px;
   }
@@ -387,5 +390,577 @@
   .locationOptionItem {
     width: fit-content;
     padding: 2rem;
+  }
+  .imageWrapper {
+    width: 100px;
+    height: 100px;
+  }
+  .imageBg {
+    width: 100px;
+    height: 100px;
+  }
+  .cameraImg {
+    width: 30px;
+  }
+  .profileUsername {
+    line-height: 20px;
+    font-size: 13px;
+  }
+  .profileEmail {
+    font-size: 8px;
+    color: #808080;
+  }
+  .profileNameInfo {
+  }
+  .aboutText {
+    font-size: 10px;
+  }
+  .editText {
+    font-size: 10px;
+  }
+  .profileUserDescription {
+    padding: 0 1rem;
+    gap: 0;
+  }
+  .profileAboutText {
+    font-size: 10px;
+  }
+  .pencilEdit {
+    width: 20px;
+    right: 1rem;
+    top: 0;
+  }
+  .profileMark {
+    width: 20px;
+  }
+  .profileDescHeader {
+    padding: 0;
+  }
+  .profileTopItem {
+    width: 100px;
+    height: 100px;
+    gap: 0.3rem;
+  }
+  .profileTopItem p {
+    font-size: 9px;
+  }
+  .profileTopItem img {
+    width: 45px;
+  }
+  .profileRightTop {
+    padding: 1rem;
+    height: auto;
+  }
+  .profileRightTopIitems {
+    gap: 1rem;
+  }
+  /* post header topic */
+}
+@media screen and (min-width: 780px) and (max-width: 992px) {
+  .profileNameInfo {
+    text-align: start;
+  }
+  .profileRight {
+    width: 100%;
+  }
+  .profileRightTop {
+    width: 100%;
+    margin: auto;
+  }
+  .profileWrapper {
+    flex-direction: column;
+    align-items: center;
+  }
+  .profileInfoLeft {
+    gap: 1.5rem;
+    padding: 2rem 1rem;
+    width: 100%;
+    flex-direction: row;
+  }
+  .profileMainInfo {
+    flex: 5.5;
+    gap: 1rem;
+  }
+  .locationOptionItem img {
+    width: 91px;
+  }
+  .locationOptionItem img {
+    width: 91px;
+  }
+  .estimateLocation {
+    width: 91px !important;
+  }
+  .locationOptionItem {
+    width: fit-content;
+    padding: 2rem;
+  }
+  .imageWrapper {
+    width: 130px;
+    height: 130px;
+  }
+  .imageBg {
+    width: 130px;
+    height: 130px;
+  }
+  .cameraImg {
+    width: 30px;
+  }
+  .profileUsername {
+    line-height: 28px;
+    font-size: 15px;
+    letter-spacing: 1.5px;
+  }
+  .profileEmail {
+    font-size: 13px;
+
+    color: #808080;
+  }
+  .profileNameInfo {
+  }
+  .aboutText {
+    font-size: 16px;
+  }
+  .editText {
+    font-size: 13px;
+  }
+  .profileUserDescription {
+    padding: 0 1rem;
+    gap: 0;
+  }
+  .profileAboutText {
+    font-size: 10px;
+  }
+  .pencilEdit {
+    width: 20px;
+    right: 1rem;
+    bottom: 2rem;
+  }
+  .profileMark {
+    width: 30px;
+  }
+  .profileDescHeader {
+    padding: 0;
+  }
+  .profileTopItem {
+    width: 100px;
+    height: 100px;
+    gap: 0.3rem;
+  }
+  .profileTopItem p {
+    font-size: 9px;
+  }
+  .profileTopItem img {
+    width: 45px;
+  }
+  .profileRightTop {
+    padding: 2rem;
+    height: auto;
+  }
+  .profileRightTopIitems {
+    gap: 1rem;
+  }
+  .typeText {
+    font-size: 12px;
+  }
+  .profileUserDescription {
+    flex: 6.5;
+    min-height: 150px;
+    gap: 10px;
+    padding: 0;
+  }
+  .profileMainInfo {
+    width: 100%;
+  }
+  .editInput {
+    font-size: 12px;
+  }
+}
+@media screen and (min-width: 600px) and (max-width: 780px) {
+  .profileNameInfo {
+    text-align: start;
+  }
+  .profileRight {
+    width: 100%;
+  }
+  .profileRightTop {
+    width: 100%;
+    margin: auto;
+  }
+  .profileWrapper {
+    flex-direction: column;
+    align-items: center;
+  }
+  .profileInfoLeft {
+    gap: 1.5rem;
+    padding: 2rem 1rem;
+    width: 100%;
+    flex-direction: row;
+  }
+  .profileMainInfo {
+    flex: 5.5;
+    gap: 1rem;
+  }
+  .locationOptionItem img {
+    width: 91px;
+  }
+  .locationOptionItem img {
+    width: 91px;
+  }
+  .estimateLocation {
+    width: 91px !important;
+  }
+  .locationOptionItem {
+    width: fit-content;
+    padding: 2rem;
+  }
+  .imageWrapper {
+    width: 130px;
+    height: 130px;
+  }
+  .imageBg {
+    width: 130px;
+    height: 130px;
+  }
+  .cameraImg {
+    width: 30px;
+  }
+  .profileUsername {
+    line-height: 28px;
+    font-size: 15px;
+    letter-spacing: 1.5px;
+  }
+  .profileEmail {
+    font-size: 13px;
+
+    color: #808080;
+  }
+  .profileNameInfo {
+  }
+  .aboutText {
+    font-size: 16px;
+  }
+  .editText {
+    font-size: 13px;
+  }
+  .profileUserDescription {
+    padding: 0 1rem;
+    gap: 0;
+  }
+  .profileAboutText {
+    font-size: 10px;
+  }
+  .pencilEdit {
+    width: 20px;
+    right: 1rem;
+    bottom: 2rem;
+  }
+  .profileMark {
+    width: 30px;
+  }
+  .profileDescHeader {
+    padding: 0;
+  }
+  .profileTopItem {
+    width: 100px;
+    height: 100px;
+    gap: 0.3rem;
+  }
+  .profileTopItem p {
+    font-size: 9px;
+  }
+  .profileTopItem img {
+    width: 45px;
+  }
+  .profileRightTop {
+    padding: 2rem;
+    height: auto;
+  }
+  .profileRightTopIitems {
+    gap: 1rem;
+  }
+  .typeText {
+    font-size: 12px;
+  }
+  .profileUserDescription {
+    flex: 6.5;
+    min-height: 150px;
+    gap: 10px;
+    padding: 0;
+  }
+  .profileMainInfo {
+    width: 100%;
+  }
+  .editInput {
+    font-size: 12px;
+  }
+}
+@media screen and (min-width: 480px) and (max-width: 600px) {
+  .profileRightBottom {
+    padding: 10px;
+  }
+  .profileNameInfo {
+    text-align: start;
+  }
+  .profileRight {
+    width: 100%;
+  }
+  .profileRightTop {
+    width: 100%;
+    margin: auto;
+  }
+  .profileWrapper {
+    flex-direction: column;
+    align-items: center;
+  }
+  .profileInfoLeft {
+    padding: 2rem 1rem;
+    width: 100%;
+    gap: 1rem;
+    flex-direction: row;
+    align-items: flex-start;
+  }
+  .profileMainInfo {
+    flex: 5.5;
+    gap: 1rem;
+  }
+  .locationOptionItem img {
+    width: 91px;
+  }
+  .locationOptionItem img {
+    width: 91px;
+  }
+  .estimateLocation {
+    width: 91px !important;
+  }
+  .locationOptionItem {
+    width: fit-content;
+    padding: 2rem;
+  }
+  .imageWrapper {
+    width: 100px;
+    height: 100px;
+  }
+  .imageBg {
+    width: 100px;
+    height: 100px;
+  }
+  .cameraImg {
+    width: 30px;
+  }
+  .profileUsername {
+    line-height: 28px;
+    font-size: 13px;
+    letter-spacing: 1.5px;
+  }
+  .profileEmail {
+    font-size: 10px;
+    letter-spacing: 1.6px;
+
+    color: #808080;
+  }
+  .profileNameInfo {
+  }
+  .aboutText {
+    font-size: 16px;
+  }
+  .editText {
+    font-size: 13px;
+  }
+  .profileUserDescription {
+    padding: 0 1rem;
+    gap: 0;
+  }
+  .profileAboutText {
+    font-size: 10px;
+  }
+  .pencilEdit {
+    width: 20px;
+    right: 1rem;
+    bottom: 2rem;
+  }
+  .profileMark {
+    width: 30px;
+  }
+  .profileDescHeader {
+    padding: 0;
+  }
+  .profileTopItem {
+    width: 100px;
+    height: 100px;
+    gap: 0.3rem;
+  }
+  .profileTopItem p {
+    font-size: 9px;
+  }
+  .profileTopItem img {
+    width: 45px;
+  }
+  .profileRightTop {
+    padding: 1rem;
+    height: auto;
+  }
+  .profileRightTopIitems {
+    gap: 1rem;
+  }
+  .profileTopItem {
+    width: 90px;
+    height: 90px;
+  }
+  .profileTopItem img {
+    width: 36px;
+  }
+  .typeText {
+    font-size: 12px;
+  }
+  .profileUserDescription {
+    flex: 6.5;
+    min-height: 150px;
+    gap: 10px;
+    padding: 0;
+  }
+  .profileMainInfo {
+    width: 100%;
+  }
+  .editInput {
+    font-size: 10px;
+    color: #dad5d5;
+  }
+  .editInput {
+    height: 100px;
+  }
+}
+@media screen and (max-width: 600px) {
+  .profileRightBottom {
+    padding: 10px;
+  }
+  .profileNameInfo {
+    text-align: start;
+  }
+  .profileRight {
+    width: 100%;
+  }
+  .profileRightTop {
+    width: 100%;
+    margin: auto;
+  }
+  .profileWrapper {
+    flex-direction: column;
+    align-items: center;
+  }
+  .profileInfoLeft {
+    padding: 2rem 1rem;
+    width: 100%;
+    gap: 2rem;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .profileMainInfo {
+    flex: 5.5;
+    gap: 1rem;
+  }
+  .locationOptionItem img {
+    width: 91px;
+  }
+  .locationOptionItem img {
+    width: 91px;
+  }
+  .estimateLocation {
+    width: 91px !important;
+  }
+  .locationOptionItem {
+    width: fit-content;
+    padding: 2rem;
+  }
+  .imageWrapper {
+    width: 100px;
+    height: 100px;
+  }
+  .imageBg {
+    width: 100px;
+    height: 100px;
+  }
+  .cameraImg {
+    width: 30px;
+  }
+  .profileUsername {
+    line-height: 28px;
+    font-size: 13px;
+    letter-spacing: 1.5px;
+  }
+  .profileEmail {
+    font-size: 10px;
+    letter-spacing: 1.6px;
+
+    color: #808080;
+  }
+  .profileNameInfo {
+  }
+  .aboutText {
+    font-size: 16px;
+  }
+  .editText {
+    font-size: 13px;
+  }
+  .profileUserDescription {
+    padding: 0 1rem;
+    gap: 0;
+  }
+  .profileAboutText {
+    font-size: 10px;
+  }
+  .pencilEdit {
+    width: 20px;
+    right: 1rem;
+    bottom: 2rem;
+  }
+  .profileMark {
+    width: 30px;
+  }
+  .profileDescHeader {
+    padding: 0;
+  }
+  .profileTopItem {
+    width: 100px;
+    height: 100px;
+    gap: 0.3rem;
+  }
+  .profileTopItem p {
+    font-size: 9px;
+  }
+  .profileTopItem img {
+    width: 45px;
+  }
+  .profileRightTop {
+    padding: 1rem;
+    height: auto;
+  }
+  .profileRightTopIitems {
+    gap: 1rem;
+  }
+  .profileTopItem {
+    width: 90px;
+    height: 90px;
+  }
+  .profileTopItem img {
+    width: 36px;
+  }
+  .typeText {
+    font-size: 12px;
+  }
+  .profileUserDescription {
+    flex: 6.5;
+    min-height: 150px;
+    gap: 10px;
+    padding: 0;
+  }
+  .profileMainInfo {
+    width: 100%;
+  }
+  .editInput {
+    font-size: 10px;
+    color: #dad5d5;
+  }
+  .editInput {
+    height: 100px;
   }
 }

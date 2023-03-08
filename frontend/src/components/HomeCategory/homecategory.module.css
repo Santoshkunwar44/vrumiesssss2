@@ -1,19 +1,21 @@
 .homeCategory {
-  padding: 0 2rem;
   margin-top: -2rem;
+  width: 100%;
 }
 .cateoriesBox {
+  justify-content: center;
+  min-height: 200px;
   display: flex;
-  width: 768px;
   margin: auto;
   overflow: hidden;
 
   gap: 1rem;
   position: relative;
-  justify-content: space-between;
 }
 .homeCatHeader {
+  margin-bottom: 1.2rem;
   display: flex;
+  padding: 0 2rem;
   justify-content: start;
 }
 .catBorderLine {
@@ -64,7 +66,24 @@
   gap: 20px;
 }
 
-@media screen and (min-width: 768px) and (max-width: 1024px) {
+@media screen and (max-width: 600px) {
+  .homeCatHeader h3 {
+    font-size: 15px;
+    letter-spacing: 1.83px;
+  }
+  .homeCatHeader {
+    margin-bottom: 2rem;
+  }
+}
+
+@media screen and (min-width: 600px) and (max-width: 768px) {
+  .homeCatHeader h3 {
+    font-size: 18px;
+    letter-spacing: 1.83px;
+  }
+}
+
+@media screen and (min-width: 768px) and (max-width: 992px) {
   .catMainImg {
     width: 60px;
   }
@@ -83,8 +102,12 @@
   .arrowWrapper img {
     width: 55px;
   }
+  .homeCatHeader h3 {
+    font-size: 20px;
+    letter-spacing: 1.83px;
+  }
 }
-@media screen and (min-width: 1024px) {
+@media screen and (min-width: 922px) and (max-width: 1200px) {
   .cateoriesBox {
     display: flex;
     gap: 1rem;
@@ -101,5 +124,16 @@
   }
   .arrowWrapper img {
     width: 70px;
+  }
+  .homeCatHeader h3 {
+    font-size: 23px;
+    letter-spacing: 1.83px;
+  }
+}
+
+@media screen and (min-width: 1200px) {
+  .homeCatHeader h3 {
+    font-size: 25px;
+    letter-spacing: 1.83px;
   }
 }

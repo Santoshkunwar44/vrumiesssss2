@@ -11,11 +11,11 @@
   bottom: 0;
   margin: auto;
   cursor: pointer;
-  top: 6rem;
+  top: 3rem;
   z-index: 33;
 }
 .catArrows img {
-  width: 60px;
+  width: 50px;
 }
 
 .rightArrow {
@@ -26,4 +26,34 @@
   left: 1.5rem;
 
   text-align: start;
+}
+/* notFocus */
+.notFocus {
+  scale: 0.7 !important;
+  opacity: 0.7 !important;
+}
+.focusCat {
+  opacity: 1 !important;
+  scale: 1 !important;
+}
+
+.center {
+  width: 100% !important;
+}
+.slickSlider {
+  width: 100% !important;
+}
+@media screen and (max-width: 600px) {
+  .catArrows img {
+    width: 40px !important;
+  }
+  .rightArrow {
+    right: 0;
+    text-align: end;
+  }
+  .leftArrow {
+    left: 0;
+
+    text-align: start;
+  }
 }

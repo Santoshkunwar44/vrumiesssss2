@@ -4,8 +4,9 @@
   font-family: "Poppins", sans-serif;
 }
 .navbar {
-  position: relative;
+  position: absolute;
   z-index: 99;
+
   height: 100px;
   left: 0px;
   top: 0px;
@@ -15,9 +16,10 @@
   padding: 0 2rem;
   padding-left: 0;
   display: flex;
+  width: 100%;
 }
 .navbar_left {
-  flex: 1;
+  flex: 4;
   display: flex;
   align-items: center;
   justify-content: start;
@@ -25,15 +27,16 @@
 }
 
 .navListItem {
-  font-weight: 700;
   font-size: 16px;
   line-height: 30px;
   /* identical to box height */
-
-  font-family: "Poppins", sans-serif;
-  color: #ffffff;
-  letter-spacing: 1.8px;
+  font-weight: 500;
+  color: #ffffff59;
+  letter-spacing: 2px;
   position: relative;
+}
+.active {
+  color: white !important;
 }
 .active::before {
   content: "";
@@ -49,7 +52,7 @@
   border-radius: 3px;
 }
 .navbar_right {
-  flex: 1;
+  flex: 8;
   display: flex;
   align-items: center;
   justify-content: end;
@@ -104,4 +107,211 @@
 }
 .signUpBtn img {
   width: 25px;
+}
+.addBtnLink {
+  display: grid;
+  place-items: center;
+}
+
+@media screen and (max-width: 480px) {
+  .navProfileImg {
+    width: 40px;
+    height: 40px;
+  }
+  .tokenText {
+    font-size: 11px;
+  }
+  .navPofileBoxInfo {
+    display: none;
+  }
+  .navbar_left {
+    gap: 10px;
+  }
+  .navListItem {
+    font-size: 10px;
+    font-weight: 500;
+  }
+  .navListItem::before {
+    top: -5px;
+  }
+  /* nav right */
+  .navbar_right {
+    gap: 10px;
+  }
+  .signUpBtn {
+    height: 30px;
+    font-size: 10px;
+    border: 2px solid #37e710;
+  }
+  .signUpBtn img {
+    width: 15px;
+  }
+  .tokenBox {
+    gap: 10px;
+  }
+  .navPostBtn {
+    width: 25px;
+  }
+  .tokenBox img {
+    width: 20px;
+  }
+  .navbar_right a {
+    display: grid;
+    place-items: center;
+  }
+  .navLogo {
+    width: 70px;
+  }
+
+  .active::before {
+    height: 3px;
+    top: -1px;
+  }
+}
+@media screen and (min-width: 480px) and (max-width: 600px) {
+  .navPofileBoxInfo {
+    display: none;
+  }
+  .navbar_left {
+    gap: 1rem;
+  }
+  .navLogo {
+    width: 85px;
+  }
+  .navListItem {
+    font-size: 13px;
+  }
+  .navPostBtn {
+    width: 30px;
+  }
+  .signUpBtn {
+    height: 35px;
+    font-size: 12px;
+    border: 2px solid #37e710;
+  }
+  .tokenBox img {
+    width: 30px;
+  }
+  .signUpBtn img {
+    width: 16px;
+  }
+  .active::before {
+    height: 3px;
+    top: -1px;
+  }
+  .navbar_right {
+    gap: 1rem;
+  }
+}
+@media screen and (min-width: 600px) and (max-width: 768px) {
+  .navbar_left {
+    gap: 1rem;
+  }
+  .navLogo {
+    width: 96px;
+  }
+  .navListItem {
+    font-size: 14px;
+  }
+  .navPostBtn {
+    width: 35px;
+  }
+  .signUpBtn {
+    height: 40px;
+    font-size: 13px;
+  }
+  .signUpBtn img {
+    width: 18px;
+  }
+  .navbar_right {
+    gap: 1rem;
+  }
+  .navProfileImg {
+    width: 45px;
+    height: 45px;
+  }
+  .navProfileBoxName {
+    font-size: 15px;
+  }
+  .navProfileBoxEmail {
+    font-size: 8px;
+  }
+}
+@media screen and (min-width: 780px) and (max-width: 992px) {
+  .navbar {
+    padding: 0 10px;
+  }
+  .navLogo {
+    width: 100px;
+  }
+  .navbar_left {
+    gap: 1.5rem;
+  }
+  .navListItem {
+    font-size: 12px;
+  }
+  .navListItem::before {
+    top: -5px;
+  }
+  /* nav right */
+  .navbar_right {
+    gap: 2rem;
+  }
+  .signUpBtn {
+    width: fit-content;
+    font-size: 10px;
+    height: 35px;
+  }
+  .signUpBtn img {
+    width: 15px;
+  }
+  .navPostBtn {
+    width: 30px;
+  }
+  .tokenBox img {
+    width: 30px;
+  }
+  .navbar_right a {
+    display: grid;
+    place-items: center;
+  }
+}
+@media screen and (min-width: 992px) and (max-width: 1024px) {
+  .navbar {
+    padding: 0 10px;
+  }
+  .navLogo {
+    width: 100px;
+  }
+  .navbar_left {
+    gap: 1.5rem;
+  }
+  .navListItem {
+    font-size: 12px;
+  }
+  .navListItem::before {
+    top: -5px;
+  }
+  /* nav right */
+  .navbar_right {
+    gap: 2rem;
+  }
+  .signUpBtn {
+    width: fit-content;
+    font-size: 10px;
+    height: 35px;
+  }
+  .signUpBtn img {
+    width: 15px;
+  }
+  .navPostBtn {
+    width: 30px;
+  }
+  .tokenBox img {
+    width: 30px;
+  }
+  .navbar_right a {
+    display: grid;
+    place-items: center;
+  }
 }

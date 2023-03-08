@@ -8,16 +8,19 @@ import styles from "./createPost.module.css"
 import { useDispatch, useSelector } from "react-redux"
 import { setToastifyInfo } from "../../redux/actions/otherAction"
 import { getCitiesInState, getStatesOfAmerica } from "../../utils/apis/location/locationApi"
+import { useNavigate } from "react-router-dom"
 const CreatePost = () => {
 
     const { userData } = useSelector((state) => state.userReducer)
     const [createPostData, setCreatePostData] = useState({
+        loading: false,
         owner: userData?._id,
         type: "Advertise",
         VBTused: 0,
         orderNowBtn: false,
         inventoryCount: 1,
         setLocation: true,
+        websiteLink: "",
         onlineOnly: false,
         subCategory: "",
         category: "",
@@ -28,7 +31,7 @@ const CreatePost = () => {
 
     })
     const [categoryList, setCategoryList] = useState([])
-    const [currentSelectedCategory, setCurrentSelectedCategory] = useState(categoryList[0]?.name)
+    const [currentSelectedCategory, setCurrentSelectedCategory] = useState("#")
     const [subCategory, setSubCategory] = useState([])
     const fileRef = useRef()
     const [startUpload, setStartUpload] = useState(false)
@@ -36,6 +39,7 @@ const CreatePost = () => {
     const [theCity, setCity] = useState([])
     const [theState, setstate] = useState([])
     const dispatch = useDispatch()
+    const navigate = useNavigate()
 
 
     useEffect(() => {
@@ -77,11 +81,7 @@ const CreatePost = () => {
         }
     }, [createPostData?.location?.state])
 
-    useEffect(() => {
 
-        setCurrentSelectedCategory(categoryList[0]?.name)
-
-    }, [categoryList])
 
 
     useEffect(() => {
@@ -132,13 +132,20 @@ const CreatePost = () => {
 
     }
     const getAllCitiesInStates = async (selectedState) => {
-
+        setCreatePostData((prev) => {
+            return { ...prev, loading: true }
+        })
         try {
-
             const { data } = await getCitiesInState(selectedState)
             setCity(data.data)
+            setCreatePostData((prev) => {
+                return { ...prev, loading: false }
+            })
         } catch (error) {
             console.log(error)
+            setCreatePostData((prev) => {
+                return { ...prev, loading: false }
+            })
         }
 
     }
@@ -250,7 +257,7 @@ const CreatePost = () => {
 
                                 <div className={styles.postLocationBtnsBox}>
                                     <div className={styles.postLocationText}>
-                                        Choose Post Location
+                                        Choose  Location
                                     </div>
                                     <div className={styles.catBannerBtnWrapper}>
                                         <button onClick={() => locationSetting("location")} className={`${styles.catBtnOption} ${createPostData.setLocation ? styles.activeCatOption : ""}`}> <span>Set Location</span></button>
@@ -265,27 +272,31 @@ const CreatePost = () => {
                                             <div className={styles.locationCityBox}>
 
                                                 <img src="/NavMap.png" alt="map.png" />
-                                                <select onChange={(e) => handleLocation("state", e.target.value)} name="state"
-                                                    value={createPostData?.location?.state} >
-                                                    <option >state</option>
-                                                    {
-                                                        theState?.map((state) => (
-                                                            <option value={state?.name}>{state?.name}</option>
-                                                        ))
-                                                    }
+                                                <div className={styles.select_boxes}>
 
-                                                </select>
-                                                <select onChange={(e) => handleLocation("city", e.target.value)} name="city" value={createPostData?.location?.city ? createPostData?.location?.city : "city "}>
-                                                    <option > city</option>
-                                                    {
-                                                        theCity?.map((city) => (
-                                                            <>
-                                                                <option value={city}>{city}</option>
-                                                            </>
-                                                        ))
-                                                    }
+                                                    <select onChange={(e) => { handleLocation("state", e.target.value); setCity([]) }} name="state"
+                                                        value={createPostData?.location?.state} >
+                                                        <option selected disabled value={"#"}>state</option>
+                                                        {
+                                                            theState?.map((state) => (
+                                                                <option value={state?.name}>{state?.name}</option>
+                                                            ))
+                                                        }
 
-                                                </select>
+                                                    </select>
+                                                    <select onChange={(e) => handleLocation("city", e.target.value)} name="city" value={createPostData?.location?.city ? createPostData?.location?.city : "city "}>
+                                                        <option selected disabled value={"#"}> {createPostData.loading ? "loading" : "city"} </option>
+
+                                                        {
+                                                            theCity?.map((city) => (
+                                                                <>
+                                                                    <option value={city}>{city}</option>
+                                                                </>
+                                                            ))
+                                                        }
+
+                                                    </select>
+                                                </div>
                                             </div> : ""
 
 
@@ -295,19 +306,16 @@ const CreatePost = () => {
                             </div >
                         </div>
                         <div className={styles.hrLine}>
-
                         </div>
                         <div className={styles.createPostTopRight} >
                             <div className={styles.topRightWrapper}>
 
                                 <div className={styles.postTopRightHeader}>
-
                                     Current Category Selected
                                 </div>
                                 <div className={styles.postToprightInfosBox}>
-
                                     <p>
-                                        <span className={styles.key}>  Category selected </span>  : {currentSelectedCategory}
+                                        <span className={styles.key}>  Category selected </span>  : {currentSelectedCategory !== "#" && currentSelectedCategory}
                                     </p>
                                     <p>
                                         <span className={styles.key}>  Subcategory Selected </span>  : {createPostData.subCategory}
@@ -338,7 +346,8 @@ const CreatePost = () => {
                                 </div>
                                 <div className={`${styles.inventoryOptionBox} ${createPostData.VBTused < 20 ? styles.inventoryDisabled : ""}`}>
                                     <div className={styles.inventoryLeftBox}>
-                                        <p >Order Now Button</p>
+
+                                        <p className={styles.orderNowBtnText}>Order Now Button</p>
                                         <div className={styles.catBannerBtnWrapper}>
 
                                             <button onClick={() => onChangeEnableBtn("enable")} className={`${styles.catBtnOption} ${createPostData.orderNowBtn ? styles.activeCatOption : ""}`}> <span>Enable Button</span></button>
@@ -373,6 +382,7 @@ const CreatePost = () => {
                                             <label className={styles.label}> Category :</label>
 
                                             <select onChange={(e) => { setCurrentSelectedCategory(e.target.value); onChangeInput(e) }} value={currentSelectedCategory} className={styles.createPostSelect} name={"category"} >
+                                                <option value="#" selected disabled>Category</option>
                                                 {
                                                     categoryList?.map((item, index) => (
                                                         <option key={index} value={item.name}>{item.name}</option>
@@ -387,6 +397,7 @@ const CreatePost = () => {
                                             <label className={styles.label}> Subcategory :</label>
 
                                             <select name="subCategory" value={createPostData.subCategory} onChange={onChangeInput} className={styles.createPostSelect} >
+                                                <option value="#" selected disabled>sub Cateogory</option>
                                                 {
                                                     subCategory?.map((item, index) => (
                                                         <option key={index} value={item}>{item}</option>
@@ -404,23 +415,50 @@ const CreatePost = () => {
                                             </div>
 
                                         </div>
-                                        <div className={styles.priceSettingItem}>
-                                            <label className={styles.label} > Price Setting:</label>
-                                            <div className={styles.priceSettingBox}>
-                                                <input onChange={onChangeInput} name="price" type="text" placeholder="Set price...    " />
+
+                                        <div className={styles.mini_photo_wrapper}>
+                                            <label className={styles.label} >Item photos</label>
+                                            <div onClick={() => fileRef.current.click()} className={styles.createPostImageWrapper}>
+
+                                                <img className={styles.folderImg} src="/images/create/folder.png" alt="folder" />
                                             </div>
+                                            <input onChange={(e) => setImageFiles(e.target.files)} multiple style={{ display: "none" }} type="file" name="" id="" ref={fileRef} />
                                         </div>
 
 
                                     </div>
                                     <div onClick={() => fileRef.current.click()} className={styles.createPostImageWrapper}>
 
-                                        <img src="/images/create/folder.png" alt="folder" />
+                                        <img className={styles.folderImg} src="/images/create/folder.png" alt="folder" />
+                                        <div className={styles.imageWrapperInfo}>
+
+                                            <span>Minimum 1 photo</span>
+                                            {
+
+                                                imageFiles.length > 0 && <span>You submitted {imageFiles.length} photos</span>
+
+                                            }
+                                        </div>
                                     </div>
                                     <input onChange={(e) => setImageFiles(e.target.files)} multiple style={{ display: "none" }} type="file" name="" id="" ref={fileRef} />
                                 </div>
+                                <div className={styles.websiteAndpriceBox}>
+
+                                    <div className={styles.priceSettingItem}>
+                                        <label className={styles.label} > Price Setting:</label>
+                                        <div className={styles.priceSettingBox}>
+                                            <input onChange={onChangeInput} name="price" type="text" placeholder="Set price...    " />
+                                        </div>
+                                    </div>
+                                    <div className={styles.websiteUrlItem}>
+                                        <label className={styles.label} > Website Url:</label>
+                                        <div className={styles.websiteUrlBox}>
+                                            <input onChange={onChangeInput} name="websiteLink" type="text" placeholder="website url...    " />
+                                        </div>
+                                    </div>
+                                </div>
                                 <div className={styles.contentRightOptionsBottom}>
-                                    <img src="/token.png" alt="token" />
+                                    <img className={styles.vbtTokenImg} src="/token.png" alt="token" />
                                     <div className={styles.tokenRequiredTextBox}>
                                         <p>0 VBT required to post</p>
                                         <p className={styles.totalBalance}>Total Balance: {userData?.tokenAvailabe} VBT’s</p>
@@ -430,19 +468,22 @@ const CreatePost = () => {
                         </div>
 
                         <div className={styles.createPostBottomContent}>
-                            <div className={styles.createPostBottomVBTInfoTextBox}>
+                            <div className={styles.bottomfirstContent}>
 
-                                <p className={styles.vbtTextBottom}>How many VBT’s do you want to use?</p>
-                                <p className={styles.minimumVBTwarnText}>Order Now Button requires minimum 20 VBT</p>
-                            </div>
-                            <div className={styles.vbtBox}>
-                                <img onClick={() => changeVBTusedQuantity("Less")} src="/images/create/minimize.png" alt="minimizeImg" />
-                                <p className={styles.vbtcount}>{createPostData.VBTused}</p>
-                                <img onClick={() => changeVBTusedQuantity("Add")} src="/images/create/maximize.png" alt="maximizeImg" />
+                                <div className={styles.createPostBottomVBTInfoTextBox}>
+
+                                    <p className={styles.vbtTextBottom}>How many VBT’s do you want to use?</p>
+                                    <p className={styles.minimumVBTwarnText}>Order Now Button requires minimum 20 VBT</p>
+                                </div>
+                                <div className={styles.vbtBox}>
+                                    <img className={styles.minBtn} onClick={() => changeVBTusedQuantity("Less")} src="/images/create/minimize.png" alt="minimizeImg" />
+                                    <p className={styles.vbtcount}>{createPostData.VBTused}</p>
+                                    <img className={styles.maxBtn} onClick={() => changeVBTusedQuantity("Add")} src="/images/create/maximize.png" alt="maximizeImg" />
+                                </div>
                             </div>
                             <div className={styles.bottom_BtnWrapper}>
-                                <button className={styles.backBtn}>
-                                    <img src="/images/create/leftArrow.png" alt="leftArrow" />  <span>BACK</span>
+                                <button onClick={() => navigate(-1)} className={styles.backBtn}>
+                                    <span>BACK</span>
                                 </button>
                                 <button onClick={handleStartUpload} className={styles.postBtn}>
                                     POST

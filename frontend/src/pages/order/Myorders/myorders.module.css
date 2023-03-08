@@ -126,7 +126,7 @@
   font-family: "Poppins";
   font-style: normal;
   font-weight: 700;
-  font-size: 12.037px;
+  font-size: 18.037px;
   line-height: 18px;
   /* identical to box height */
   letter-spacing: 0.11em;
@@ -181,4 +181,35 @@
 /* bankBox */
 .bankBox img {
   width: 50px;
+}
+.paymentHeader {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  width: 100%;
+  justify-content: center;
+}
+.paymentHeaderItem {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+.paymentHeaderItemKey {
+  color: #37e710;
+}
+
+@media screen and (max-width: 600px) {
+  .designTextMyorder {
+    font-size: 15px;
+  }
+  .payBtn {
+    width: 90px;
+    font-size: 18px;
+  }
+  .backBtn {
+    width: 75px;
+  }
+  .myOrdersMainBox {
+    padding: 12px;
+  }
 }

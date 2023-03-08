@@ -1,0 +1,7 @@
+.chat_page {
+  display: flex;
+  margin-top: 100px;
+  height: calc(100vh - 107px);
+  border-top: 2px solid;
+  border-color: #001219a9;
+}

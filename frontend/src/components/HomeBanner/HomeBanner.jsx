@@ -10,7 +10,6 @@ const HomeBanner = () => {
                     <div className={styles.bannerRoundBox}>
                     </div>
                     <div className={styles.bannerRoundEclipseBig}>
-
                     </div>
                     <div className={styles.blurContentBox}>
                         <div className={styles.blurContentProfileDetails}>

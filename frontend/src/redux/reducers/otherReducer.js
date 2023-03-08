@@ -3,7 +3,12 @@ const initialState = {
     refresh: false,
     locationFilterPostItem: null,
     locationFilters: null,
-    categorySliderIndex: 0
+    categorySliderIndex: 0,
+    sessionExpired: false,
+    loading: {
+        isLoading: false,
+        path: ""
+    }
 }
 
 export const otherReducer = (state = initialState, action) => {
@@ -29,6 +34,24 @@ export const otherReducer = (state = initialState, action) => {
         case "SET_CATEGORY_SLIDER_INDEX":
             return {
                 ...state, categorySliderIndex: action.data
+            }
+
+        case 'SET_LOADING_DATA':
+            return {
+                ...state, loading: action.data
+            }
+
+        case "SET_SESSION_EXPIRED":
+            return {
+                ...state, sessionExpired: true
+            }
+        case "RESET_SESSION_EXPIRED":
+            return {
+                ...state, sessionExpired: false
+            }
+        case 'REMOVE_LOADING_DATA':
+            return {
+                ...state, loading: { isLoading: false, path: "" }
             }
 
         case "REMOVE_TOASTIFY_INFO":

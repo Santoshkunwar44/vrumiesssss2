@@ -17,13 +17,16 @@
   margin-top: 3rem;
   width: 100%;
 }
+.orderTopSelectVbt div {
+  width: 30px;
+  text-align: center;
+}
 .startOrderTotalSelectedBox p {
   color: #37e710;
   font-family: "Poppins";
   font-style: normal;
   font-weight: 600;
   font-size: 22.01px;
-  line-height: 51px;
   /* or 158% */
 
   letter-spacing: -0.608184px;
@@ -60,10 +63,9 @@
   font-style: normal;
   font-weight: 500;
   font-size: 20.0115px;
-  line-height: 51px;
   /* or 133% */
 
-  text-align: center;
+  text-align: start;
   letter-spacing: -0.608184px;
 
   color: #ffffff;
@@ -91,7 +93,6 @@
   font-style: normal;
   font-weight: 700;
   font-size: 21px;
-  line-height: 9px;
   /* identical to box height */
 
   letter-spacing: 0.11em;
@@ -103,7 +104,6 @@
   font-style: normal;
   font-weight: 600;
   font-size: 20.01px;
-  line-height: 51px;
   /* or 158% */
 
   text-align: center;
@@ -115,4 +115,107 @@
   flex: 6;
   display: flex;
   justify-content: end;
+}
+@media screen and (min-width: 768px) and (max-width: 992px) {
+  .startOrderHeader {
+    align-items: flex-start;
+    margin-top: 40px;
+  }
+
+  .orderTopSelectVbt {
+    gap: 0.6rem;
+  }
+  .vbtText {
+    font-size: 18px;
+  }
+  .basicOrderText {
+    line-height: 25px;
+    font-size: 18px;
+  }
+  .selectQuantityText {
+    letter-spacing: 1px;
+    font-size: 18px;
+  }
+}
+@media screen and (min-width: 600px) and (max-width: 768px) {
+  .startOrderHeader {
+    align-items: flex-start;
+    margin-top: 40px;
+  }
+
+  .orderTopSelectVbt {
+    gap: 0.6rem;
+  }
+  .vbtText {
+    font-size: 18px;
+  }
+  .basicOrderText {
+    line-height: 25px;
+    font-size: 18px;
+  }
+  .selectQuantityText {
+    letter-spacing: 1px;
+    font-size: 18px;
+  }
+}
+@media screen and (min-width: 480px) and (max-width: 600px) {
+  .startOrderHeader {
+    align-items: flex-start;
+    margin-top: 40px;
+  }
+
+  .orderTopSelectVbt {
+    gap: 0.6rem;
+  }
+  .vbtText {
+    font-size: 18px;
+  }
+  .basicOrderText {
+    line-height: 25px;
+    font-size: 18px;
+  }
+  .selectQuantityText {
+    letter-spacing: 1px;
+    font-size: 18px;
+  }
+}
+@media screen and (max-width: 480px) {
+  .startOrderHeader {
+    align-items: flex-start;
+    margin-top: 40px;
+  }
+
+  .orderTopSelectVbt {
+    gap: 0.6rem;
+  }
+  .vbtText {
+    font-size: 15px;
+  }
+  .basicOrderText {
+    line-height: 25px;
+    font-size: 13px;
+  }
+  .selectQuantityText {
+    letter-spacing: 1.1px;
+    font-size: 11px;
+  }
+  .orderTopSelectVbt img {
+    width: 20px;
+  }
+  .vbtQuantity {
+    font-size: 15px;
+  }
+  .startOrderTotalSelectedBox {
+    padding: 0 1rem;
+  }
+  .startOrderTotalSelectedBox p {
+    font-size: 19px;
+  }
+  .orderNowBtn {
+    width: 120px;
+    border-radius: 7px;
+    height: 37px;
+    font-size: 16px;
+    letter-spacing: 1px;
+  }
 }

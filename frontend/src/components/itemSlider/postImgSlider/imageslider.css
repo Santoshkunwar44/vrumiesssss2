@@ -1,0 +1,82 @@
+/* main box */
+.imageBox {
+  width: 100% !important;
+  height: 180px !important;
+  text-align: center;
+  display: flex;
+  /* align-items: center; */
+  justify-content: center;
+}
+
+.postImgItem {
+  padding: 15px;
+  width: 95% !important;
+  height: 120px !important;
+  display: grid !important ;
+  place-items: center !important;
+}
+.postImgItem img {
+  width: 100%;
+  height: 120px;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+.normal_imgBox {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+}
+.normal_image_item {
+  width: 120px;
+  height: 120px;
+}
+.normal_image_item img {
+  width: 90%;
+  height: 90%;
+  object-fit: cover;
+  border-radius: 8px;
+  cursor: pointer;
+}
+.slick-track {
+  opacity: 1;
+  height: 205px !important;
+}
+.catArrows {
+  position: absolute;
+  display: inline-block;
+  bottom: 0;
+  margin: auto;
+  cursor: pointer;
+  top: 3rem;
+  z-index: 33;
+}
+.catArrows img {
+  width: 30px;
+}
+
+.rightArrow {
+  right: 1.5rem;
+  text-align: end;
+}
+.leftArrow {
+  left: 1.5rem;
+
+  text-align: start;
+}
+@media screen and (min-width: 768px) and (max-width: 992px) {
+  .slick-slider {
+    /* width: 600px !important; */
+  }
+}
+@media screen and (max-width: 600px) {
+  .postImgItem {
+    padding: 0;
+    width: 120px !important;
+  }
+
+  .catArrows {
+    top: 1rem;
+  }
+}

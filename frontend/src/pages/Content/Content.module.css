@@ -1,0 +1,72 @@
+.content {
+  margin-top: 100px;
+  width: 100%;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+.content_header {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  justify-content: space-between;
+}
+.content_tab_list_box {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+.tab_list {
+  display: flex;
+  gap: 1rem;
+}
+.hrLine {
+  flex: 1;
+  height: 4px;
+  background-color: aliceblue;
+}
+.tab_list_item {
+  border: 3px solid grey;
+  width: fit-content;
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  padding: 0 15px;
+  height: 50px;
+  border-radius: 5px;
+  cursor: pointer;
+  opacity: 0.4;
+  scale: 0.8;
+  transition: all 0.3s;
+}
+.active_tab_list_item {
+  opacity: 1;
+  scale: 1;
+  border: 3px solid #37e710;
+}
+.back_text {
+  color: #37e710;
+}
+.header_title h3 {
+  font-size: 2rem;
+  color: #37e710 !important;
+  letter-spacing: 1px;
+}
+.create_btn {
+  display: flex;
+  height: 40px;
+  padding: 0 10px;
+  gap: 1rem;
+  width: fit-content;
+  background-color: #37e710;
+  align-items: center;
+}
+.content_items_container {
+  display: flex;
+  gap: 2rem;
+  flex-direction: column;
+}
+.back_text {
+  cursor: pointer;
+}

@@ -1,0 +1,30 @@
+.no_chats_yet_box {
+  display: grid;
+  place-items: center;
+  position: relative;
+  height: 100%;
+}
+
+.noChat_img_box {
+  text-align: center;
+  cursor: pointer;
+  height:fit-content;
+  position: absolute;
+  top: 20%;
+}
+.noChatImg {
+  cursor: pointer;
+  width: 50%;
+}
+.no_chat_text {
+  color: rgba(128, 128, 128, 0.74);
+  font-size: 12px;
+  letter-spacing: 1px;
+}
+
+@media screen and (max-width:600px){
+  .noChatImg{
+    width: 35%;
+
+  }
+}

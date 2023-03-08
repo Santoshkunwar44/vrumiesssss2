@@ -20,8 +20,8 @@
   gap: 1rem;
   text-align: center;
   padding-top: 1rem;
-  box-shadow: rgba(0, 0, 0, 0.16) 0px 10px 36px 0px,
-    rgba(0, 0, 0, 0.06) 0px 0px 0px 1px;
+  box-shadow: rgb(28 28 28) -1px 3px 20px 0px,
+    rgb(78 77 77 / 48%) 0px 0px 0px 1px;
 }
 .ModalDelete {
   display: flex;

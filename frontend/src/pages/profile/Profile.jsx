@@ -1,11 +1,9 @@
 import { useState } from 'react'
 import Navbar from '../../components/Navbar/Navbar'
-import Mypost from '../../components/profile/MyPost/Mypost'
-import Transactions from '../../components/transactions/Transactions'
 import styles from './profile.module.css'
 import { useEffect } from "react"
-import { getUserById, updateUser } from '../../utils/apis/user/userApi'
-import { useParams } from 'react-router-dom'
+import { getUserByIdApi, updateUser } from '../../utils/apis/user/userApi'
+import { Outlet, useNavigate, useParams } from 'react-router-dom'
 import { useRef } from 'react'
 import UploadImageProgress from '../../components/uploadImage/UploadImageProgress'
 import { useDispatch } from 'react-redux'
@@ -28,9 +26,24 @@ const Profile = () => {
     const nameRef = useRef()
     const imageRef = useRef()
     const dispatch = useDispatch()
+    const postReplyQuotes = useRef()
+    const [postReplyBoxWidth, setPostReplyBoxWidth] = useState()
+    const navigate = useNavigate()
 
+
+    useEffect(() => {
+        if (postReplyQuotes.current) {
+            setPostReplyBoxWidth(postReplyQuotes.current.getBoundingClientRect().width)
+        }
+        window.addEventListener("resize", handleResize)
+    }, [])
+    const handleResize = () => {
+        if (!postReplyQuotes?.current) return
+        setPostReplyBoxWidth(postReplyQuotes.current?.getBoundingClientRect()?.width)
+    }
 
     const locationState = useLocation().state
+
     useEffect(() => {
         if (locationState) {
             const { transactionId } = locationState
@@ -76,14 +89,12 @@ const Profile = () => {
 
         if (!userId) return
         fetchCurrentuser()
-
-
     }, [userId])
 
 
     const fetchCurrentuser = async () => {
         try {
-            const { data } = await getUserById(userId)
+            const { data } = await getUserByIdApi(userId)
             setCurrentUser(data.message)
 
         } catch (error) {
@@ -165,25 +176,25 @@ const Profile = () => {
                     <img className={styles.profileMark} src="/images/profilemark.png" alt="profileMark" />
                     <div className={styles.profileMainInfo}>
                         <div onClick={() => imageRef.current.click()} className={styles.imageWrapper}>
-                            <img className={styles.profileImage} src={currentUser?.profileImg} alt="profileImage" />
+                            <img referrerPolicy="no-referrer" className={styles.profileImage} src={currentUser?.profileImg} alt="profileImage" />
                             <div className={styles.imageBg}>
-                                <img src="/images/profileCamera.png" alt="profileCamera" />
+                                <img className={styles.cameraImg} src="/images/profileCamera.png" alt="profileCamera" />
                                 <input multiple style={{ display: "none" }} onChange={(e) => setProfileFile([e.target.files[0]])} type="file" name="profileImg" id="" ref={imageRef} />
 
                             </div>
                         </div>
 
                         <div className={styles.profileNameInfo}>
-                            {
-                                nameEdit ? <img alt='doneImg' className={styles.pencilEdit} onClick={() => handleUpdateUser()} src="https://img.icons8.com/emoji/48/null/check-mark-emoji.png" /> : <img onClick={() => setNameEdit(true)} className={styles.pencilEdit} src="/images/pencil.png" alt="pencilEdit" />
-                            }
+
 
                             <p ref={nameRef} contentEditable={nameEdit} className={styles.profileUsername}> {currentUser?.username} </p>
                             <p className={styles.profileEmail}>{currentUser?.email}</p>
 
                         </div>
 
-
+                        {
+                            nameEdit ? <img alt='doneImg' className={styles.pencilEdit} onClick={() => handleUpdateUser()} src="https://img.icons8.com/emoji/48/null/check-mark-emoji.png" /> : <img onClick={() => setNameEdit(true)} className={styles.pencilEdit} src="/images/pencil.png" alt="pencilEdit" />
+                        }
 
                     </div>
                     <div className={styles.profileUserDescription}>
@@ -210,25 +221,20 @@ const Profile = () => {
                     <div className={styles.profileRightTop}>
                         <div className={styles.profileRightTopIitems}>
 
-                            <div onClick={() => setCurrentInspect("myPost")} className={`${styles.profileTopItem}  ${currentInspect === "myPost" ? styles.activeProfileTopItem : ""} `}>
-
+                            <div onClick={() => navigate("")} className={`${styles.profileTopItem}  ${currentInspect === "myPost" ? styles.activeProfileTopItem : ""} `}>
                                 <img src="/profile/post.png" alt="profileInfo" />
                                 <p>My posts</p>
                             </div>
 
-                            <div onClick={() => setCurrentInspect("myTransactions")} className={`${styles.profileTopItem} ${currentInspect === "myTransactions" ? styles.activeProfileTopItem : ""} `}>
+                            <div onClick={() => navigate("transactions")} className={`${styles.profileTopItem} ${currentInspect === "myTransactions" ? styles.activeProfileTopItem : ""} `}>
 
                                 <img src="/profile/transaction.png" alt="loctionImage" />
                                 <p>My Transaction</p>
                             </div>
-
-
                         </div>
                     </div>
-                    <div className={styles.profileRightBottom}>
-                        {
-                            currentInspect === "myPost" ? <Mypost /> : <Transactions transactionId={viewTransaction} />
-                        }
+                    <div ref={postReplyQuotes} className={styles.profileRightBottom}>
+                        <Outlet context={{ width: (postReplyBoxWidth - 50) }} />
                     </div>
                 </div>
             </div>
@@ -237,3 +243,7 @@ const Profile = () => {
 }
 
 export default Profile
+
+{/* {
+    currentInspect === "myPost" ? <Mypost itemWidth={postReplyBoxWidth} /> : <Transactions transactionId={viewTransaction} />
+} */}

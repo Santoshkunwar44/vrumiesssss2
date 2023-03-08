@@ -8,12 +8,11 @@ import {
 import { useEffect } from 'react'
 import styles from "./modal.module.css"
 
-function PaymentModal({ modalType = "error", removePaymentResultInfo }) {
+function PaymentModal({ modalType = "error", setOrderType }) {
     const { isOpen, onOpen, onClose } = useDisclosure()
     useEffect(() => {
         onOpen()
     }, [])
-
 
     return (
         <>
@@ -21,8 +20,9 @@ function PaymentModal({ modalType = "error", removePaymentResultInfo }) {
                 <ModalOverlay className={styles.modalOverlay} />
                 <ModalContent className={styles.modalContent}>
                     <ModalBody className={styles.modalBody}>
-
-                        {modalType === "success" ? <SuccessModalContent handleGoBack={() => { onClose(); removePaymentResultInfo() }} /> : <ErrorModalContent handleGoBack={() => onClose()} />}
+                        {modalType === "success" ?
+                            <SuccessModalContent setOrderType={() => setOrderType("select")} handleGoBack={() => { onClose() }} />
+                            : <ErrorModalContent handleGoBack={() => onClose()} />}
                     </ModalBody>
 
                 </ModalContent>
@@ -32,12 +32,12 @@ function PaymentModal({ modalType = "error", removePaymentResultInfo }) {
 }
 export default PaymentModal
 
-const SuccessModalContent = ({ handleGoBack }) => {
+const SuccessModalContent = ({ handleGoBack, setOrderType }) => {
     return (
         <>
-            <img width={"150px"} src="/images/order/markDone.png" alt="doneImg" />
-            <div className={styles.paymentResultText}>Payment Successfullly done.</div>
-            <div onClick={() => handleGoBack()} className={styles.goToOrderPage}>
+            <img className={styles.paymentImg} width={"150px"} src="/images/order/markDone.png" alt="doneImg" />
+            <div className={styles.paymentResultText}>Payment Successfull .</div>
+            <div onClick={() => { handleGoBack(); setOrderType() }} className={styles.goToOrderPage}>
                 Back To Order
             </div>
 
@@ -45,14 +45,13 @@ const SuccessModalContent = ({ handleGoBack }) => {
         </>
     )
 }
-const ErrorModalContent = ({ handleGoBack }) => {
+const ErrorModalContent = ({ handleGoBack, setOrderType }) => {
     return (
         <>
-            <img width={"150px"} src="/images/order/markError.png" alt="errorImg" />
-            <div className={styles.paymentResultErrroText}>Payment has  failed .</div>
-            <div onClick={() => handleGoBack()} className={styles.goToOrderPage}>
+            <img className={styles.paymentImg} width={"150px"} src="/images/order/markError.png" alt="errorImg" />
+            <div className={styles.paymentResultErrroText}>Payment   failed .</div>
+            <div onClick={() => { handleGoBack() }} className={styles.goToOrderPage}>
                 Back To Order
-
             </div>
 
 

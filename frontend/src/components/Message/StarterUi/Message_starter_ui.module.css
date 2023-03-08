@@ -1,0 +1,21 @@
+.Message_starter_ui {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  height: 100%;
+
+}
+.starter_content {
+  text-align: center;
+  width: 100%;
+  margin: auto;
+}
+.starter_content img {
+  width: 150px;
+}
+.starter_content{
+    font-size: 12px;
+}

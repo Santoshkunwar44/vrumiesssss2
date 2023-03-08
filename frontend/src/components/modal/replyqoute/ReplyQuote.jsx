@@ -143,7 +143,7 @@ function ReplyQuoteModal({ children, postId, handleSetReply, postData }) {
                                                 <img src="/token.png" alt="tokenImg" />
                                                 <span>4 VBT required to  post</span>
                                             </div>
-                                            <span className={styles.totalBalance}>Total Balance : 56 VBT's</span>
+                                            <span className={styles.totalBalance}>Total Balance : {userData?.tokenAvailabe} VBT's</span>
 
                                         </div>
                                     </div>

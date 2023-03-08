@@ -6,6 +6,7 @@
   width: fit-content;
   height: 100%;
   display: flex;
+  margin: auto;
   justify-content: center;
   align-items: center;
   flex-direction: column;
@@ -15,8 +16,27 @@
 .notFoundWrapper p {
   text-align: start;
   color: #37e710;
-  font-size: 15px;
+  font-size: 18px;
   letter-spacing: 1.3px;
   font-weight: 500;
   text-transform: uppercase;
+}
+
+@media screen and (max-width: 600px) {
+  .notFoundWrapper img {
+    width: 200px;
+  }
+  .notFoundWrapper p {
+    letter-spacing: 1.04px;
+    font-size: 12px;
+  }
+}
+@media screen and (min-width: 600px) and (max-width: 780px) {
+  .notFoundWrapper img {
+    width: 220px;
+  }
+  .notFoundWrapper p {
+    letter-spacing: 1.04px;
+    font-size: 15px;
+  }
 }

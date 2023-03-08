@@ -1,0 +1,69 @@
+.paymentHeader {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+.paymentHeaderItem {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+.bankBox img {
+  width: 50px;
+}
+.paymentHeader {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  width: 100%;
+  font-size: 16px;
+  justify-content: center;
+}
+.paymentHeaderItem {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+.paymentHeaderItemKey {
+  color: #37e710;
+}
+.headerText {
+  color: #37e710;
+  width: 100%;
+  letter-spacing: 1px;
+  font-size: 28px;
+  text-align: start;
+}
+.paymentHeader {
+  padding: 2rem 0;
+}
+.paymentHeader p {
+  font-size: 14px;
+}
+.todayDate {
+  font-size: 13px;
+  color: gray;
+}
+
+@media screen and (min-width: 600px) and (max-width: 780px) {
+  .headerText {
+    font-size: 23px;
+  }
+  .paymentHeader p {
+    font-size: 12px;
+  }
+}
+@media screen and (max-width: 600px) {
+  .todayDate {
+    font-size: 10px;
+  }
+  .paymentHeader p {
+    font-size: 10px;
+  }
+  .headerText {
+    font-size: 20px;
+  }
+  .paymentHeader {
+    gap: 8px;
+  }
+}

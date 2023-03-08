@@ -4,7 +4,7 @@ import { storage } from "../utils/firebase/firebase";
 
 
 
-export const useUploadImages = (images, path) => {
+export const useUploadImages = (images, path, isDocs) => {
 
 
 
@@ -20,7 +20,7 @@ export const useUploadImages = (images, path) => {
         if (urls.length >= images?.length) {
             return setError(true)
         }
-        upload(images[urls.length], "path", setUrls)
+        upload(images[urls.length], "path", setUrls, isDocs)
 
 
     }, [urls])
@@ -30,9 +30,10 @@ export const useUploadImages = (images, path) => {
     return { url: urls, error }
 }
 
-const upload = (file, path, setUrls) => {
+const upload = (file, path, setUrls, isDocs) => {
 
-
+    console.log("the file ", file)
+    if (typeof file !== "object") return
     // Upload file and metadata to the object 'images/mountains.jpg'
     const storageRef = ref(storage, file.name);
     const uploadTask = uploadBytesResumable(storageRef, file);
@@ -49,8 +50,15 @@ const upload = (file, path, setUrls) => {
         async () => {
 
             const theUrl = await getDownloadURL(uploadTask.snapshot.ref)
+            if (isDocs) {
+                setUrls((prev) => {
+                    return [...prev, { [file.field]: theUrl }]
+                })
+            } else {
 
-            setUrls((prev) => { return [...prev, theUrl] })
+                setUrls((prev) => { return [...prev, theUrl] })
+
+            }
         }
     );
 

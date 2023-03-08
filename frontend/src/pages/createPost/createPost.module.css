@@ -1,6 +1,7 @@
 .createPost {
   width: 100%;
   height: calc(100vh - 100px);
+  margin-top: 100px;
 }
 .createPostWrapper {
   display: flex;
@@ -10,7 +11,10 @@
   padding: 2rem;
   gap: 2rem;
 }
-
+.mini_photo_wrapper {
+  display: none;
+  display: flex;
+}
 .createPostTopBox {
   display: flex;
   align-items: center;
@@ -149,12 +153,17 @@
   height: 45px;
 
   background: #000000;
-  border: 2px solid #808080;
+
+  border: 2px solid #ffffff61;
   border-radius: 4px;
   color: #808080;
   outline: none;
   font-size: 17px;
   padding: 0 10px;
+}
+.select_boxes {
+  display: flex;
+  gap: 10px;
 }
 .locationCityBox select option {
   color: #808080;
@@ -179,7 +188,7 @@
 }
 .postToprightInfosBox {
   display: flex;
-  gap: 3px;
+  gap: 10px;
   align-items: flex-start;
   flex-direction: column;
 }
@@ -199,7 +208,7 @@
 }
 .createPostContentWrapper_left {
   gap: 2rem;
-  flex: 6;
+  flex: 5;
   display: flex;
   flex-direction: column;
   width: 100%;
@@ -234,19 +243,20 @@
   font-size: 17px;
   padding: 0 1rem;
   background: #001219;
-  border: 1px solid #ffffff;
+  border: 1px solid #ffffff61;
   border-radius: 8px;
   width: 100%;
 }
 
 .createPost_description {
+  width: 100%;
   height: 200px;
   outline: none;
   color: #808080;
   font-size: 17px;
   padding: 1rem;
   background: #001219;
-  border: 1px solid #ffffff;
+  border: 1px solid #ffffff61;
   border-radius: 8px;
 }
 .createPost_inputWrapper {
@@ -261,13 +271,12 @@
   display: flex;
   flex-direction: column;
   gap: 2rem;
-
-  flex: 6;
+  padding-top: 3rem;
+  flex: 7;
 }
 .createPostTypeSelect {
-  width: 266px;
   height: 50px;
-
+  width: 100%;
   background: #001219;
   border: 1px solid #c1c1c198;
   border-radius: 46px;
@@ -276,8 +285,8 @@
   justify-content: space-evenly;
 }
 .createPostTypeOption {
-  width: 130px;
-  height: 45px;
+  width: 50%;
+  height: 48px;
   background-color: transparent;
   border-radius: 46px;
   border: none;
@@ -300,7 +309,13 @@
   align-items: flex-start;
   flex-direction: column;
   gap: 1rem;
-  flex: 6;
+  flex: 7;
+}
+.inventoryLeftBox {
+  flex: 1;
+}
+.inventoryLeft .catBannerBtnWrapper {
+  width: 100%;
 }
 .createPostSelect {
   width: 250px;
@@ -328,12 +343,29 @@
   align-items: flex-start;
   flex-direction: column;
   gap: 1rem;
+  width: 100%;
 }
 .priceSettingItem {
   display: flex;
   align-items: flex-start;
   flex-direction: column;
   gap: 1rem;
+  flex: 4;
+}
+.websiteUrlItem {
+  flex: 8;
+  display: flex;
+  align-items: flex-start;
+  flex-direction: column;
+  gap: 1rem;
+}
+.websiteUrlBox {
+  width: 100%;
+  height: 50px;
+  background: #001219;
+  border: 3px solid #37e710;
+  box-shadow: 0px 4px 9px rgba(55, 231, 16, 0.1);
+  border-radius: 5px;
 }
 .createPostRightInputsItem {
   display: flex;
@@ -363,20 +395,22 @@
   color: #001219;
 }
 .priceSettingBox {
-  width: 250px;
+  width: 100%;
   height: 50px;
-  left: 1034px;
-  top: 800px;
-
   background: #001219;
   border: 3px solid #37e710;
   box-shadow: 0px 4px 9px rgba(55, 231, 16, 0.1);
   border-radius: 5px;
 }
-.priceSettingBox input {
+.priceSettingBox input,
+.websiteUrlBox input {
+  background-color: transparent;
+  height: 100%;
+  width: 100%;
   border: none;
   outline: none;
   color: #808080;
+  padding: 0 10px;
   font-size: 17px;
 }
 .contentRightOptionsBottom {
@@ -432,20 +466,21 @@
 }
 .contentRightTop {
   display: flex;
+  gap: 2rem;
 }
 .createPostImageWrapper {
-  background-image: url("../../../public/images/create/border.png");
-  background-position: center;
-  background-repeat: no-repeat;
-  height: 200px;
   width: 200px;
-  display: flex;
-  align-items: center;
-  flex-direction: column;
-  justify-content: center;
+  justify-content: centerg;
+  border-radius: 15px;
+  border: 5px dashed;
+  width: 100%;
+  display: grid;
+  height: 200px;
+  place-items: center;
 }
 .createPostImageWrapper {
-  flex: 6;
+  flex: 5;
+  height: 100%;
 }
 /* createPostBottomContent */
 
@@ -453,7 +488,8 @@
   display: flex;
   width: 100%;
   justify-content: space-between;
-  padding: 2rem;
+  padding: 2rem 0;
+  margin-top: 3rem;
 }
 .vbtTextBottom {
   font-family: "Poppins";
@@ -546,7 +582,7 @@
 }
 .catBtnOption {
   width: 132px;
-  height: 44px;
+  height: 48px;
   background-color: transparent;
   border-radius: 46px;
   border: none;
@@ -567,7 +603,7 @@
 .catBannerBtnWrapper {
   width: 220px;
   height: 50px;
-  padding: 0px 2px;
+  padding: 0px;
 
   background: #001219;
   border: 1px solid #c1c1c198;
@@ -597,11 +633,11 @@
 .inventoryOptionBox {
   padding: 0 1rem;
   width: 100%;
-  height: 157px;
+  height: 127px;
   display: flex;
   align-items: center;
   gap: 2rem;
-  border: 1px solid #ffffff;
+  border: 1px solid #ffffff61;
   border-radius: 8px;
 }
 .inventoryRightBox {
@@ -615,7 +651,7 @@
 .inventoryRight,
 .inventoryLeft,
 .inventoryMid {
-  border: 1px solid #ffffff;
+  border: 1px solid#ffffff61;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -634,7 +670,49 @@
 .inventoryRight {
   flex: 3;
 }
-@media screen and (min-width: 768px) and (max-width: 1024px) {
+.createPostRightInputsItem {
+  width: 100%;
+}
+.createPostRightInputsItem select {
+  width: 100% !important;
+}
+/* bottom content  */
+.bottomfirstContent {
+  display: flex;
+  gap: 2rem;
+}
+.mini_photo_wrapper {
+  display: none;
+}
+/* url and price setting */
+.websiteAndpriceBox {
+  display: flex;
+  gap: 1rem;
+  width: 100%;
+}
+.createPostImageWrapper span {
+  letter-spacing: 1px;
+  font-size: 10px;
+}
+.createPostImageWrapper span:nth-of-type(2) {
+  color: #37e710;
+}
+.imageWrapperInfo {
+  bottom: 1rem;
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  justify-content: center;
+  margin: auto;
+}
+.vbtBox p {
+  text-align: center;
+  width: 30px;
+}
+.inventoryLeftBox p {
+  margin-bottom: 10px;
+}
+@media screen and (min-width: 992px) and (max-width: 1200px) {
   .createPostSelect {
     font-size: 16px;
     width: 250px;
@@ -653,8 +731,588 @@
   .optionBottomText {
     font-size: 15px;
   }
+  .locationCityBox img {
+    width: 42px;
+  }
+}
+
+@media screen and (min-width: 768px) and (max-width: 992px) {
+  .mini_photo_wrapper {
+    display: none;
+  }
+  .locationCityBox img {
+    width: 42px;
+  }
   .postToprightInfosBox p {
     text-align: start;
     font-size: 14px;
+  }
+  .postToprightInfosBox span {
+    font-size: 13px;
+  }
+  .locationCityBox select {
+    width: 120px !important;
+  }
+  .createPostSelect {
+    width: 200px;
+    font-size: 16px;
+  }
+  .createPostTypeSelect {
+    width: 200px;
+  }
+  .createPostTypeOption {
+    width: 100px;
+    height: 47px;
+  }
+  .createPostTypeOption span {
+    font-size: 14px;
+  }
+
+  /* image box */
+  .createPostImageWrapper img {
+    width: 45%;
+  }
+  .tokenRequiredTextBox {
+    gap: 2px;
+  }
+  .tokenRequiredTextBox p {
+    font-size: 14px;
+  }
+  .totalBalance {
+    font-size: 15px;
+  }
+  .contentRightOptionsBottom img {
+    width: 30px;
+  }
+  .postBtn {
+    width: 97px;
+    height: 45px;
+    font-size: 14px;
+  }
+  .backBtn {
+    width: 128px;
+    height: 45px;
+  }
+  .backBtn span {
+    font-size: 12px;
+  }
+  .backBtn img {
+    width: 20px;
+  }
+  .vbtTextBottom {
+    font-size: 13px;
+  }
+  .minimumVBTwarnText {
+    font-size: 10px;
+  }
+  .createPostBottomContent {
+    margin-top: 3rem;
+  }
+  /* vbt box */
+  .vbtBox p {
+    width: 40px;
+  }
+
+  .catBannerBtnWrapper {
+    width: 160px;
+    height: 45px;
+  }
+  .catBtnOption {
+    width: 80px;
+    height: 41px;
+  }
+}
+@media screen and (min-width: 600px) and (max-width: 768px) {
+  .bottomfirstContent {
+    gap: 2rem;
+    flex-direction: column-reverse;
+  }
+  .createPostBottomContent {
+    align-items: flex-end;
+  }
+  .createPost_left_input {
+    height: 50px;
+    font-size: 14px;
+  }
+  .createPost_description {
+    font-size: 14px;
+  }
+  .createPostImageWrapper {
+    display: none;
+  }
+  .mini_photo_wrapper {
+    width: 100%;
+    height: 160px;
+    display: block;
+  }
+  .mini_photo_wrapper .createPostImageWrapper {
+    width: 100% !important;
+    height: 150px;
+
+    display: grid;
+  }
+  .locationCityBox img {
+    width: 42px;
+  }
+  .postToprightInfosBox p {
+    text-align: start;
+    font-size: 14px;
+  }
+  .postToprightInfosBox span {
+    font-size: 13px;
+  }
+  .locationCityBox select {
+    width: 120px !important;
+  }
+  .createPostSelect {
+    width: 200px;
+    font-size: 16px;
+  }
+
+  .createPostTypeOption {
+  }
+  .createPostTypeOption span {
+    font-size: 14px;
+  }
+
+  /* image box */
+  .createPostImageWrapper img {
+    width: 30%;
+  }
+  .tokenRequiredTextBox {
+    gap: 2px;
+  }
+  .tokenRequiredTextBox p {
+    font-size: 14px;
+  }
+  .totalBalance {
+    font-size: 15px;
+  }
+  .contentRightOptionsBottom img {
+    width: 30px;
+  }
+  .postBtn {
+    width: 89px;
+    height: 40px;
+    font-size: 14px;
+  }
+  .backBtn {
+    width: 89px;
+    height: 40px;
+  }
+  .backBtn span {
+    font-size: 12px;
+  }
+  .backBtn img {
+    width: 20px;
+  }
+  .vbtTextBottom {
+    font-size: 13px;
+  }
+  .minimumVBTwarnText {
+    font-size: 10px;
+  }
+  .createPostBottomContent {
+    margin-top: 3rem;
+  }
+  /* vbt box */
+  .vbtBox p {
+    width: 40px;
+  }
+
+  .createPostContentWrapper_left {
+    flex: 1;
+  }
+  .cratePostContentRight {
+    flex: 1;
+  }
+  .createPostContentWrapper {
+    gap: 1rem;
+  }
+  .createPostRightInputsBox {
+    padding: 0 15px;
+  }
+  /* inventory option box */
+
+  .inventoryOptionBox {
+    flex-direction: column;
+    padding: 2rem 1rem;
+    height: auto;
+  }
+  .inventoryLeftBox {
+    width: 100%;
+  }
+  .inventoryRightBox {
+    width: 100%;
+  }
+  .inventoryLeftBox p,
+  .inventoryRightBox p {
+    font-size: 12px;
+    padding: 10px 0;
+  }
+  .catBannerBtnWrapper {
+    width: 100%;
+    height: 45px;
+  }
+  .catBtnOption {
+    height: 41px;
+    width: 50%;
+  }
+}
+
+@media screen and (min-width: 480px) and (max-width: 600px) {
+  .createPostBottomContent {
+    align-items: flex-end;
+    flex-direction: column;
+    gap: 2rem;
+  }
+  .bottomfirstContent {
+    gap: 1rem;
+    flex-direction: column-reverse;
+    width: 100%;
+  }
+  .createPostBottomVBTInfoTextBox {
+    text-align: start;
+  }
+  .minimumVBTwarnText {
+    font-size: 9px;
+    letter-spacing: 1px;
+  }
+  .vbtTextBottom {
+    font-size: 10px;
+    letter-spacing: 1px;
+  }
+  .createPost_left_input,
+  .createPost_description,
+  .createPostSelect,
+  .createPostTypeOption span,
+  .priceSettingBox input {
+    font-size: 13px;
+  }
+  .priceSettingBox input::placeholder {
+    font-size: 13px;
+  }
+  .createPostRightInputsBox {
+    padding: 0 15px;
+  }
+  .createPostImageWrapper {
+    display: none;
+  }
+  .mini_photo_wrapper {
+    width: 100%;
+    height: 300px;
+    display: block;
+  }
+  .mini_photo_wrapper .createPostImageWrapper {
+    width: 100% !important;
+    height: 150px;
+
+    display: grid;
+  }
+  .createPostWrapper img {
+    width: 35%;
+  }
+  .createPostTopBox {
+    flex-direction: column;
+    padding: 10px;
+    gap: 1rem;
+    height: auto;
+  }
+  .createPostTopLeftWrapper {
+    width: 100%;
+  }
+  .postTopRightHeader {
+    font-size: 16px;
+  }
+  .postToprightInfosBox {
+    font-size: 14px;
+  }
+  .locationCityBox img {
+    width: 35px;
+  }
+  .createPostTopRight {
+    width: 100%;
+  }
+  .createPostContentWrapper_left {
+    flex: 1;
+  }
+  .cratePostContentRight {
+    flex: 1;
+  }
+  .createPostContentWrapper {
+    gap: 1rem;
+  }
+  .mini_photo_wrapper {
+    display: flex;
+    gap: 10px !important;
+    align-items: flex-start;
+    height: 200px;
+    flex-direction: column !important;
+  }
+  .vbtTokenImg {
+    width: 25px !important;
+  }
+  .minBtn,
+  .maxBtn {
+    width: 25px !important;
+  }
+  .backBtn,
+  .postBtn {
+    width: 100px;
+    height: 45px;
+    font-size: 15px;
+  }
+  .folderImg {
+    width: 27% !important;
+  }
+  .tokenRequiredTextBox p {
+    font-size: 12px;
+    letter-spacing: 1px;
+  }
+  .totalBalance {
+    font-size: 12px !important;
+  }
+  /* inventory option box */
+
+  .inventoryOptionBox {
+    flex-direction: column;
+    padding: 2rem 1rem;
+    height: auto;
+  }
+  .inventoryLeftBox {
+    width: 100%;
+  }
+  .inventoryRightBox {
+    width: 100%;
+  }
+  .inventoryLeftBox p,
+  .inventoryRightBox p {
+    font-size: 12px;
+    padding: 10px 0;
+  }
+  .catBannerBtnWrapper {
+    width: 100%;
+    height: 45px;
+  }
+  .catBtnOption {
+    height: 41px;
+    width: 50%;
+  }
+  .catBtnOption span {
+    font-size: 9px;
+  }
+  .websiteAndpriceBox {
+    flex-direction: column;
+  }
+}
+@media screen and (max-width: 480px) {
+  .createPostBottomContent {
+    align-items: flex-end;
+    flex-direction: column;
+    gap: 2rem;
+  }
+  .bottomfirstContent {
+    gap: 1rem;
+    flex-direction: column-reverse;
+    width: 100%;
+  }
+  .createPostBottomVBTInfoTextBox {
+    text-align: start;
+  }
+  .minimumVBTwarnText {
+    font-size: 9px;
+    letter-spacing: 1px;
+  }
+  .vbtTextBottom {
+    font-size: 10px;
+    letter-spacing: 1px;
+  }
+  .createPost_left_input,
+  .createPost_description,
+  .createPostSelect,
+  .createPostTypeOption span,
+  .priceSettingBox input {
+    font-size: 13px;
+  }
+  .createPost_left_input {
+    height: 45px;
+  }
+  .createPostWrapper img {
+    width: 35%;
+  }
+  .priceSettingBox input::placeholder {
+    font-size: 13px;
+  }
+  .createPostRightInputsBox {
+    gap: 1.4rem;
+    padding: 0 15px;
+  }
+  .createPostImageWrapper {
+    display: none;
+  }
+  .mini_photo_wrapper {
+    width: 100%;
+    height: 200px;
+    height: 300px;
+    display: flex;
+  }
+  .mini_photo_wrapper .createPostImageWrapper {
+    width: 100% !important;
+    height: 130px;
+
+    display: grid;
+  }
+  .postLocationText {
+    display: none;
+  }
+  .select_boxes {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  .createPostTopBox {
+    flex-direction: column;
+    padding: 10px 0;
+    gap: 1rem;
+    height: auto;
+  }
+  .createPostTopLeftWrapper {
+    width: 100%;
+  }
+  .postTopRightHeader {
+    font-size: 14px;
+    letter-spacing: 1px;
+  }
+  .postToprightInfosBox {
+    font-size: 10px;
+  }
+  .locationCityBox img {
+    width: 55px;
+  }
+  .createPostTopRight {
+    width: 100%;
+  }
+  .postLocationCityCountryBox {
+    width: 100%;
+  }
+  .createPostContentWrapper_left {
+    flex: 1;
+  }
+  .cratePostContentRight {
+    flex: 1;
+  }
+  .createPostContentWrapper {
+    gap: 1rem;
+  }
+  .createPostContentWrapper {
+    flex-direction: column;
+  }
+  .createPostContentWrapper_left_header {
+    font-size: 14px;
+    letter-spacing: 1px;
+  }
+  .locationCityBox {
+    justify-content: space-between;
+    align-items: flex-start;
+  }
+  .locationCityBox .select_boxes {
+    flex: 6;
+  }
+  .select_boxes select {
+    width: 100%;
+    height: 35px;
+    font-size: 12px;
+  }
+  .createPostRightInputsItem {
+    gap: 0.4rem;
+  }
+  .label {
+    font-size: 12px;
+  }
+  .mini_photo_wrapper {
+    display: flex;
+    height: 200px;
+    gap: 10px !important;
+    align-items: flex-start;
+    flex-direction: column !important;
+  }
+  .contentRightOptionsBottom {
+    gap: 1rem;
+  }
+  .contentRightOptionsBottom img {
+    width: 30px;
+  }
+  .tokenRequiredTextBox p {
+    font-size: 14px;
+    letter-spacing: 1px;
+  }
+  .totalBalance {
+    font-size: 12px !important;
+  }
+  .tokenRequiredTextBox {
+    gap: 2px;
+  }
+  .createPost_description {
+    height: 130px;
+  }
+  .createPostWrapper {
+    padding: 1rem;
+  }
+  .vbtTokenImg {
+    width: 25px !important;
+  }
+  .minBtn,
+  .maxBtn {
+    width: 25px !important;
+  }
+  .backBtn,
+  .postBtn {
+    width: 100px;
+    height: 45px;
+    font-size: 15px;
+  }
+  .folderImg {
+    width: 27% !important;
+  }
+  /* inventory option box */
+
+  .inventoryOptionBox {
+    flex-direction: column;
+    padding: 2rem 1rem;
+    height: auto;
+  }
+  .inventoryLeftBox {
+    width: 100%;
+  }
+  .inventoryRightBox {
+    width: 100%;
+  }
+  .inventoryLeftBox p,
+  .inventoryRightBox p {
+    font-size: 12px;
+    padding: 10px 0;
+  }
+  .catBannerBtnWrapper {
+    width: 100%;
+    height: 45px;
+  }
+  .catBtnOption {
+    height: 41px;
+    width: 50%;
+  }
+  .catBtnOption span {
+    font-size: 9px;
+  }
+  .websiteAndpriceBox {
+    flex-direction: column;
+  }
+}
+
+@media screen and (min-width: 1200px) {
+  .cratePostContentRight {
+    padding: 0 2rem;
+  }
+  .contentRightTop {
+    gap: 4rem;
   }
 }

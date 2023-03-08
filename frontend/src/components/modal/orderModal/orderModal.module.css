@@ -71,7 +71,7 @@
   height: 46.86px;
 
   background: #000000;
-  border: 0.462449px solid #b1b1b1;
+  border: 0.462449px solid #b1b1b166;
   padding: 0 20px;
   display: flex;
   flex: 1;
@@ -119,4 +119,59 @@
 .fadeOrderBtn {
   opacity: 0.4;
   pointer-events: none !important;
+}
+/* orderPaymentElement */
+.orderPaymentElement {
+  padding: 2rem;
+}
+.orderBottomInfo div {
+  flex: 1;
+}
+@media screen and (min-width: 480px) and (max-width: 600px) {
+  .modalContent {
+    padding-top: 2rem !important;
+  }
+  .orderBoxWrapper {
+    padding: 10px 0;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .orderBoxWrapper {
+    padding: 10px 0;
+  }
+  .orderPaymentElement {
+    padding: 5px !important;
+  }
+  .orderBottomBox {
+    gap: 1rem !important;
+    flex-direction: column !important;
+  }
+  .modalContent {
+    padding-top: 2rem !important;
+  }
+  .orderBottomInfo {
+    padding: 0 !important
+    ;
+    justify-content: space-between !important;
+    width: 100%;
+  }
+  .orderBottomInfo div:nth-of-type(1) {
+    letter-spacing: 1px;
+  }
+  .orderBottomInfo div {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+  }
+  .orderNowBtnPost {
+    height: 37px;
+    font-size: 13px;
+    letter-spacing: 1px;
+  }
+  .orderBoxHeader h2 {
+    font-size: 20px;
+  }
 }

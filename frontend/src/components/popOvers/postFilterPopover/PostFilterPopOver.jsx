@@ -26,6 +26,7 @@ const PostFilterPopOver = ({ children }) => {
     const dispatch = useDispatch()
     const category = useParams().catName
     const [currentCategory, setCurrentCategory] = useState()
+    const [loading, setLoading] = useState(false)
 
 
 
@@ -72,10 +73,12 @@ const PostFilterPopOver = ({ children }) => {
 
     const CitieisInState = async () => {
         try {
-
+            setLoading(true)
             const { data } = await getCitiesInState(postFilterData?.state)
             setCities(data?.data)
+            setLoading(false)
         } catch (error) {
+            setLoading(false)
             console.log(error)
 
         }
@@ -97,27 +100,22 @@ const PostFilterPopOver = ({ children }) => {
 
     return (
         <div style={{ position: "relative", zIndex: "99" }}>
-            <Popover >
+            <Popover placement="left-end">
                 <PopoverTrigger>
                     <span>{children}</span>
                 </PopoverTrigger>
                 <PopoverContent className={styles.popOverMain} borderRadius={"10"} p={'25'} pb={"45"} bg="#000000">
                     <PopoverArrow />
-
                     <PopoverBody className={styles.content}>
                         <div>
                             <h3>LOCATION FILTER</h3>
                         </div>
                         <div className={styles.catBannerBtnWrapper}>
-
-
-                            <button onClick={() => handleFilterChange("showAll", false)} className={`${styles.catBtnOption} ${!postFilterData?.showAll ? styles.activeCatOption : ""} `}> <span>Filter By Location</span></button>
+                            <button onClick={() => handleFilterChange("showAll", false)} className={`${styles.catBtnOption} ${!postFilterData?.showAll ? styles.activeCatOption : ""} `}> <span>Set Location</span></button>
                             <button onClick={() => handleFilterChange("showAll", true)} className={`${styles.catBtnOption} ${postFilterData?.showAll ? styles.activeCatOption : ""}  `}> <span>Show All</span></button>
-
                         </div>
                         <div className={`${styles.mainContentBox} ${postFilterData?.showAll && styles.fadeContentBox}`}>
                             <div className={styles.mainContentLeft}>
-
                                 <img className={styles.navPostBtn} src="/NavMap.png" alt="myMap" />
                             </div>
                             <div className={styles.vrLine}></div>
@@ -126,13 +124,15 @@ const PostFilterPopOver = ({ children }) => {
                                     <option unselectable='true'>state</option>
                                     {
                                         statesOfUSA?.map((state) => (
-
                                             <option key={state?.name} value={state?.name}>{state?.name}</option>
                                         ))
                                     }
                                 </select>
                                 <select onChange={(e) => handleFilterChange("city", e.target.value)}>
-                                    <option unselectable='true'>city</option>
+                                    {
+                                        loading ? <option unselectable='true'>loading...</option> : <option unselectable='true'>city</option>
+
+                                    }
                                     {
                                         cities?.map((city) => (
                                             <option key={city} value={city}>{city}</option>

@@ -12,3 +12,4 @@ export const deletePost = (postId) => instance.delete(`/post/${postId}`);
 
 
 
+export const addMoreVBTtoPost = (postId, data) => instance.post(`/post/addMoreVBT/${postId}`, data)

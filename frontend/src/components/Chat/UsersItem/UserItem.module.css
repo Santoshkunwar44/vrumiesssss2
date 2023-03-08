@@ -1,0 +1,75 @@
+.chat_user {
+  cursor: pointer;
+  display: flex;
+  gap: 1rem;
+  padding: 1.2rem 10px;
+  border-bottom: 4px solid #001219a9;
+}
+.link_item {
+  text-decoration: none;
+}
+.chat_user:hover {
+  background-color: #001219a9;
+}
+.chat_user_profile_image {
+  border-radius: 50%;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.profile_image_wrapper {
+  width: 40px;
+  height: 40px;
+  position: relative;
+}
+.chat_user_details {
+  color: gray;
+  flex: 1;
+}
+.chat_username {
+  color: rgba(255, 255, 255, 0.774);
+  font-size: 15px;
+  letter-spacing: 1px;
+  font-weight: bold;
+  font-weight: 500;
+}
+.chat_message {
+  font-size: 12px;
+  word-break: break-all;
+}
+.chat_time {
+  color: gray;
+  font-size: 12px;
+}
+.notification_box {
+  width: 18px;
+
+  font-weight: 400;
+  height: 18px;
+  font-size: 12px;
+  display: grid;
+  place-items: center;
+
+  border-radius: 50%;
+  background-color: #37e710;
+}
+.chat_user_right {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+/* online_dot */
+.online_dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: #37e710;
+  position: absolute;
+  right: 0;
+  bottom: 2px;
+  display: none;
+}
+.isOnline {
+  display: block;
+}

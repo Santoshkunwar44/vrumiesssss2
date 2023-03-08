@@ -8,6 +8,7 @@
   gap: 2rem;
   margin: 0 5px;
   position: relative;
+  flex: 1;
 }
 .deleteBtn {
   width: 40px;
@@ -82,6 +83,7 @@
 }
 /* addLessBtns */
 .replyActions {
+  position: relative;
   display: flex;
   flex-direction: column;
   gap: 15px;
@@ -144,4 +146,98 @@
 .showActionBtns {
   height: 150px;
   overflow: visible;
+}
+.sliderQuotes {
+  width: 90% !important;
+}
+@media screen and (max-width: 600px) {
+  .replyQuotes {
+    gap: 1rem;
+    width: 177px;
+  }
+  .quotesTitle {
+    font-size: 12px;
+    letter-spacing: 1.04px;
+  }
+  .qoutesUserInfo img {
+    width: 35px;
+    height: 35px;
+  }
+  .quotesUsername {
+    font-size: 12px;
+  }
+  .qoutesUserInfo {
+    gap: 10px;
+  }
+  .qoutesDesc {
+    font-size: 10px;
+  }
+  .tokenBox {
+    gap: 5px;
+  }
+  .tokenBox img {
+    width: 15px;
+  }
+  .qoutesTokenCount {
+    font-size: 14px;
+  }
+  .replyPrice {
+    font-size: 10px;
+  }
+}
+
+@media screen and (min-width: 600px) and (max-width: 768px) {
+  .replyQuotes {
+    width: 210px;
+  }
+  .qoutesUserInfo img {
+    width: 35px;
+    height: 35px;
+  }
+  .quotesUsername {
+    font-size: 12px;
+  }
+  .qoutesUserInfo {
+    gap: 10px;
+  }
+  .tokenBox {
+    gap: 5px;
+  }
+  .tokenBox img {
+    width: 18px;
+  }
+  .qoutesTokenCount {
+    font-size: 14px;
+  }
+  .replyPrice {
+    font-size: 12px;
+  }
+}
+
+@media screen and (min-width: 768px) and (max-width: 1024px) {
+  .replyQuotes {
+    width: 210px;
+  }
+  .qoutesUserInfo img {
+    width: 35px;
+    height: 35px;
+  }
+  .quotesUsername {
+    font-size: 12px;
+  }
+  .qoutesUserInfo {
+    gap: 10px;
+  }
+  .tokenBox {
+    gap: 5px;
+  }
+  .tokenBox img {
+    width: 18px;
+  }
+  .qoutesTokenCount {
+    font-size: 14px;
+  }
+  .replyPrice {
+    font-size: 12px;
+  }
 }
