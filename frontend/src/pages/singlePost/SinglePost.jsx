@@ -11,6 +11,9 @@ import { useSelector } from "react-redux"
 import PostCard from "../../components/postCard/PostCard"
 import SinglePostSkeleton from "../../components/skeleton/singlePostSkeleton/SinglePostSkeleton"
 import { PostImgSlider } from "../../components/itemSlider/postImgSlider/PostImgSlider"
+import ContentComment from "../../components/content/Comments/ContentComment"
+import CreateComment from "../../components/content/Comments/CreateComment/CreateComment"
+import PostAdditionalCard from "../../components/post/PostAdditionalCard.jsx/PostAdditionalCard"
 
 
 const SinglePost = () => {
@@ -64,6 +67,7 @@ const SinglePost = () => {
             <SinglePostSkeleton />
         </>
     }
+    console.log(postData)
     return (
         <>
             <Navbar />
@@ -107,6 +111,16 @@ const SinglePost = () => {
                         <PostCard postData={postData} setTheReplies={setTheReplies} />
                     </div>
                     <ReplyContainer postData={postData} isFromProfile={isFromProfile} postId={postData?._id} replies={theReplies} />
+                    {/* <Comme  */}
+                    <div className={styles.commentWrapper}>
+                        {
+                            postData?.comments?.length > 0 ? postData?.comments?.map(comment => (
+                                <ContentComment data={comment} />
+                            )) : <div>NO COMMENTS YET</div>
+                        }
+
+                    </div>
+                    <CreateComment postId={postData?._id} />
                 </div>
                 <div className={styles.rightContent}>
                     <div className={styles.postDetailsHeader}>
@@ -133,8 +147,10 @@ const SinglePost = () => {
                     </div>
 
                     <PostCard postData={postData} setTheReplies={setTheReplies} />
+                    <PostAdditionalCard item={postData?.additionalInformation} />
 
                 </div>
+
 
             </div>
         </>

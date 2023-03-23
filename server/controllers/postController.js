@@ -43,7 +43,7 @@ class PostController {
                         VBTused: -1, orderNowBtn: 1
                     }
                 }
-            ])
+            ]).populate(["owner", "comments.user"])
             res.json({
                 message: allPosts,
                 success: true
@@ -60,7 +60,7 @@ class PostController {
             catName = catName.replaceAll("&&", "/")
         }
         try {
-            const thePosts = await Post.find({ category: catName, isHidden: false }).sort({ VBTused: -1, orderNowBtn: 1 }).populate("owner")
+            const thePosts = await Post.find({ category: catName, isHidden: false }).sort({ VBTused: -1, orderNowBtn: 1 }).populate(["owner", "comments.user"])
 
             return res.status(200).json({ message: thePosts, success: true })
 
@@ -75,7 +75,7 @@ class PostController {
         const { id } = req.params;
         if (!id) return
         try {
-            const thePosts = await Post.findById(id).populate("owner")
+            const thePosts = await Post.findById(id).populate(["owner", "comments.user"])
             return res.status(200).json({ message: thePosts, success: true })
         } catch (error) {
             return res.status(500).json({ message: error, success: false })
@@ -94,7 +94,7 @@ class PostController {
                 },
                 {
                     new: true
-                }).populate("owner")
+                }).populate(["owner", "comments.user"])
             await User.findByIdAndUpdate(userId, {
                 $inc: { tokenAvailabe: -vbt }
             })
@@ -115,7 +115,7 @@ class PostController {
                 $set: req.body
             }, {
                 new: true
-            }).populate("owner")
+            }).populate(["owner", "comments.user"])
 
 
 
@@ -127,18 +127,29 @@ class PostController {
 
     async getPostByUserId(req, res) {
         const { userId } = req.params;
+        const { categorize } = req.query;
+        console.log(categorize)
         try {
             const postRequest = await Post.find({
                 owner: userId,
                 isHidden: false,
                 type: "Request"
-            }).populate("owner")
+            }).populate(["owner", "comments.user"])
             const postAdvertise = await Post.find({
                 isHidden: false,
                 owner: userId,
                 type: "Advertise"
-            }).populate("owner")
-            return res.status(200).json({ message: { postRequest, postAdvertise }, success: true })
+            }).populate(["owner", "comments.user"])
+
+
+            if (!categorize || categorize == "false") {
+                console.log("inside not cat")
+                return res.status(200).json({ message: [...postRequest, ...postAdvertise], success: true })
+
+            } else {
+                console.log("inside cat")
+                return res.status(200).json({ message: { postRequest, postAdvertise }, success: true })
+            }
 
         } catch (error) {
 
@@ -186,13 +197,56 @@ class PostController {
                         "location.city": city
                     },
                 ]
-            }).populate("owner")
+            }).populate(["owner", "comments.user"])
             res.status(200).json({ message: thePost, success: true })
         } catch (error) {
             res.status(500).json({ message: error, success: false })
         }
 
     }
+
+
+    async addComment(req, res) {
+        const { postId } = req.params
+        const { text, userId } = req.body
+
+        if (!text || !userId || !userId) {
+            throw Error("Invalid parameters")
+        }
+
+        try {
+            let savedpost;
+            const post = await Post.findById(postId)
+            const hasCommented = post.comments.find((item) => item.user == userId)
+            if (!hasCommented) {
+                savedpost = await Post.findOneAndUpdate(
+                    { _id: postId },
+                    { $push: { comments: { user: userId, text } } },
+                    { returnOriginal: false }
+                )
+            } else {
+
+
+                savedpost = await Post.findOneAndUpdate(
+                    { _id: postId },
+                    { $set: { "comments.$[element].text": text } },
+                    {
+                        arrayFilters: [
+                            { "element.user": userId }
+                        ],
+                        returnOriginal: false,
+
+                    }
+                )
+            }
+
+            return res.status(200).json({ message: savedpost, success: true })
+        } catch (error) {
+            return res.status(500).json({ message: error.message, success: false })
+
+        }
+    }
+
 }
 module.exports = new PostController()
 

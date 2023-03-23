@@ -15,9 +15,7 @@
   border-right: 4px solid #00121987;
   height: 100%;
 }
-.homeRight {
-  flex: 3;
-}
+
 
 @media screen and (max-width: 992px) {
   .homeRight {

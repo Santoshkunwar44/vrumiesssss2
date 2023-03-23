@@ -6,7 +6,7 @@
 }
 .ModalBody {
   background: #000000;
-  max-width: 600px;
+  max-width: 800px;
   width: 90%;
   position: relative;
   border-radius: 29px;
@@ -56,7 +56,7 @@
 .replyQuoteTitleInput {
   height: 50px;
   color: #808080;
-  width: 90%;
+  width: 100%;
   padding: 10px;
   background: #001219;
   border: 1px solid #ffffff;
@@ -79,7 +79,7 @@
 .replyQuoteDescInput {
   color: #808080;
   height: 130px;
-  width: 90%;
+  width: 100%;
   border-radius: 8px;
   font-family: "Poppins";
   text-align: start;
@@ -172,8 +172,8 @@
   justify-content: space-between;
 }
 .setPrice {
-  width: 153px;
-  height: 55px;
+  width: 90%;
+  height: 45px;
   left: 130px;
   font-size: 16px;
   top: 753px;
@@ -214,7 +214,7 @@
   line-height: 20px;
   /* identical to box height, or 91% */
   text-align: center;
-  letter-spacing: -0.1px;
+  letter-spacing: 1px;
   color: #ffffff;
 }
 /* /* fadeReplyBtn */
@@ -227,7 +227,140 @@
   text-align: center;
   width: 25px;
 }
+.replyQuoteBottom {
+  width: 100%;
+  gap: 0.41rem;
+  display: flex;
+}
+.attach_item {
+  width: 100%;
+}
+.attach_item h5 {
+  margin-bottom: 6px;
+  color: white;
+
+  letter-spacing: 1px;
+}
+.attach_post {
+  display: flex;
+  flex-direction: column;
+  padding: 15px 5px;
+  gap: 10px;
+  flex: 4;
+  align-items: center;
+  border-radius: 5px;
+  border: 1px solid grey;
+}
+.attach_post_text {
+  color: white;
+  font-size: 20px;
+}
+.toggle_option_wrapper {
+  height: 45px;
+  width: 100%;
+  border-radius: 25px;
+  border: 3px solid #37e710;
+  overflow: hidden;
+  display: flex;
+  padding: 4px;
+  gap: 5px;
+}
+.post_attach_select {
+  width: 100%;
+  background-color: transparent;
+  color: grey;
+  border: 3px solid #37e710;
+  height: 40px;
+  border-radius: 3px;
+  outline: none;
+}
+.toggle_option_wrapper button {
+  width: 49%;
+  font-size: 10px;
+  background-color: #001219;
+  color: grey;
+  border-radius: 25px;
+  cursor: pointer;
+}
+.active_wrapper_option_button {
+  background-color: #37e710 !important ;
+  color: #000000 !important;
+}
+.bottom_right_box {
+  display: flex;
+  flex: 8;
+}
+.bottom_right_top_left {
+  gap: 0.41rem;
+  flex: 1;
+  display: flex;
+}
+.upperBox_price_setting,
+.bottom_right_top_right {
+  width: 100%;
+  justify-content: space-between;
+  display: flex;
+  flex-direction: column;
+  border: 1px solid grey;
+  border-radius: 5px;
+  gap: 10px;
+  align-items: center;
+  padding: 15px 10px;
+}
+.vbt_tokens {
+  gap: 10px;
+  display: flex;
+  flex-direction: column;
+}
+.replayQuoteVBTFilterBox {
+  display: flex;
+  gap: 10px;
+  flex-direction: column;
+}
+.replayQuoteVBTFilterBox p {
+  font-size: 12px;
+}
+.infotextWithToken img {
+  width: 20px;
+}
+.vbt_tokens p {
+  font-size: 14px !important;
+}
+.upperBox {
+}
+.price_setting {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+.bottom_right_box {
+  gap: 2rem;
+
+  display: flex;
+  flex-direction: column;
+}
+.bottom_right_bottom {
+  display: flex;
+  justify-content: space-between;
+  padding: 0 2rem;
+}
+.bottom_right_top_left p {
+  font-size: 12px !important;
+}
+.attach_item_title {
+  font-size: 12px;
+  margin-bottom: 3px;
+  font-weight: 300;
+}
+.fade_up {
+  opacity: 0.3;
+  pointer-events: none;
+}
 @media screen and (max-width: 600px) {
+  .replyQuoteBottom {
+    flex-direction: column;
+  }
   .priceSettingText {
     font-size: 17px;
     letter-spacing: 1px;

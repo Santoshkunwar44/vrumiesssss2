@@ -9,4 +9,5 @@ module.exports = function RoutessInit(app) {
     app.use("/api/payment", require("./routes/payment"))
     app.use("/api/transaction", require("./routes/transaction"))
     app.use("/api/content", require("./routes/ContentRoute"))
+    app.use("/api/shop", require("./routes/shopRoute"))
 }

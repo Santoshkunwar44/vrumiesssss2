@@ -10,9 +10,14 @@
 }
 .owner_header {
   display: flex;
-  width: 50%;
-  margin-left: auto;
+  gap: 3rem;
+  width: 90%;
+  align-items: center;
+  margin: auto;
   justify-content: space-between;
+  /* background-color: red; */
+  justify-content: center;
+  position: relative;
 }
 .content_owner_secondary_details {
   margin: auto;
@@ -51,8 +56,30 @@
 }
 .back_text {
   cursor: pointer;
+
+  right: 0;
+
+  position: absolute;
 }
 .back_text p {
-  
   color: #37e710;
+}
+.shareBtn,
+.messageBtn {
+  background-color: black;
+  border-radius: 30px;
+
+  color: #37e710;
+  border: 3px solid #37e710;
+  display: flex;
+  gap: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 20px;
+  height: 50px;
+}
+.disable_message_btn {
+  opacity: 0.4;
+  pointer-events: none !important;
 }

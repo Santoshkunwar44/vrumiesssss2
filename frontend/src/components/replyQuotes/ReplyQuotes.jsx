@@ -114,6 +114,16 @@ const ReplyQuotes = ({ reply, slider }) => {
                     </div>
 
                 </div>
+                {
+                    reply?.attachedPost?.title && <div className={styles.attached_post_link}>
+                        {
+                            reply?.attachedPost?.title
+                        }
+
+
+                    </div>
+                }
+
             </div>
             <div className={`${styles.replyActions}  ${showEdit && styles.showActionBtns}`}>
 
@@ -127,6 +137,7 @@ const ReplyQuotes = ({ reply, slider }) => {
                         <input value={replyChangesData.VBTused} type="text" />
                         <p>VBT</p>
                     </div>
+
                     <div className={styles.butnImg}>
 
                         <img onClick={() => handleChangeVBTused("less")} src="/images/create/minimize.png" alt="less" />

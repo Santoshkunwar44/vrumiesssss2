@@ -16,6 +16,11 @@
 .shineItem {
   opacity: 1 !important;
 }
+.mini_reaction {
+  justify-content: flex-end !important;
+  height: auto !important;
+  margin-top: 10px !important;
+}
 .mini_reaction .action_box_item img {
   width: 22px !important;
   transition: all 0.3s;

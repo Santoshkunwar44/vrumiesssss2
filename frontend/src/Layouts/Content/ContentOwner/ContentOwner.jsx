@@ -1,12 +1,20 @@
 import { useNavigate } from "react-router-dom"
 import styles from "./ContentOwner.module.css"
 import moment from "moment"
+import { useSelector } from "react-redux"
+import { Link } from "react-router-dom"
 const ContentOwner = ({ data }) => {
 
+    const { userData } = useSelector(state => state.userReducer)
     const navigate = useNavigate()
     return (
         <div className={styles.contentOwner}>
             <div className={styles.owner_header}>
+
+                <button className={styles.shareBtn}>
+                    <img src="/icons/share.png" alt="shareIcon" />
+                    <p>Share</p>
+                </button>
                 <div className={styles.owner_img}>
 
 
@@ -14,6 +22,13 @@ const ContentOwner = ({ data }) => {
 
 
                 </div>
+                <Link className={`${data?.owner?._id === userData?._id && styles.disable_message_btn}`} to={`/chat/user/${data?.owner?._id}`}>
+                    <button className={styles.messageBtn}>
+                        <img src="/icons/mail.png" alt="shareIcon" />
+                        <p>Message User</p>
+                    </button>
+                </Link>
+
                 <div onClick={() => navigate(-1)} className={styles.back_text}>
 
                     <p>BACK</p>

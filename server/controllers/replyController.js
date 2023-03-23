@@ -10,7 +10,7 @@ class ReplyController {
         }
         try {
             let savedReply = await Reply.create(req.body)
-            savedReply = await savedReply.populate("user")
+            savedReply = await savedReply.populate(["user", "attachedPost"])
             await User.findByIdAndUpdate(user,
                 { $inc: { tokenAvailabe: -vbtUsed } }
             )
@@ -29,7 +29,7 @@ class ReplyController {
         const { postId } = req.params;
 
         try {
-            const reply = await Reply.find({ post: postId }).sort({ vbtUsed: -1 }).populate("user")
+            const reply = await Reply.find({ post: postId }).sort({ vbtUsed: -1 }).populate(["user", "attachedPost"])
             res.status(200).json({ message: reply, success: true })
         } catch (error) {
             res.status(500).json({ message: error, success: false })
@@ -41,7 +41,7 @@ class ReplyController {
         try {
             const theReplyQuotes = await Reply.find({
                 user: userId
-            }).populate("user")
+            }).populate(["user", "attachedPost"])
             res.status(200).json({ message: theReplyQuotes })
         } catch (error) {
             res.status(500).json({ message: error, success: false })

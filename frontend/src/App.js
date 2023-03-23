@@ -24,6 +24,8 @@ import Chat from './pages/chat/Chat';
 import StartMessageBox from './components/Message/StartMessageBox/StartMessageBox';
 import MessageBox from './Layouts/MessageBox/MessageBox';
 import Content from './pages/Content/Content';
+import Vehicles from './components/MyAssets/Vehicles/Vehicles';
+import Shop from './components/MyAssets/shop/Shop';
 
 function App() {
 
@@ -109,6 +111,8 @@ function App() {
           <Route path='post/:postId' element={<ProfilePost />} />
           <Route path='transactions' element={<Transaction />} />
           <Route path='content' element={<Contents />} />
+          <Route path='shop' element={<Shop />} />
+          <Route path='vehicle' element={<Vehicles />} />
         </Route>
         <Route path='/category/:catName' element={<AppCategory />} />
         <Route path="/signup" element={<Signup />} />

@@ -21,11 +21,22 @@ const postModel = mongoose.Schema({
     },
     setLocation: Boolean,
     inventoryCount: Number,
+    comments: [
+        {
+            user: {
+                type: mongoose.Schema.Types.ObjectId,
+                ref: "User"
+            },
+            text: String,
+        }
+    ],
     owner: {
         type: mongoose.Schema.Types.ObjectId,
         ref: "User"
 
-    }
+    },
+    additionalInformation: Array
+
 
 },
     {

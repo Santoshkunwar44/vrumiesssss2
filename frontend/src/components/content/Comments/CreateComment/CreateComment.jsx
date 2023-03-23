@@ -4,21 +4,32 @@ import moment from "moment"
 import { useState } from "react"
 import { addContentCommentApi } from "../../../../utils/apis/content/contentApi"
 import { setToastifyInfo, startRefresh } from "../../../../redux/actions/otherAction"
-const CreateComment = ({ contentId }) => {
+import { addCommentToPost } from "../../../../utils/apis/post/postApi"
+const CreateComment = ({ contentId, postId }) => {
     const { userData } = useSelector((state) => state.userReducer)
     const [commentInput, setCommentInput] = useState("");
     const [loading, setLoading] = useState(false)
     const dispatch = useDispatch()
-
+    console.log(postId)
     const handleSubmit = async () => {
 
         setLoading(true)
+        let res;
         try {
-            const res = await addContentCommentApi(contentId, {
+            if (contentId) {
 
-                text: commentInput,
-                userId: userData?._id
-            })
+                res = await addContentCommentApi(contentId, {
+
+                    text: commentInput,
+                    userId: userData?._id
+                })
+            } else {
+                res = await addCommentToPost(postId, {
+
+                    text: commentInput,
+                    userId: userData?._id
+                })
+            }
             if (res.status === 200) {
 
                 setLoading(false)

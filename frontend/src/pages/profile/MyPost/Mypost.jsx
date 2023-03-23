@@ -46,7 +46,7 @@ const Mypost = ({ itemWidth }) => {
 
 
         try {
-            const { data: { message: { postRequest, postAdvertise } } } = await getPostByUserId(userData?._id)
+            const { data: { message: { postRequest, postAdvertise } } } = await getPostByUserId(userData?._id, true)
             setPostRequestList(postRequest)
             setMyAdvertisePostList(postAdvertise)
 

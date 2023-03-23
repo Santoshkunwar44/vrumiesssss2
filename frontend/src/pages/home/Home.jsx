@@ -5,8 +5,8 @@ import BannerContainer from "../../components/HomeBanner/BannerContainer"
 import HomeCategory from "../../components/HomeCategory/HomeCategory"
 import Navbar from "../../components/Navbar/Navbar"
 import styles from "./home.module.css"
-
-
+import { CalenderLayout } from "../../Layouts/Calender/Calender";
+import 'react-calendar/dist/Calendar.css';
 
 const Home = () => {
 
@@ -36,9 +36,7 @@ const Home = () => {
                         <HomeCategory fullWidth={categorySideWidth} />
                     </div>
 
-                    <div className={styles.homeRight}>
-
-                    </div>
+                    <CalenderLayout />
                 </div>
             </div>
         </>

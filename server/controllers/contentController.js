@@ -28,8 +28,20 @@ class ContentController {
 
 
         try {
-            const theContent = await ContentModel.find(searchQueries).populate(["owner", "comments.user"])
+            let theContent = await ContentModel.find(searchQueries).populate(["owner", "comments.user"])
+            console.log(theContent)
+            if (reqQuery.categorize) {
+                theContent = theContent.reduce((acc, content) => {
 
+                    if (Object.keys(acc).includes(content.contentType)) {
+                        acc[content.contentType].push(content)
+                    } else {
+                        acc[content.contentType] = [content]
+                    }
+                    return acc
+                }, {})
+                // theContent
+            }
             res.status(200).json({ message: theContent, success: true })
         } catch (error) {
             res.status(500).json({ message: error.message, success: false })

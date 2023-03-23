@@ -1,0 +1,57 @@
+.vehicles_wrapper {
+  width: 100%;
+}
+.vehicles_header {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+}
+.vehicles_header h2 {
+  color: #37e710;
+  letter-spacing: 1px;
+}
+.hrLine {
+  height: 3px;
+  flex: 1;
+  background-color: #37e710;
+  border: 10px;
+}
+.vehicles_list_box {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+.add_another_vehicle {
+  margin: 1rem 0;
+  margin-bottom: 1.4rem;
+  margin-left: auto;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  width: fit-content;
+  padding: 0 20px;
+  height: 55px;
+  background-color: #000;
+  border-radius: 8px;
+  color: #37e710;
+  gap: 0.5rem;
+  position: relative;
+  overflow: hidden;
+  letter-spacing: 1.2px;
+}
+.add_another_vehicle img {
+  z-index: 2;
+  position: relative;
+  width: 20px;
+}
+.bg_button {
+  background-color: #37e710;
+  border-radius: 50%;
+  width: 80px;
+  height: 80px;
+  filter: blur(15px);
+  position: absolute;
+  left: -2rem;
+  bottom: -3rem;
+  z-index: 1;
+}

@@ -11,6 +11,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { removeLoadingData, setLoadingData, setRemoveFilterLocationData } from '../../redux/actions/otherAction'
 import PostFilterPopOver from '../../components/popOvers/postFilterPopover/PostFilterPopOver'
 import { PostSkeleton } from '../../components/skeleton/postSkeleton/PostSkeletion'
+import { CalenderLayout } from '../../Layouts/Calender/Calender'
 const AppCategory = () => {
     const { locationFilterPostItem, locationFilters, loading } = useSelector((state) => state.otherReducer)
     const [currentCatData, setCurrentCatData] = useState({})
@@ -95,51 +96,84 @@ const AppCategory = () => {
         <div className={styles.appCategory}>
 
             <Navbar />
-            <div className={styles.appCategoryWrapper}>
-                <div className={styles.appCategorybanner}>
-                    <div className={styles.categoryBannerBgBlur}>
+            <div className={styles.app_main_wrapper}>
 
-                    </div>
-                    <div className={styles.categoryContentWrapper}>
+                <div className={styles.appCategoryWrapper}>
+                    <div className={styles.appCategorybanner}>
+                        <div className={styles.categoryBannerBgBlur}>
 
-                        <div className={styles.categoryItemLeft}>
+                        </div>
+                        <div className={styles.categoryContentWrapper}>
 
-                            <div className={styles.categoryItemTopcontent}>
+                            <div className={styles.categoryItemLeft}>
+
+                                <div className={styles.categoryItemTopcontent}>
 
 
-                                <h2 className={styles.categoryTitleText}>{currentCatData?.name}</h2>
-                                <img draggable={"false"} className={styles.catItemImg} src={currentCatData?.img} alt={currentCatData?.name} />
-                            </div>
+                                    <h2 className={styles.categoryTitleText}>{currentCatData?.name}</h2>
+                                    <img draggable={"false"} className={styles.catItemImg} src={currentCatData?.img} alt={currentCatData?.name} />
+                                </div>
 
-                            <div className={styles.catBannerBtnWrapperBox}>
-                                <div className={styles.catBannerBtnWrapper}>
-                                    <button onClick={() => setPostFilters((prev) => {
-                                        return {
-                                            ...prev, type: "Advertise"
+                                <div className={styles.catBannerBtnWrapperBox}>
+                                    <div className={styles.catBannerBtnWrapper}>
+                                        <button onClick={() => setPostFilters((prev) => {
+                                            return {
+                                                ...prev, type: "Advertise"
+                                            }
+                                        })} className={`${styles.catBtnOption} ${postFilter.type === "Advertise" ? styles.activeCatOption : ""}  `}> <span>Advertise</span></button>
+                                        <button onClick={() => setPostFilters((prev) => {
+                                            return {
+                                                ...prev, type: "Request"
+                                            }
+                                        })} className={`${styles.catBtnOption} ${postFilter.type === "Request" ? styles.activeCatOption : ""}  `}> <span>Request</span></button>
+
+                                    </div>
+                                    <div className={styles.catBannerBtnWrapper}>
+
+
+                                        {/* <button className={`${styles.catBtnOption} ${styles.activeCatOption}`}> <span>{item.option1}</span></button> */}
+                                        {
+                                            currentCatData?.subCategory?.map((item, index) => (
+                                                <button onClick={() => setPostFilters((prev) => { return { ...prev, subcategory: item } })} key={index} className={`${styles.catBtnOption} ${postFilter.subcategory === item ? styles.activeCatOption : ""}  `}> <span>{item}</span></button>
+                                            ))
                                         }
-                                    })} className={`${styles.catBtnOption} ${postFilter.type === "Advertise" ? styles.activeCatOption : ""}  `}> <span>Advertise</span></button>
-                                    <button onClick={() => setPostFilters((prev) => {
-                                        return {
-                                            ...prev, type: "Request"
-                                        }
-                                    })} className={`${styles.catBtnOption} ${postFilter.type === "Request" ? styles.activeCatOption : ""}  `}> <span>Request</span></button>
+                                    </div>
+
+
 
                                 </div>
-                                <div className={styles.catBannerBtnWrapper}>
+                                <div className={styles.mini_filteby_location}>
 
-
-                                    {/* <button className={`${styles.catBtnOption} ${styles.activeCatOption}`}> <span>{item.option1}</span></button> */}
                                     {
-                                        currentCatData?.subCategory?.map((item, index) => (
-                                            <button onClick={() => setPostFilters((prev) => { return { ...prev, subcategory: item } })} key={index} className={`${styles.catBtnOption} ${postFilter.subcategory === item ? styles.activeCatOption : ""}  `}> <span>{item}</span></button>
-                                        ))
+
+                                        locationFilters ? <div className={styles.filterLocationButton}>
+                                            <p>Filter Location</p>
+                                            <button>
+                                                {locationFilters?.state} / {locationFilters?.city ? locationFilters?.city : "___"}
+                                                <img onClick={() => dispatch(setRemoveFilterLocationData())} src="/order/close.png" alt="closeImig" />
+                                            </button>
+                                        </div> : <PostFilterPopOver>
+
+                                            <button className={styles.filterByLocation}>
+                                                <img src="/NavMap.png" alt="mapImg" />
+                                                Filter By Location
+                                            </button>
+                                        </PostFilterPopOver>
                                     }
                                 </div>
+                            </div>
+                            <div className={styles.categoryIconRight}>
 
-
+                                <img draggable={"false"} className={styles.catItemImg} src={currentCatData?.img} alt={currentCatData?.name} />
 
                             </div>
-                            <div className={styles.mini_filteby_location}>
+                        </div>
+                    </div>
+                    <div className={styles.appCatPostWrapper}>
+                        <div className={styles.appCatPopularPostHeader}>
+
+                            <h1 className={styles.mostPopularText}>MOST POPULAR</h1>
+                            <div className={styles.max_filter_box}>
 
                                 {
 
@@ -158,63 +192,33 @@ const AppCategory = () => {
                                     </PostFilterPopOver>
                                 }
                             </div>
+
+                            <div className={styles.appCatHeaderHrLine}></div>
+                            <Link to={"/"}>
+                                <div className={styles.appCatBackText}>
+
+                                    BACK
+                                </div>
+                            </Link>
+
                         </div>
-                        <div className={styles.categoryIconRight}>
-
-                            <img draggable={"false"} className={styles.catItemImg} src={currentCatData?.img} alt={currentCatData?.name} />
-
-                        </div>
-                    </div>
-                </div>
-                <div className={styles.appCatPostWrapper}>
-                    <div className={styles.appCatPopularPostHeader}>
-
-                        <h1 className={styles.mostPopularText}>MOST POPULAR</h1>
-                        <div className={styles.max_filter_box}>
-
+                        <div ref={postWrapperRef} className={styles.postWrappers}>
                             {
-
-                                locationFilters ? <div className={styles.filterLocationButton}>
-                                    <p>Filter Location</p>
-                                    <button>
-                                        {locationFilters?.state} / {locationFilters?.city ? locationFilters?.city : "___"}
-                                        <img onClick={() => dispatch(setRemoveFilterLocationData())} src="/order/close.png" alt="closeImig" />
-                                    </button>
-                                </div> : <PostFilterPopOver>
-
-                                    <button className={styles.filterByLocation}>
-                                        <img src="/NavMap.png" alt="mapImg" />
-                                        Filter By Location
-                                    </button>
-                                </PostFilterPopOver>
+                                loading.isLoading && loading.path === "appCategory" && <PostSkeleton />
                             }
+                            {
+                                locationFilterPostItem ? locationFilterPostItem.length > 0 ? locationFilterPostItem.map((post) => <Post post={post} key={post?._id} />) : <NotFound img='/items/post.png' text={"No post found of your choice"} /> : ""
+                            }
+                            {
+                                !locationFilterPostItem ? theFilterdPost.length > 0 ? theFilterdPost.map((post) => <Post post={post} key={post?._id} />) : <NotFound img='/items/post.png' text={"No post found of your choice"} /> : null
+                            }
+
                         </div>
 
-                        <div className={styles.appCatHeaderHrLine}></div>
-                        <Link to={"/"}>
-                            <div className={styles.appCatBackText}>
-
-                                BACK
-                            </div>
-                        </Link>
-
                     </div>
-                    <div ref={postWrapperRef} className={styles.postWrappers}>
-                        {
-                            loading.isLoading && loading.path === "appCategory" && <PostSkeleton />
-                        }
-                        {
-                            locationFilterPostItem ? locationFilterPostItem.length > 0 ? locationFilterPostItem.map((post) => <Post post={post} key={post?._id} />) : <NotFound img='/items/post.png' text={"No post found of your choice"} /> : ""
-                        }
-                        {
-                            !locationFilterPostItem ? theFilterdPost.length > 0 ? theFilterdPost.map((post) => <Post post={post} key={post?._id} />) : <NotFound img='/items/post.png' text={"No post found of your choice"} /> : null
-                        }
-
-                    </div>
-
                 </div>
+                    <CalenderLayout />
             </div>
-
         </div>
     )
 }

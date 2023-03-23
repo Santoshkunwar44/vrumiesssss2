@@ -195,7 +195,7 @@ const ContentCreateModal = ({ children, type = "vlog" }) => {
                             <div className={styles.modalbody}>
 
                                 {
-                                    startUploadDocs && <UploadDocsLayout closeUploadDocsUi={() => setStartUploadDocs(false)} cb={handleUpload} docs={[createContentData?.thumbnail_image, createContentData.video_url && createContentData?.video_url]} />
+                                    startUploadDocs && <UploadDocsLayout isDocs={true} closeUploadDocsUi={() => setStartUploadDocs(false)} cb={handleUpload} docs={[createContentData?.thumbnail_image, createContentData.video_url && createContentData?.video_url]} />
                                 }
                                 <img className={styles.closeIconImg} onClick={handleCloseModal} src="/order/close.png" alt="closeImg" />
                                 {

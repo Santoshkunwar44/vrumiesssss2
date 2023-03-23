@@ -3,12 +3,14 @@ import { useSelector } from "react-redux"
 
 import { useUploadImages } from "../../hooks/firebase"
 import styles from "./UploadDocsLayout.module.css"
+import { createPortal } from "react-dom"
 
-const UploadDocsLayout = ({ closeUploadDocsUi, docs, cb }) => {
+
+const UploadDocsLayout = ({ closeUploadDocsUi, docs, cb, isDocs }) => {
     console.log("the docss", docs)
 
 
-    const { url, error } = useUploadImages([...docs], null, true)
+    const { url, error } = useUploadImages([...docs], null, isDocs)
     const [finished, setFinished] = useState(false)
     const { userData } = useSelector((state) => state.userReducer)
 
@@ -39,13 +41,18 @@ const UploadDocsLayout = ({ closeUploadDocsUi, docs, cb }) => {
 
 
     return (
-        <div className={styles.upload_docs_progress}>
+        <>
+            {
+                createPortal(<div className={styles.upload_docs_progress}>
 
-            <div className={styles.loading_progress}>
-                <img src="/icons/loading.png" alt="loadingProgess" />
-            </div>
+                    <div className={styles.loading_progress}>
+                        <img src="/icons/loading.png" alt="loadingProgess" />
+                    </div>
 
-        </div>
+                </div>, document.body)
+            }
+
+        </>
     )
 }
 

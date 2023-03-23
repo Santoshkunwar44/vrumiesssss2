@@ -4,7 +4,8 @@ export const getContentByTypeApi = (contentId) => instance.get(`/content?content
 export const getContentByIdApi = (contentType) => instance.get(`/content?contentId=${contentType}`)
 export const getContentByUserApi = (userId) => instance.get(`/content?userId=${userId}`)
 export const addContentCommentApi = (contentId, commentData) => instance.post(`/content/comment/${contentId}`, commentData)
-
+// export const getContentByTypeOfUserApi = (contentType, contentId) => instance.get(`/content?contentType=${contentType}&contentId=${contentId}`);
+export const getAllContentOfUserApi = (userId) => instance.get(`/content?userId=${userId}&categorize=${true}`)
 
 export const likeContentApi = (contentId, userId) => instance.post(`/content/react/${contentId}?like=${userId}`)
 

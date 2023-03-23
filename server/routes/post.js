@@ -13,4 +13,5 @@ router.post("/", tokenVerification, postController.addNewPost)
 router.put("/:postId", tokenVerification, postController.updatePost)
 router.get("/:userId/byUserId", postController.getPostByUserId)
 router.post("/addMoreVBT/:id", tokenVerification, postController.addMoreVBTtoPost)
+router.post("/comment/:postId", postController.addComment)
 module.exports = router

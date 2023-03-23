@@ -228,6 +228,7 @@
   line-height: 22px;
   /* or 44% */
   text-align: start;
+  width: 100%;
 
   color: #37e710;
 }
@@ -271,7 +272,6 @@
   display: flex;
   flex-direction: column;
   gap: 2rem;
-  padding-top: 3rem;
   flex: 7;
 }
 .createPostTypeSelect {
@@ -711,6 +711,82 @@
 }
 .inventoryLeftBox p {
   margin-bottom: 10px;
+}
+
+/* create option */
+.createOptionBox {
+  display: flex;
+  height: auto;
+  width: 100%;
+}
+.option_box_left {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  padding: 1rem;
+  flex: 7.5;
+}
+.option_box_right {
+  flex: 4.5;
+  height: 100%;
+  padding: 1rem;
+}
+.additional_information_box {
+  background-color: #001219;
+
+  display: flex;
+  height: auto;
+  flex-direction: column;
+  align-items: center;
+  border-radius: 10px;
+}
+.additional_information_box h2 {
+  color: #37e710;
+  margin: 10px 0;
+  padding: 5px;
+}
+.add_info_list {
+  display: flex;
+  width: 95%;
+
+  flex-direction: column;
+  gap: 10px;
+}
+.create_new_info {
+  margin: 1rem;
+  padding: 4px 10px;
+  border-radius: 5px;
+  border: 1px solid #37e710;
+  cursor: pointer;
+}
+.create_post_tab {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+.create_post_left_tab {
+  width: 100%;
+  cursor: pointer;
+  text-align: start;
+}
+.create_post_left_tab h2,
+.create_post_right_option_tab h2 {
+  /* border: 3px solid rgba(128, 128, 128, 0.568); */
+  width: fit-content;
+  color: gray;
+  padding: 4px 10px;
+  border-radius: 4px;
+
+  letter-spacing: 2px;
+}
+.active_create_post_tab {
+  color: white !important;
+  /* border: 3px solid #37e710 !important; */
+}
+.create_post_right_option_tab {
+  width: 100%;
+  text-align: start;
+  cursor: pointer;
 }
 @media screen and (min-width: 992px) and (max-width: 1200px) {
   .createPostSelect {
@@ -1209,6 +1285,8 @@
   }
   .createPostContentWrapper_left_header {
     font-size: 14px;
+    align-self: flex-start;
+    text-align: start;
     letter-spacing: 1px;
   }
   .locationCityBox {

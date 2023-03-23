@@ -173,13 +173,16 @@ const PostCard = ({ postData, setTheReplies }) => {
                                 </ReplyQuoteModal>
                             </div>
                         }
-                        <Link to={`/chat/user/${postData?.owner?._id}`}>
-                            <button className={`${styles.replyQuoteBtn}`}>
-                                <span> Message User </span>
-                                <img className={styles.mailIcon} src="/icons/mail.png" alt="mainIcon" />
+                        {
+                            postData?.owner?._id !== userData?._id && <Link to={`/chat/user/${postData?.owner?._id}`}>
+                                <button className={`${styles.replyQuoteBtn}`}>
+                                    <span> Message User </span>
+                                    <img className={styles.mailIcon} src="/icons/mail.png" alt="mainIcon" />
 
-                            </button>
-                        </Link>
+                                </button>
+                            </Link>
+                        }
+
                     </div>
                 </div>
             </div>

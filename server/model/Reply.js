@@ -7,7 +7,11 @@ const replyModel = mongoose.Schema({
     user: { type: mongoose.Schema.Types.ObjectId, ref: "User" },
     desc: { type: String, required: true },
     price: { type: Number, required: true },
-    vbtUsed: { type: Number, default: 4 }
+    vbtUsed: { type: Number, default: 4 },
+    attachedPost: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Post"
+    }
 
 }, {
     timestamps: true

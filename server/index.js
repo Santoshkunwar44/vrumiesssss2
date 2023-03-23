@@ -74,7 +74,7 @@ app.use(session({
         secure: true,
         maxAge: 31556952000,
         httpOnly: true,
-        sameSite: "None",
+        sameSite: "none",
     },
     store,
 }))
@@ -87,11 +87,3 @@ require("./AllRoutes")(app)
 
 
 app.listen(8000, () => console.log("server started at port 8000"))
-
-
-{/* <meta name='description' content="__THEDESCRIPTION__" />
-<meta property="og:type" content="website" />
-<meta property="og:url" content="__WEBSITEURL__" />
-<meta property="og:title" content="__TITLE__" />
-<meta property="og:description" content="__DESCRIPTION__ " />
-<meta property="og:image" content="__IMAGE__" /> */}

@@ -6,13 +6,14 @@ import { getUserByIdApi, updateUser } from '../../utils/apis/user/userApi'
 import { Outlet, useNavigate, useParams } from 'react-router-dom'
 import { useRef } from 'react'
 import UploadImageProgress from '../../components/uploadImage/UploadImageProgress'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { setToastifyInfo, startRefresh } from '../../redux/actions/otherAction'
 import { useLocation } from 'react-router-dom'
 
 const Profile = () => {
 
     const [currentInspect, setCurrentInspect] = useState("myPost")
+    const { userData } = useSelector((state) => state.userReducer)
     const [currentUser, setCurrentUser] = useState({})
     const [editMode, setEditMode] = useState(false)
     const [nameEdit, setNameEdit] = useState(false)
@@ -29,7 +30,20 @@ const Profile = () => {
     const postReplyQuotes = useRef()
     const [postReplyBoxWidth, setPostReplyBoxWidth] = useState()
     const navigate = useNavigate()
+    const location = useLocation().pathname.split("/");
 
+
+
+    useEffect(() => {
+        if (!userData?._id || !location) return;
+        let theCurrentTab = location[window.location.pathname.split("/").length - 1]
+        if (theCurrentTab === userData?._id) {
+            setCurrentInspect("")
+        } else {
+            setCurrentInspect(theCurrentTab)
+        }
+    }, [location, userData])
+    console.log(currentInspect)
 
     useEffect(() => {
         if (postReplyQuotes.current) {
@@ -221,15 +235,30 @@ const Profile = () => {
                     <div className={styles.profileRightTop}>
                         <div className={styles.profileRightTopIitems}>
 
-                            <div onClick={() => navigate("")} className={`${styles.profileTopItem}  ${currentInspect === "myPost" ? styles.activeProfileTopItem : ""} `}>
+                            <div onClick={() => navigate("")} className={`${styles.profileTopItem}  ${currentInspect === "" ? styles.activeProfileTopItem : ""} `}>
                                 <img src="/profile/post.png" alt="profileInfo" />
                                 <p>My posts</p>
                             </div>
 
-                            <div onClick={() => navigate("transactions")} className={`${styles.profileTopItem} ${currentInspect === "myTransactions" ? styles.activeProfileTopItem : ""} `}>
+                            <div onClick={() => navigate("transactions")} className={`${styles.profileTopItem} ${currentInspect === "transactions" ? styles.activeProfileTopItem : ""} `}>
 
                                 <img src="/profile/transaction.png" alt="loctionImage" />
                                 <p>My Transaction</p>
+                            </div>
+                            <div onClick={() => navigate("content")} className={`${styles.profileTopItem} ${currentInspect === "content" ? styles.activeProfileTopItem : ""} `}>
+
+                                <img src="/icons/content.png" alt="contentIcons" />
+                                <p>My Content</p>
+                            </div>
+                            <div onClick={() => navigate("shop")} className={`${styles.profileTopItem} ${currentInspect === "shop" ? styles.activeProfileTopItem : ""} `}>
+
+                                <img src="/icons/shop.png" alt="contentIcons" />
+                                <p>My Shop</p>
+                            </div>
+                            <div onClick={() => navigate("vehicle")} className={`${styles.profileTopItem} ${currentInspect === "vehicle" ? styles.activeProfileTopItem : ""} `}>
+
+                                <img src="/icons/vehicle.png" alt="contentIcons" />
+                                <p>My Vehicle</p>
                             </div>
                         </div>
                     </div>

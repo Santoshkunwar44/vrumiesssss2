@@ -5,9 +5,7 @@
   text-decoration: none;
   font-family: "poppins";
 }
-::-webkit-scrollbar {
-  display: block !important;
-}
+
 .catBannerBtnWrapper {
   border: 1px solid #c1c1c142 !important;
 }

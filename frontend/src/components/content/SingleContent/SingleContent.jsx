@@ -112,6 +112,10 @@ const SingleContentItem = ({ contentType, data }) => {
                 }
 
             </div>
+            <div className={styles.single_content_item_other_action_box}>
+                <ReactToContent contentType={contentType} data={data} />
+            </div>
+            <CreateComment contentId={data?._id} />
             <div className={styles.commentWrappper}>
                 {
                     !data?.comments ? <div>
@@ -121,26 +125,10 @@ const SingleContentItem = ({ contentType, data }) => {
 
 
             </div>
-            <CreateComment contentId={data?._id} />
 
-            <div className={styles.single_content_item_other_action_box}>
-                <ReactToContent contentType={contentType} data={data} />
-            </div>
-            <div className={styles.single_content_item_secondary_action}>
-                {/* <button>
-                    <p>comments </p>
-                </button> */}
-                <button>
-                    <img src="/icons/share.png" alt="shareIcon" />
-                    <p>Share</p>
-                </button>
-                <Link className={`${data?.owner?._id === userData?._id && styles.disable_message_btn}`} to={`/chat/user/${data?.owner?._id}`}>
-                    <button>
-                        <img src="/icons/mail.png" alt="shareIcon" />
-                        <p>Message User</p>
-                    </button>
-                </Link>
-            </div>
+
+
+
         </div>
 
     </>

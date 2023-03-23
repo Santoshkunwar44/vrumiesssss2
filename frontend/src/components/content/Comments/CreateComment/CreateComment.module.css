@@ -1,8 +1,8 @@
 .create_comment {
-  width: 80%;
+  width: 100%;
   margin: auto;
   padding: 1.4rem;
-  border-top: 4px solid rgba(255, 255, 255, 0.618);
+  /* border-top: 4px solid rgba(255, 255, 255, 0.618); */
 }
 
 .comment_header {

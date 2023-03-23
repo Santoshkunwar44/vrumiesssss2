@@ -1,0 +1,38 @@
+.shop_wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  width: 100%;
+  align-items: center;
+
+  height: 100%;
+}
+.shop_tab_list {
+  display: flex;
+  justify-content: space-evenly;
+  width: 50%;
+}
+.shop_tab_list button {
+  width: 120px;
+  height: 40px;
+  border-radius: 3px;
+  letter-spacing: 2px;
+  background: transparent;
+  color: white;
+  font-weight: bold;
+  border: 2px solid grey;
+  opacity: 0.6;
+  transition: all 0.3s;
+}
+.shop_tab_list .active_shop_tab {
+  opacity: 1;
+  scale: 1.1;
+  border-color: #37e710;
+}
+.new_item_button {
+  position: absolute;
+  right: 20px;
+  background-color: #37e710 !important;
+  opacity: 1 !important ;
+  border: none !important;
+}

@@ -1,0 +1,203 @@
+.content_card {
+  height: fit-content;
+  width: 95%;
+  background: rgba(0, 0, 0, 0.42);
+  overflow: hidden;
+  backdrop-filter: blur(43px);
+  /* Note: backdrop-filter has minimal browser support */
+  border-radius: 10px;
+  padding: 1rem;
+  cursor: pointer;
+  position: relative;
+}
+.desc {
+  color: grey;
+  font-size: 13px;
+  text-align: start;
+  min-height: 60px;
+}
+
+.postTitle {
+  height: 50px;
+  padding: 5px 0rem;
+  font-family: "Poppins";
+  font-style: normal;
+  font-size: 10px;
+  line-height: 19px;
+  text-align: center;
+  letter-spacing: 2.76px;
+  /* identical to box height, or 173% */
+
+  text-transform: uppercase;
+
+  color: #37e710;
+}
+.postImgWrapper {
+  width: 240px;
+  height: 169px;
+  background: #001219;
+  border-radius: 10px;
+  overflow: hidden;
+
+  width: 100%;
+}
+.postOnwerInfo {
+  display: flex;
+  align-items: center;
+  gap: 0.71rem;
+}
+.postOnwerInfo img {
+  border-radius: 50%;
+  object-fit: cover;
+  height: 40px;
+  width: 40px;
+}
+.postOnwerInfo p {
+  text-align: start;
+  font-size: 12px;
+}
+.tokenInfo {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 0.5rem;
+}
+.tokenCount {
+  color: var(--orangeText);
+}
+.postOwnerDetails {
+  padding: 2rem 0;
+  padding-bottom: 0;
+}
+.postBlurBg {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+}
+.postBlur1 {
+  width: 50px;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  filter: blur(50px);
+  background-color: #37e710cc;
+  z-index: -1;
+  height: 50px;
+}
+.postBlur2 {
+  width: 50px;
+  position: absolute;
+  top: 3rem;
+  right: 0;
+  z-index: -1;
+  background-color: #37e710b4;
+  filter: blur(50px);
+
+  height: 50px;
+}
+.postOnwerInfo p {
+  color: white;
+}
+.sliderPost {
+  width: 90% !important;
+}
+
+@media screen and (max-width: 480px) {
+  .post {
+    width: 100%;
+  }
+  .postImgWrapper {
+    width: 170px;
+    height: 125px;
+    width: 100%;
+  }
+  .postTitle {
+    letter-spacing: 1.1px;
+  }
+  .postOnwerInfo {
+    gap: 5px;
+    justify-content: space-between;
+  }
+  .postOnwerInfo img {
+    width: 35px;
+    height: 35px;
+  }
+  .postOnwerInfo p {
+    font-size: 14px;
+  }
+  .postOwnerDetails {
+    padding: 0;
+    padding-top: 1rem;
+  }
+}
+@media screen and (min-width: 480px) and (max-width: 768px) {
+  .post {
+    width: 100%;
+  }
+  .postImgWrapper {
+    width: 160px;
+    height: 125px;
+    width: 100%;
+  }
+  .postTitle {
+    letter-spacing: 1.1px;
+  }
+  .postOnwerInfo {
+    gap: 5px;
+    justify-content: space-between;
+  }
+  .postOnwerInfo img {
+    width: 35px;
+    height: 35px;
+  }
+  .postOnwerInfo p {
+    font-size: 14px;
+  }
+  .postOwnerDetails {
+    padding: 0;
+    padding-top: 1rem;
+  }
+  .tokenInfo img {
+    width: 20px;
+  }
+  .tokenInfo p {
+    font-size: 12px;
+  }
+}
+@media screen and (min-width: 768px) and (max-width: 1024px) {
+  .post {
+    width: 200px;
+    width: 100%;
+  }
+  .postImgWrapper {
+    width: 170px;
+    height: 140px;
+    width: 100%;
+  }
+  .postTitle {
+    letter-spacing: 1.1px;
+    line-height: 0;
+    padding: 14px;
+  }
+  .postOnwerInfo {
+    gap: 5px;
+    justify-content: space-between;
+  }
+  .postOnwerInfo img {
+    width: 35px;
+    height: 35px;
+  }
+  .postOnwerInfo p {
+    font-size: 14px;
+  }
+  .postOwnerDetails {
+    padding: 0;
+    padding-top: 1rem;
+  }
+  .tokenInfo img {
+    width: 20px;
+  }
+  .tokenInfo p {
+    font-size: 13px;
+  }
+}
