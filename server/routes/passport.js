@@ -6,6 +6,7 @@ router.get('/google',
 router.get('/google/callback',
     passport.authenticate('google', { failureRedirect: `${process.env.FRONTEND_URL}/signup` }),
     async function (req, res) {
+        console.log(req.session)
         const { ...others } = req.session.passport.user;
         const { accessToken, refreshToken } = await TokenService.createToken({
             _id: others._id

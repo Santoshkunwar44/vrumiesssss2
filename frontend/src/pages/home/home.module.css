@@ -15,7 +15,15 @@
   border-right: 4px solid #00121987;
   height: 100%;
 }
-
+.home_bottom {
+  display: flex;
+  padding: 0 3rem;
+  margin-top: -1rem;
+  justify-content: flex-end;
+}
+.home_bottom .see_all {
+  color: #37e710;
+}
 
 @media screen and (max-width: 992px) {
   .homeRight {

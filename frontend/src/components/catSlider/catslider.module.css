@@ -29,12 +29,14 @@
 }
 /* notFocus */
 .notFocus {
+  pointer-events: none !important;
   scale: 0.7 !important;
   opacity: 0.7 !important;
 }
 .focusCat {
   opacity: 1 !important;
   scale: 1 !important;
+  pointer-events: initial !important;
 }
 
 .center {

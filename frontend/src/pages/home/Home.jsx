@@ -34,6 +34,12 @@ const Home = () => {
                     <div ref={catBoxRef} className={styles.homeLeft}>
                         <BannerContainer />
                         <HomeCategory fullWidth={categorySideWidth} />
+                        <div className={styles.home_bottom}>
+
+                            <p className={styles.see_all}>See All</p>
+
+
+                        </div>
                     </div>
 
                     <CalenderLayout />

@@ -69,7 +69,7 @@ app.use(session({
     name: "vrumies.sid",
     secret: process.env.SESSION_SECRET,
     resave: false,
-    saveUninitialized: false,
+    saveUninitialized: true,
     cookie: {
         secure: true,
         maxAge: 31556952000,

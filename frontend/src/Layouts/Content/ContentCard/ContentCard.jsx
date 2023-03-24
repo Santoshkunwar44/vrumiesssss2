@@ -1,9 +1,11 @@
+import { useNavigate } from "react-router-dom"
 import ReactToContent from "../../../components/content/ReactToContent/ReactToContent"
 import styles from "./ContentCard.module.css"
 
 const ContentCard = ({ content }) => {
+    const navigate = useNavigate()
     return (
-        <div className={styles.content_card}>
+        <div onClick={() => navigate(`/content?${content.contentType}=${content?._id}`)} className={styles.content_card}>
 
             <div className={styles.postBlurBg}>
                 <div className={styles.postBlur1}>
