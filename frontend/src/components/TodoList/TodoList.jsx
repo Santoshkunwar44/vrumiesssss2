@@ -33,7 +33,11 @@ export const TodoList = () => {
         try {
             const res = await getNote(userData?._id)
             if (res.status === 200) {
-                setTodoListData(res.data.message)
+                if (!res.data.message) {
+                    setTodoListData({})
+                } else {
+                    setTodoListData(res.data.message)
+                }
                 setInputTodo("")
 
             } else {
@@ -131,7 +135,7 @@ export const TodoList = () => {
                     <input onKeyDown={handleKeyDown} type="text" value={inputTodo} placeholder="type here press enter to add note " onChange={(e) => setInputTodo(e.target.value)} />
                     <ul className={styles.todo_list}>
                         {
-                            todoListData ? todoListData?.note.map(item => (
+                            !todoListData ? <><p className={styles.todos_initial_text}>loading</p></> : todoListData?.note?.length > 0 ? todoListData?.note.map(item => (
                                 <li key={item?._id}>
                                     {
                                         item
@@ -141,7 +145,7 @@ export const TodoList = () => {
 
                                     }
                                 </li>
-                            )) : <p>loading</p>
+                            )) : <p className={styles.todos_initial_text}>Add your todos here</p>
                         }
 
                     </ul>
